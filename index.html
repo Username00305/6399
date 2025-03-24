@@ -1,92 +1,502 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <!-- ... existing code ... -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Play free online games at 6399Play.com. The best source for web games!">
+    <title>6399Play - Free Online Games</title>
+    <link rel="canonical" href="https://6399play.com" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="styles/main.css">
 </head>
 <body>
-    <header>
-        <h1>Monster Survivors</h1>
-        <p class="game-intro">Survive the onslaught of monsters in this action-packed adventure!</p>
-    </header>
-
-    <main>
-        <!-- Existing game -->
-        <div class="game-container">
-            <iframe src="https://cloud.onlinegames.io/games/2025/unity/monster-survivors/index-og.html" allowfullscreen></iframe>
+    <!-- Navigation -->
+    <nav class="fixed top-0 w-full bg-[#1d1d1f] z-50 shadow-lg">
+        <div class="container mx-auto px-4 py-3">
+            <div class="flex items-center justify-between">
+                <div class="flex items-center">
+                    <a href="/" class="text-2xl font-bold text-white">6399Play</a>
+                    <div class="hidden md:flex ml-8 space-x-4">
+                        <a href="/" class="nav-link">Home</a>
+                        <a href="#action" class="nav-link">Action</a>
+                        <a href="#shooting" class="nav-link">Shooting</a>
+                        <a href="#strategy" class="nav-link">Strategy</a>
+                        <a href="#puzzle" class="nav-link">Puzzle</a>
+                        <a href="#sports" class="nav-link">Sports</a>
+                        <a href="#casual" class="nav-link">Casual</a>
+                    </div>
+                </div>
+                <div class="flex items-center">
+                    <input type="search" placeholder="Search games..." class="search-box">
+                    <button class="md:hidden ml-4" onclick="toggleSidebar()">
+                        <i class="fas fa-bars text-white"></i>
+                    </button>
+                </div>
+            </div>
         </div>
+    </nav>
 
-        <div class="game-details">
-            <!-- ... existing code ... -->
+    <!-- Mobile Sidebar -->
+    <div id="sidebar" class="sidebar -translate-x-full">
+        <div class="p-4">
+            <button onclick="toggleSidebar()" class="float-right text-white">
+                <i class="fas fa-times"></i>
+            </button>
+            <div class="mt-12 flex flex-col space-y-4">
+                <a href="/" class="nav-link">Home</a>
+                <a href="#action" class="nav-link">Action</a>
+                <a href="#shooting" class="nav-link">Shooting</a>
+                <a href="#strategy" class="nav-link">Strategy</a>
+                <a href="#puzzle" class="nav-link">Puzzle</a>
+                <a href="#sports" class="nav-link">Sports</a>
+                <a href="#casual" class="nav-link">Casual</a>
+            </div>
         </div>
+    </div>
 
-        <!-- New game: Adventures With Anxiety! -->
-        <div class="game-container">
-            <iframe src="https://html-classic.itch.zone/html/1830885/index.html?v=1577643761" allowfullscreen></iframe>
-        </div>
+    <!-- Main Content -->
+    <main class="container mx-auto px-4 pt-24">
+        <h1 class="text-4xl font-bold mb-8 text-center">Popular Online Games</h1>
+        
+        <!-- Action Games -->
+        <section id="action" class="mb-12">
+            <h2 class="text-2xl font-bold mb-6">Action Games</h2>
+            <div class="games-list">
+                <!-- Giant Rush -->
+                <div class="game-card">
+                    <div class="game-image">
+                        <iframe src="https://play.famobi.com/giant-rush" 
+                                class="game-iframe"></iframe>
+                    </div>
+                    <div class="game-content">
+                        <h3 class="text-xl font-bold mb-2">Giant Rush</h3>
+                        <p class="text-gray-400 mb-4">Run, jump and grow in this exciting endless runner</p>
+                        <div class="flex flex-wrap mb-4">
+                            <span class="category-tag">Action</span>
+                            <span class="category-tag">Runner</span>
+                        </div>
+                        <a href="games/giant-rush.html" class="game-button">Play Now</a>
+                    </div>
+                </div>
 
-        <div class="game-details">
-            <h2>About Adventures With Anxiety!</h2>
-            <p>Adventures With Anxiety! is a unique game that offers a distinct gaming experience. Explore the game world and face various challenges.</p>
+                <!-- Rise Up -->
+                <div class="game-card">
+                    <div class="game-image">
+                        <iframe src="https://play.famobi.com/rise-up" 
+                                class="game-iframe"></iframe>
+                    </div>
+                    <div class="game-content">
+                        <h3 class="text-xl font-bold mb-2">Rise Up</h3>
+                        <p class="text-gray-400 mb-4">Guide your balloon to the top while protecting it</p>
+                        <div class="flex flex-wrap mb-4">
+                            <span class="category-tag">Action</span>
+                            <span class="category-tag">Arcade</span>
+                        </div>
+                        <a href="games/rise-up.html" class="game-button">Play Now</a>
+                    </div>
+                </div>
 
-            <h2>Game Features</h2>
-            <ul class="feature-list">
-                <li>Unique adventure gameplay</li>
-                <li>Engaging story and challenges</li>
-                <li>Interactive elements</li>
-            </ul>
+                <!-- Neon Rider -->
+                <div class="game-card">
+                    <div class="game-image">
+                        <iframe src="https://play.famobi.com/neon-rider" 
+                                class="game-iframe"></iframe>
+                    </div>
+                    <div class="game-content">
+                        <h3 class="text-xl font-bold mb-2">Neon Rider</h3>
+                        <p class="text-gray-400 mb-4">Race through neon-lit tracks in this fast-paced action game</p>
+                        <div class="flex flex-wrap mb-4">
+                            <span class="category-tag">Action</span>
+                            <span class="category-tag">Racing</span>
+                        </div>
+                        <a href="games/neon-rider.html" class="game-button">Play Now</a>
+                    </div>
+                </div>
 
-            <h2>How to Play</h2>
-            <p>Follow the on-screen instructions to navigate through the game and complete tasks.</p>
+                <!-- Speed Master -->
+                <div class="game-card">
+                    <div class="game-image">
+                        <iframe src="https://play.famobi.com/speed-master" 
+                                class="game-iframe"></iframe>
+                    </div>
+                    <div class="game-content">
+                        <h3 class="text-xl font-bold mb-2">Speed Master</h3>
+                        <p class="text-gray-400 mb-4">Test your reflexes in this high-speed challenge</p>
+                        <div class="flex flex-wrap mb-4">
+                            <span class="category-tag">Action</span>
+                            <span class="category-tag">Racing</span>
+                        </div>
+                        <a href="games/speed-master.html" class="game-button">Play Now</a>
+                    </div>
+                </div>
 
-            <h2>Tips for Success</h2>
-            <p>Pay attention to the details and use the available tools effectively.</p>
-        </div>
+                <!-- Go Escape -->
+                <div class="game-card">
+                    <div class="game-image">
+                        <iframe src="https://play.famobi.com/go-escape" 
+                                class="game-iframe"></iframe>
+                    </div>
+                    <div class="game-content">
+                        <h3 class="text-xl font-bold mb-2">Go Escape</h3>
+                        <p class="text-gray-400 mb-4">Escape through challenging obstacles in this action-packed game</p>
+                        <div class="flex flex-wrap mb-4">
+                            <span class="category-tag">Action</span>
+                            <span class="category-tag">Runner</span>
+                        </div>
+                        <a href="games/go-escape.html" class="game-button">Play Now</a>
+                    </div>
+                </div>
 
-        <!-- New game: Friday Night Funkin' -->
-        <div class="game-container">
-            <iframe src="https://html-classic.itch.zone/html/2876359-1104083/index.html?v=1732313800" allowfullscreen></iframe>
-        </div>
+                <!-- Toilet Run -->
+                <div class="game-card">
+                    <div class="game-image">
+                        <iframe src="https://play.famobi.com/toilet-run" 
+                                class="game-iframe"></iframe>
+                    </div>
+                    <div class="game-content">
+                        <h3 class="text-xl font-bold mb-2">Toilet Run</h3>
+                        <p class="text-gray-400 mb-4">A hilarious arcade runner with unique gameplay</p>
+                        <div class="flex flex-wrap mb-4">
+                            <span class="category-tag">Action</span>
+                            <span class="category-tag">Funny</span>
+                        </div>
+                        <a href="games/toilet-run.html" class="game-button">Play Now</a>
+                    </div>
+                </div>
+            </div>
+        </section>
 
-        <div class="game-details">
-            <h2>About Friday Night Funkin'</h2>
-            <p>Friday Night Funkin' is a popular rhythm game where you can showcase your musical skills.</p>
+        <!-- Shooting Games -->
+        <section id="shooting" class="mb-12">
+            <h2 class="text-2xl font-bold mb-6">Shooting Games</h2>
+            <div class="games-list">
+                <!-- Western Sniper -->
+                <div class="game-card">
+                    <div class="game-image">
+                        <iframe src="https://play.famobi.com/western-sniper" 
+                                class="game-iframe"></iframe>
+                    </div>
+                    <div class="game-content">
+                        <h3 class="text-xl font-bold mb-2">Western Sniper</h3>
+                        <p class="text-gray-400 mb-4">Become the best sniper in the Wild West</p>
+                        <div class="flex flex-wrap mb-4">
+                            <span class="category-tag">Shooting</span>
+                            <span class="category-tag">Action</span>
+                        </div>
+                        <a href="games/western-sniper.html" class="game-button">Play Now</a>
+                    </div>
+                </div>
 
-            <h2>Game Features</h2>
-            <ul class="feature-list">
-                <li>Rhythm-based gameplay</li>
-                <li>Diverse music tracks</li>
-                <li>Competitive challenges</li>
-            </ul>
+                <!-- Alien Attack -->
+                <div class="game-card">
+                    <div class="game-image">
+                        <iframe src="https://play.famobi.com/alien-attack" 
+                                class="game-iframe"></iframe>
+                    </div>
+                    <div class="game-content">
+                        <h3 class="text-xl font-bold mb-2">Alien Attack</h3>
+                        <p class="text-gray-400 mb-4">Defend Earth from alien invaders</p>
+                        <div class="flex flex-wrap mb-4">
+                            <span class="category-tag">Shooting</span>
+                            <span class="category-tag">Space</span>
+                        </div>
+                        <a href="games/alien-attack.html" class="game-button">Play Now</a>
+                    </div>
+                </div>
+            </div>
+        </section>
 
-            <h2>How to Play</h2>
-            <p>Use the specified keys to match the rhythm of the music and score points.</p>
+        <!-- Puzzle Games -->
+        <section id="puzzle" class="mb-12">
+            <h2 class="text-2xl font-bold mb-6">Puzzle Games</h2>
+            <div class="games-list">
+                <!-- Color Fill 3D -->
+                <div class="game-card">
+                    <div class="game-image">
+                        <iframe src="https://play.famobi.com/color-fill-3d" 
+                                class="game-iframe"></iframe>
+                    </div>
+                    <div class="game-content">
+                        <h3 class="text-xl font-bold mb-2">Color Fill 3D</h3>
+                        <p class="text-gray-400 mb-4">Fill the board with colors in this relaxing puzzle game</p>
+                        <div class="flex flex-wrap mb-4">
+                            <span class="category-tag">Puzzle</span>
+                            <span class="category-tag">3D</span>
+                        </div>
+                        <a href="games/color-fill-3d.html" class="game-button">Play Now</a>
+                    </div>
+                </div>
 
-            <h2>Tips for Success</h2>
-            <p>Listen carefully to the music and practice your timing.</p>
-        </div>
+                <!-- Color Roll 3D -->
+                <div class="game-card">
+                    <div class="game-image">
+                        <iframe src="https://play.famobi.com/color-roll-3d" 
+                                class="game-iframe"></iframe>
+                    </div>
+                    <div class="game-content">
+                        <h3 class="text-xl font-bold mb-2">Color Roll 3D</h3>
+                        <p class="text-gray-400 mb-4">Roll and match colors in this addictive 3D puzzle</p>
+                        <div class="flex flex-wrap mb-4">
+                            <span class="category-tag">Puzzle</span>
+                            <span class="category-tag">3D</span>
+                        </div>
+                        <a href="games/color-roll-3d.html" class="game-button">Play Now</a>
+                    </div>
+                </div>
 
-        <!-- New game: Sort the Court! -->
-        <div class="game-container">
-            <iframe src="https://html-classic.itch.zone/html/347310/index.html?v=1542780889" allowfullscreen></iframe>
-        </div>
+                <!-- Color Water Sort 3D -->
+                <div class="game-card">
+                    <div class="game-image">
+                        <iframe src="https://play.famobi.com/color-water-sort-3d" 
+                                class="game-iframe"></iframe>
+                    </div>
+                    <div class="game-content">
+                        <h3 class="text-xl font-bold mb-2">Color Water Sort 3D</h3>
+                        <p class="text-gray-400 mb-4">Sort colored water in this challenging puzzle game</p>
+                        <div class="flex flex-wrap mb-4">
+                            <span class="category-tag">Puzzle</span>
+                            <span class="category-tag">3D</span>
+                        </div>
+                        <a href="games/color-water-sort-3d.html" class="game-button">Play Now</a>
+                    </div>
+                </div>
 
-        <div class="game-details">
-            <h2>About Sort the Court!</h2>
-            <p>Sort the Court! is a game that tests your sorting and management skills.</p>
+                <!-- Braindom -->
+                <div class="game-card">
+                    <div class="game-image">
+                        <iframe src="https://play.famobi.com/braindom" 
+                                class="game-iframe"></iframe>
+                    </div>
+                    <div class="game-content">
+                        <h3 class="text-xl font-bold mb-2">Braindom</h3>
+                        <p class="text-gray-400 mb-4">Test your brain with tricky puzzles and riddles</p>
+                        <div class="flex flex-wrap mb-4">
+                            <span class="category-tag">Puzzle</span>
+                            <span class="category-tag">Brain</span>
+                        </div>
+                        <a href="games/braindom.html" class="game-button">Play Now</a>
+                    </div>
+                </div>
 
-            <h2>Game Features</h2>
-            <ul class="feature-list">
-                <li>Sorting challenges</li>
-                <li>Time management elements</li>
-                <li>Progressive difficulty levels</li>
-            </ul>
+                <!-- Sort It -->
+                <div class="game-card">
+                    <div class="game-image">
+                        <iframe src="https://play.famobi.com/sort-it" 
+                                class="game-iframe"></iframe>
+                    </div>
+                    <div class="game-content">
+                        <h3 class="text-xl font-bold mb-2">Sort It</h3>
+                        <p class="text-gray-400 mb-4">Sort different objects in this satisfying puzzle game</p>
+                        <div class="flex flex-wrap mb-4">
+                            <span class="category-tag">Puzzle</span>
+                            <span class="category-tag">Sorting</span>
+                        </div>
+                        <a href="games/sort-it.html" class="game-button">Play Now</a>
+                    </div>
+                </div>
 
-            <h2>How to Play</h2>
-            <p>Sort the items according to the given rules within the time limit.</p>
+                <!-- Cube Match -->
+                <div class="game-card">
+                    <div class="game-image">
+                        <iframe src="https://play.famobi.com/cube-match" 
+                                class="game-iframe"></iframe>
+                    </div>
+                    <div class="game-content">
+                        <h3 class="text-xl font-bold mb-2">Cube Match</h3>
+                        <p class="text-gray-400 mb-4">Match cubes to solve puzzles and clear levels</p>
+                        <div class="flex flex-wrap mb-4">
+                            <span class="category-tag">Puzzle</span>
+                            <span class="category-tag">Match</span>
+                        </div>
+                        <a href="games/cube-match.html" class="game-button">Play Now</a>
+                    </div>
+                </div>
+            </div>
+        </section>
 
-            <h2>Tips for Success</h2>
-            <p>Plan your sorting strategy in advance and work quickly.</p>
-        </div>
+        <!-- Strategy Games -->
+        <section id="strategy" class="mb-12">
+            <h2 class="text-2xl font-bold mb-6">Strategy Games</h2>
+            <div class="games-list">
+                <!-- Train Miner -->
+                <div class="game-card">
+                    <div class="game-image">
+                        <iframe src="https://play.famobi.com/train-miner" 
+                                class="game-iframe"></iframe>
+                    </div>
+                    <div class="game-content">
+                        <h3 class="text-xl font-bold mb-2">Train Miner</h3>
+                        <p class="text-gray-400 mb-4">Build your mining empire in this strategic simulation</p>
+                        <div class="flex flex-wrap mb-4">
+                            <span class="category-tag">Strategy</span>
+                            <span class="category-tag">Simulation</span>
+                        </div>
+                        <a href="games/train-miner.html" class="game-button">Play Now</a>
+                    </div>
+                </div>
+
+                <!-- Parking Jam -->
+                <div class="game-card">
+                    <div class="game-image">
+                        <iframe src="https://play.famobi.com/parking-jam" 
+                                class="game-iframe"></iframe>
+                    </div>
+                    <div class="game-content">
+                        <h3 class="text-xl font-bold mb-2">Parking Jam</h3>
+                        <p class="text-gray-400 mb-4">Solve parking puzzles in this strategic challenge</p>
+                        <div class="flex flex-wrap mb-4">
+                            <span class="category-tag">Strategy</span>
+                            <span class="category-tag">Puzzle</span>
+                        </div>
+                        <a href="games/parking-jam.html" class="game-button">Play Now</a>
+                    </div>
+                </div>
+
+                <!-- Thief Puzzle -->
+                <div class="game-card">
+                    <div class="game-image">
+                        <iframe src="https://play.famobi.com/thief-puzzle" 
+                                class="game-iframe"></iframe>
+                    </div>
+                    <div class="game-content">
+                        <h3 class="text-xl font-bold mb-2">Thief Puzzle</h3>
+                        <p class="text-gray-400 mb-4">Plan your moves carefully in this strategic puzzle game</p>
+                        <div class="flex flex-wrap mb-4">
+                            <span class="category-tag">Strategy</span>
+                            <span class="category-tag">Puzzle</span>
+                        </div>
+                        <a href="games/thief-puzzle.html" class="game-button">Play Now</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Sports Games -->
+        <section id="sports" class="mb-12">
+            <h2 class="text-2xl font-bold mb-6">Sports Games</h2>
+            <div class="games-list">
+                <!-- Fashion Battle -->
+                <div class="game-card">
+                    <div class="game-image">
+                        <iframe src="https://play.famobi.com/fashion-battle" 
+                                class="game-iframe"></iframe>
+                    </div>
+                    <div class="game-content">
+                        <h3 class="text-xl font-bold mb-2">Fashion Battle</h3>
+                        <p class="text-gray-400 mb-4">Compete in exciting fashion challenges</p>
+                        <div class="flex flex-wrap mb-4">
+                            <span class="category-tag">Sports</span>
+                            <span class="category-tag">Fashion</span>
+                        </div>
+                        <a href="games/fashion-battle.html" class="game-button">Play Now</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Casual Games -->
+        <section id="casual" class="mb-12">
+            <h2 class="text-2xl font-bold mb-6">Casual Games</h2>
+            <div class="games-list">
+                <!-- Spot the Cat -->
+                <div class="game-card">
+                    <div class="game-image">
+                        <iframe src="https://play.famobi.com/spot-the-cat" 
+                                class="game-iframe"></iframe>
+                    </div>
+                    <div class="game-content">
+                        <h3 class="text-xl font-bold mb-2">Spot the Cat</h3>
+                        <p class="text-gray-400 mb-4">Find the hidden cats in this casual observation game</p>
+                        <div class="flex flex-wrap mb-4">
+                            <span class="category-tag">Casual</span>
+                            <span class="category-tag">Hidden Object</span>
+                        </div>
+                        <a href="games/spot-the-cat.html" class="game-button">Play Now</a>
+                    </div>
+                </div>
+
+                <!-- Cut The Rope -->
+                <div class="game-card">
+                    <div class="game-image">
+                        <iframe src="https://play.famobi.com/cut-the-rope" 
+                                class="game-iframe"></iframe>
+                    </div>
+                    <div class="game-content">
+                        <h3 class="text-xl font-bold mb-2">Cut The Rope</h3>
+                        <p class="text-gray-400 mb-4">Feed the cute monster in this physics-based puzzle game</p>
+                        <div class="flex flex-wrap mb-4">
+                            <span class="category-tag">Casual</span>
+                            <span class="category-tag">Physics</span>
+                        </div>
+                        <a href="games/cut-the-rope.html" class="game-button">Play Now</a>
+                    </div>
+                </div>
+
+                <!-- Block Painter -->
+                <div class="game-card">
+                    <div class="game-image">
+                        <iframe src="https://play.famobi.com/block-painter" 
+                                class="game-iframe"></iframe>
+                    </div>
+                    <div class="game-content">
+                        <h3 class="text-xl font-bold mb-2">Block Painter</h3>
+                        <p class="text-gray-400 mb-4">Paint blocks to create beautiful patterns</p>
+                        <div class="flex flex-wrap mb-4">
+                            <span class="category-tag">Casual</span>
+                            <span class="category-tag">Art</span>
+                        </div>
+                        <a href="games/block-painter.html" class="game-button">Play Now</a>
+                    </div>
+                </div>
+
+                <!-- Green Ball -->
+                <div class="game-card">
+                    <div class="game-image">
+                        <iframe src="https://play.famobi.com/green-ball" 
+                                class="game-iframe"></iframe>
+                    </div>
+                    <div class="game-content">
+                        <h3 class="text-xl font-bold mb-2">Green Ball</h3>
+                        <p class="text-gray-400 mb-4">Guide the green ball through challenging levels</p>
+                        <div class="flex flex-wrap mb-4">
+                            <span class="category-tag">Casual</span>
+                            <span class="category-tag">Physics</span>
+                        </div>
+                        <a href="games/green-ball.html" class="game-button">Play Now</a>
+                    </div>
+                </div>
+
+                <!-- Twisty Lines -->
+                <div class="game-card">
+                    <div class="game-image">
+                        <iframe src="https://play.famobi.com/twisty-lines" 
+                                class="game-iframe"></iframe>
+                    </div>
+                    <div class="game-content">
+                        <h3 class="text-xl font-bold mb-2">Twisty Lines</h3>
+                        <p class="text-gray-400 mb-4">Connect the dots in this relaxing puzzle game</p>
+                        <div class="flex flex-wrap mb-4">
+                            <span class="category-tag">Casual</span>
+                            <span class="category-tag">Puzzle</span>
+                        </div>
+                        <a href="games/twisty-lines.html" class="game-button">Play Now</a>
+                    </div>
+                </div>
+            </div>
+        </section>
     </main>
+
+    <!-- Footer -->
+    <footer class="bg-[#1d1d1f] mt-16 py-8">
+        <div class="container mx-auto px-4">
+            <div class="text-center text-gray-400">
+                <p>&copy; 2024 6399Play.com - All rights reserved</p>
+                <p class="mt-2">The best free online gaming experience</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
 </body>
 </html>
