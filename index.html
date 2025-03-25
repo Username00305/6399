@@ -100,336 +100,10 @@
         .custom-select option:hover {
             background-color: #2d3748;
         }
-
-        .fade-transition {
-            transition: opacity 0.2s ease-in-out;
-        }
-
-        .game-showcase {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 1.5rem;
-            margin-bottom: 2rem;
-        }
-
-        .game-card {
-            aspect-ratio: 4/3;
-            position: relative;
-            overflow: hidden;
-            border-radius: 1rem;
-            background: var(--surface);
-            transition: all 0.3s ease;
-        }
-
-        .game-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
-        }
-
-        .game-iframe-container {
-            position: relative;
-            width: 100%;
-            height: 65%;
-            overflow: hidden;
-        }
-
-        .game-iframe {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            border: none;
-            object-fit: cover;
-        }
-
-        /* 炫酷的鼠标跟随效果 */
-        .cursor-glow {
-            width: 20px;
-            height: 20px;
-            background: rgba(59, 130, 246, 0.5);
-            border-radius: 50%;
-            position: fixed;
-            pointer-events: none;
-            z-index: 9999;
-            transition: transform 0.15s ease;
-        }
-
-        .cursor-glow::after {
-            content: '';
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 100%;
-            height: 100%;
-            background: radial-gradient(
-                circle,
-                rgba(59, 130, 246, 0.3) 0%,
-                rgba(59, 130, 246, 0) 70%
-            );
-            border-radius: 50%;
-            animation: pulse 2s infinite;
-        }
-
-        .cursor-glow::before {
-            content: '';
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 5px;
-            height: 5px;
-            background: #fff;
-            border-radius: 50%;
-            box-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
-        }
-
-        @keyframes pulse {
-            0% {
-                transform: translate(-50%, -50%) scale(1);
-                opacity: 1;
-            }
-            100% {
-                transform: translate(-50%, -50%) scale(2);
-                opacity: 0;
-            }
-        }
-
-        /* 交互状态 */
-        .game-card:hover ~ .cursor-glow {
-            transform: scale(1.5);
-            background: rgba(59, 130, 246, 0.8);
-        }
-
-        .nav-item:hover ~ .cursor-glow {
-            transform: scale(1.2);
-            background: rgba(255, 255, 255, 0.3);
-        }
-
-        /* 在原有style标签中添加 */
-        .header-fixed {
-            position: fixed;
-            top: 0;
-            right: 0;
-            left: 64px; /* 左侧导航栏宽度 */
-            background: var(--background);
-            z-index: 50;
-            padding: 1rem 2rem;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-        }
-
-        /* 调整主内容区域的上边距，为固定导航留出空间 */
-        main {
-            padding-top: 80px;
-        }
-
-        /* 优化游戏卡片样式，确保游戏内容填充整个卡片 */
-        .game-card {
-            aspect-ratio: 16/9;
-            position: relative;
-            width: 100%;
-            height: 100%;
-        }
-
-        .game-iframe-container {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            overflow: hidden;
-        }
-
-        .game-iframe {
-            width: 100%;
-            height: 100%;
-            border: none;
-            object-fit: cover;
-        }
-
-        /* 调整游戏展示区域的样式 */
-        .game-section {
-            margin-bottom: 3rem;
-        }
-
-        .section-header {
-            margin-bottom: 1.5rem;
-            padding: 0 1rem;
-        }
-
-        .game-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr); /* 每行显示2个游戏 */
-            gap: 1.5rem;
-            padding: 0 1rem;
-        }
-
-        .game-card {
-            position: relative;
-            background: var(--surface);
-            border-radius: 1rem;
-            overflow: hidden;
-            transition: transform 0.2s;
-            aspect-ratio: 16/9;
-        }
-
-        .game-card:hover {
-            transform: translateY(-4px);
-        }
-
-        .game-thumbnail {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        .game-info {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            padding: 1rem;
-            background: linear-gradient(to top, rgba(0,0,0,0.9), rgba(0,0,0,0));
-        }
-
-        .game-title {
-            font-size: 1.25rem;
-            font-weight: 600;
-            color: #fff;
-            margin-bottom: 0.5rem;
-        }
-
-        .game-meta {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .game-rating {
-            display: flex;
-            align-items: center;
-            color: #fbbf24;
-        }
-
-        .play-count {
-            color: #9ca3af;
-            font-size: 0.875rem;
-        }
-
-        /* 底部区域样式 */
-        .footer {
-            margin-top: 4rem;
-            padding: 2rem;
-            padding: 4rem 2rem 2rem;
-            background: var(--surface);
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-        }
-
-        .footer-content {
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .footer-sections {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 3rem;
-            margin-bottom: 3rem;
-        }
-
-        .footer-section {
-            display: flex;
-            flex-direction: column;
-        }
-
-        .footer-title {
-            color: #fff;
-            font-size: 1.25rem;
-            font-weight: 600;
-            margin-bottom: 1.5rem;
-        }
-
-        .footer-text {
-            color: #9ca3af;
-            line-height: 1.6;
-        }
-
-        .footer-links {
-            display: flex;
-            flex-direction: column;
-            gap: 0.75rem;
-        }
-
-        .footer-link {
-            color: #9ca3af;
-            text-decoration: none;
-            transition: color 0.2s;
-        }
-
-        .footer-link:hover {
-            color: #fff;
-        }
-
-        .footer-copyright {
-            text-align: center;
-            color: #9ca3af;
-            padding-top: 2rem;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-        }
     </style>
 </head>
 
 <body class="min-h-screen flex">
-    <!-- 将原有header部分移动到固定位置 -->
-    <header class="header-fixed">
-        <div class="flex justify-between items-center">
-            <div class="relative">
-                <input type="text" 
-                    class="search-input w-96 px-4 py-2 rounded-lg text-white placeholder-gray-400 focus:outline-none"
-                    placeholder="搜索游戏..."
-                >
-            </div>
-            
-            <div class="flex items-center space-x-4">
-                <select class="bg-[#1e293b] px-4 py-2 rounded-lg border border-gray-700 text-gray-200 hover:border-blue-500 focus:border-blue-500 focus:ring-1 focus:ring-blue-500 focus:outline-none cursor-pointer appearance-none custom-select">
-                    <!-- 东亚语言 -->
-                    <optgroup label="东亚" class="bg-[#1e293b] text-gray-200">
-                        <option value="zh-CN" class="py-2">简体中文</option>
-                        <option value="zh-TW" class="py-2">繁體中文</option>
-                        <option value="ja" class="py-2">日本語</option>
-                        <option value="ko" class="py-2">한국어</option>
-                    </optgroup>
-                    <!-- 欧洲语言 -->
-                    <optgroup label="欧洲" class="bg-[#1e293b] text-gray-200">
-                        <option value="en" class="py-2">English</option>
-                        <option value="fr" class="py-2">Français</option>
-                        <option value="de" class="py-2">Deutsch</option>
-                        <option value="es" class="py-2">Español</option>
-                        <option value="it" class="py-2">Italiano</option>
-                        <option value="pt" class="py-2">Português</option>
-                        <option value="ru" class="py-2">Русский</option>
-                    </optgroup>
-                    <!-- 其他语言 -->
-                    <optgroup label="其他" class="bg-[#1e293b] text-gray-200">
-                        <option value="ar" class="py-2">العربية</option>
-                        <option value="hi" class="py-2">हिन्दी</option>
-                        <option value="th" class="py-2">ไทย</option>
-                        <option value="vi" class="py-2">Tiếng Việt</option>
-                    </optgroup>
-                </select>
-                
-                <div class="flex items-center space-x-2 bg-surface px-4 py-2 rounded-lg">
-                    <img src="https://api.dicebear.com/6.x/avataaars/svg?seed=guest" 
-                        alt="Guest" 
-                        class="w-8 h-8 rounded-full"
-                    >
-                    <span>Guest</span>
-                </div>
-            </div>
-        </div>
-    </header>
-
     <!-- 左侧导航 -->
     <nav class="sidebar fixed w-64 h-screen p-6 flex flex-col">
         <div class="flex items-center mb-8">
@@ -441,36 +115,35 @@
                 <svg class="w-5 h-5 mr-3" fill="currentColor" viewBox="0 0 20 20">
                     <path d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z"/>
                 </svg>
-                全部游戏
+                首页
             </a>
             
-            <a href="#action" class="nav-item flex items-center px-4 py-3 rounded-lg text-gray-400 hover:text-white">
+            <a href="#" class="nav-item flex items-center px-4 py-3 rounded-lg text-gray-400 hover:text-white">
                 <svg class="w-5 h-5 mr-3" fill="currentColor" viewBox="0 0 20 20">
-                    <path d="M13.89 3.39l2.71 2.72c.46.46.42 1.24.03 1.64l-8.01 8.02-5.56 1.16 1.16-5.58s7.6-7.63 7.99-8.03c.39-.39 1.22-.39 1.68.07zm-2.73 2.79l-5.59 5.61 1.11 1.11 5.54-5.65zm-2.97 8.23l5.58-5.6-1.07-1.08-5.59 5.6z"/>
+                    <path d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z"/>
                 </svg>
-                动作冒险
+                最近玩过
             </a>
-            
-            <a href="#puzzle" class="nav-item flex items-center px-4 py-3 rounded-lg text-gray-400 hover:text-white">
+
+            <a href="#" class="nav-item flex items-center px-4 py-3 rounded-lg text-gray-400 hover:text-white">
                 <svg class="w-5 h-5 mr-3" fill="currentColor" viewBox="0 0 20 20">
-                    <path d="M10 3.5a1.5 1.5 0 013 0V4a1 1 0 001 1h3a1 1 0 011 1v3a1 1 0 01-1 1h-.5a1.5 1.5 0 000 3h.5a1 1 0 011 1v3a1 1 0 01-1 1h-3a1 1 0 01-1-1v-.5a1.5 1.5 0 00-3 0v.5a1 1 0 01-1 1H6a1 1 0 01-1-1v-3a1 1 0 00-1-1h-.5a1.5 1.5 0 010-3H4a1 1 0 001-1V6a1 1 0 011-1h3a1 1 0 001-1v-.5z"/>
+                    <path d="M11 3a1 1 0 10-2 0v1a1 1 0 102 0V3zM15.657 5.757a1 1 0 00-1.414-1.414l-.707.707a1 1 0 001.414 1.414l.707-.707z"/>
                 </svg>
-                益智解谜
+                新游戏
             </a>
-            
-            <a href="#skill" class="nav-item flex items-center px-4 py-3 rounded-lg text-gray-400 hover:text-white">
+
+            <a href="#" class="nav-item flex items-center px-4 py-3 rounded-lg text-gray-400 hover:text-white">
                 <svg class="w-5 h-5 mr-3" fill="currentColor" viewBox="0 0 20 20">
-                    <path d="M13 6a3 3 0 11-6 0 3 3 0 016 0zM18 8a2 2 0 11-4 0 2 2 0 014 0zM14 15a4 4 0 00-8 0v3h8v-3zM6 8a2 2 0 11-4 0 2 2 0 014 0zM16 18v-3a5.972 5.972 0 00-.75-2.906A3.005 3.005 0 0119 15v3h-3zM4.75 12.094A5.973 5.973 0 004 15v3H1v-3a3 3 0 013.75-2.906z"/>
+                    <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
                 </svg>
-                技巧游戏
+                热门推荐
             </a>
-            
-            <a href="#casual" class="nav-item flex items-center px-4 py-3 rounded-lg text-gray-400 hover:text-white">
+
+            <a href="#" class="nav-item flex items-center px-4 py-3 rounded-lg text-gray-400 hover:text-white">
                 <svg class="w-5 h-5 mr-3" fill="currentColor" viewBox="0 0 20 20">
-                    <path d="M10 12a2 2 0 100-4 2 2 0 000 4z"/>
-                    <path fill-rule="evenodd" d="M.458 10C1.732 5.943 5.522 3 10 3s8.268 2.943 9.542 7c-1.274 4.057-5.064 7-9.542 7S1.732 14.057.458 10zM14 10a4 4 0 11-8 0 4 4 0 018 0z" clip-rule="evenodd"/>
+                    <path d="M4 2a1 1 0 011 1v2.101a7.002 7.002 0 0111.601 2.566 1 1 0 11-1.885.666A5.002 5.002 0 005.999 7H9a1 1 0 010 2H4a1 1 0 01-1-1V3a1 1 0 011-1z"/>
                 </svg>
-                休闲娱乐
+                更新
             </a>
 
             <!-- 分割线 -->
@@ -550,12 +223,61 @@
                     </svg>
                     格斗对战
                 </a>
+
+                <!-- 更多分类... -->
             </div>
         </div>
     </nav>
 
-    <!-- 主内容区域添加顶部padding -->
-    <main class="pt-20">
+    <!-- 主内容区 -->
+    <main class="flex-1 ml-64 p-8">
+        <!-- 顶部栏 -->
+        <header class="flex justify-between items-center mb-12">
+            <div class="relative">
+                <input type="text" 
+                    class="search-input w-96 px-4 py-2 rounded-lg text-white placeholder-gray-400 focus:outline-none"
+                    placeholder="搜索游戏..."
+                >
+            </div>
+            
+            <div class="flex items-center space-x-4">
+                <select class="bg-surface px-4 py-2 rounded-lg border border-gray-700 text-white">
+                    <!-- 东亚语言 -->
+                    <optgroup label="东亚">
+                        <option value="zh-CN">简体中文</option>
+                        <option value="zh-TW">繁體中文</option>
+                        <option value="ja">日本語</option>
+                        <option value="ko">한국어</option>
+                    </optgroup>
+                    <!-- 欧洲语言 -->
+                    <optgroup label="欧洲">
+                        <option value="en">English</option>
+                        <option value="fr">Français</option>
+                        <option value="de">Deutsch</option>
+                        <option value="es">Español</option>
+                        <option value="it">Italiano</option>
+                        <option value="pt">Português</option>
+                        <option value="ru">Русский</option>
+                    </optgroup>
+                    <!-- 其他语言 -->
+                    <optgroup label="其他">
+                        <option value="ar">العربية</option>
+                        <option value="hi">हिन्दी</option>
+                        <option value="th">ไทย</option>
+                        <option value="vi">Tiếng Việt</option>
+                    </optgroup>
+                </select>
+                
+                <div class="flex items-center space-x-2 bg-surface px-4 py-2 rounded-lg">
+                    <img src="https://api.dicebear.com/6.x/avataaars/svg?seed=guest" 
+                        alt="Guest" 
+                        class="w-8 h-8 rounded-full"
+                    >
+                    <span>Guest</span>
+                </div>
+            </div>
+        </header>
+
         <!-- 标题区域 -->
         <div class="mb-12">
             <h1 class="text-5xl font-bold mb-4">
@@ -603,244 +325,68 @@
         </div>
 
         <!-- 精选游戏区域 -->
-        <section class="game-section">
-            <div class="section-header">
+        <div class="mb-12">
+            <div class="flex justify-between items-center mb-6">
                 <h2 class="text-2xl font-bold text-white">精选游戏</h2>
+                <a href="#" class="text-blue-500 hover:text-blue-400">查看全部 ></a>
             </div>
             
-            <div class="game-grid">
-                <!-- 游戏卡片1 -->
-                <div class="game-card">
-                    <img src="game1-thumbnail.jpg" alt="Giant Rush" class="game-thumbnail">
-                    <div class="game-info">
-                        <h3 class="game-title">Giant Rush</h3>
-                        <div class="game-meta">
-                            <div class="game-rating">
-                                <span class="mr-1">4.8</span>
-                                <span>★★★★★</span>
+            <div class="grid grid-cols-4 gap-6">
+                <!-- Giant Rush -->
+                <div class="game-card rounded-xl overflow-hidden">
+                    <div class="relative">
+                        <iframe src="https://play.famobi.com/giant-rush" 
+                            class="w-full h-48 object-cover pointer-events-none">
+                        </iframe>
+                        <span class="absolute top-2 right-2 px-2 py-1 bg-blue-600/80 text-xs text-white rounded">动作</span>
+                    </div>
+                    <div class="p-4">
+                        <div class="flex justify-between items-center mb-2">
+                            <h3 class="text-lg font-semibold">Giant Rush</h3>
+                            <div class="flex items-center">
+                                <span class="text-yellow-400 mr-1">4.8</span>
+                                <div class="text-yellow-400">★★★★★</div>
                             </div>
-                            <span class="play-count">2.5k 在玩</span>
+                        </div>
+                        <p class="text-gray-400 text-sm mb-3">刺激的跑酷冒险游戏</p>
+                        <div class="flex justify-between items-center">
+                            <button onclick="window.open('https://play.famobi.com/giant-rush', '_blank')" 
+                                class="bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 transition">
+                                立即玩
+                            </button>
+                            <a href="#" class="text-gray-400 hover:text-white text-sm">更多信息</a>
                         </div>
                     </div>
                 </div>
 
-                <!-- 游戏卡片2 -->
-                <div class="game-card">
-                    <!-- 类似结构 -->
-                </div>
-            </div>
-        </section>
-
-        <!-- 热门游戏区域 -->
-        <section class="game-section">
-            <div class="section-header">
-                <h2 class="text-2xl font-bold text-white">热门游戏</h2>
-            </div>
-            
-            <div class="game-grid">
-                <!-- 两个游戏卡片 -->
-            </div>
-        </section>
-
-        <!-- 朋友在玩区域 -->
-        <section class="game-section">
-            <div class="section-header">
-                <h2 class="text-2xl font-bold text-white">朋友在玩</h2>
-            </div>
-            
-            <div class="game-grid">
-                <!-- 两个游戏卡片 -->
-            </div>
-        </section>
-    </main>
-
-    <!-- 底部区域 -->
-    <footer class="footer">
-        <div class="footer-content">
-            <div class="footer-sections">
-                <div class="footer-section">
-                    <h3 class="footer-title">关于我们</h3>
-                    <p class="footer-text">
-                        提供最好玩的在线游戏体验，无需下载，
-                        即刻开始您的游戏之旅。
-                    </p>
+                <!-- Color Fill 3D -->
+                <div class="game-card rounded-xl overflow-hidden">
+                    <!-- 类似的游戏卡片结构 -->
                 </div>
 
-                <div class="footer-section">
-                    <h3 class="footer-title">游戏分类</h3>
-                    <div class="footer-links">
-                        <a href="#" class="footer-link">动作游戏</a>
-                        <a href="#" class="footer-link">益智游戏</a>
-                        <a href="#" class="footer-link">策略游戏</a>
-                        <a href="#" class="footer-link">休闲游戏</a>
-                    </div>
-                </div>
-
-                <div class="footer-section">
-                    <h3 class="footer-title">快速链接</h3>
-                    <div class="footer-links">
-                        <a href="#" class="footer-link">首页</a>
-                        <a href="#" class="footer-link">新游戏</a>
-                        <a href="#" class="footer-link">排行榜</a>
-                        <a href="#" class="footer-link">联系我们</a>
-                    </div>
-                </div>
-
-                <div class="footer-section">
-                    <h3 class="footer-title">关注我们</h3>
-                    <div class="footer-links">
-                        <a href="#" class="footer-link">Twitter</a>
-                        <a href="#" class="footer-link">Facebook</a>
-                        <a href="#" class="footer-link">Instagram</a>
-                        <a href="#" class="footer-link">Discord</a>
-                    </div>
-                </div>
-            </div>
-
-            <div class="footer-copyright">
-                © 2024 World Games. All rights reserved.
+                <!-- 其他精选游戏... -->
             </div>
         </div>
-    </footer>
+
+        <!-- 热门游戏区域 -->
+        <div class="mb-12">
+            <div class="flex justify-between items-center mb-6">
+                <h2 class="text-2xl font-bold text-white">热门游戏</h2>
+                <a href="#" class="text-blue-500 hover:text-blue-400">查看全部 ></a>
+            </div>
+            
+            <div class="grid grid-cols-4 gap-6">
+                <!-- Train Miner -->
+                <div class="game-card rounded-xl overflow-hidden">
+                    <!-- 游戏卡片内容 -->
+                </div>
+
+                <!-- 其他热门游戏... -->
+            </div>
+        </div>
+    </main>
 
     <script>
-        // 语言切换功能
-        const languageSelect = document.querySelector('select');
-        
-        // 获取保存的语言设置或使用默认值
-        const savedLanguage = localStorage.getItem('preferred-language') || 'zh-CN';
-        
-        // 设置初始语言
-        languageSelect.value = savedLanguage;
-        
-        // 监听语言选择变化
-        languageSelect.addEventListener('change', (e) => {
-            const selectedLanguage = e.target.value;
-            localStorage.setItem('preferred-language', selectedLanguage);
-            updateInterfaceLanguage(selectedLanguage);
-        });
-
-        // 更新界面语言的函数
-        function updateInterfaceLanguage(language) {
-            const translations = {
-                'zh-CN': {
-                    search: '搜索游戏...',
-                    title: '游戏世界',
-                    subtitle: '无尽娱乐',
-                    description: '发现数百款可直接在浏览器中玩的免费游戏，无需下载，无需安装 - 即刻享受乐趣！',
-                    gameCount: '游戏总数',
-                    activeUsers: '活跃用户',
-                    freeGames: '免费游戏',
-                    playNow: '立即玩',
-                    moreInfo: '更多信息',
-                    categories: '热门分类',
-                    puzzleGames: '益智游戏',
-                    actionGames: '动作游戏',
-                    strategyGames: '策略游戏',
-                    cardGames: '卡牌游戏'
-                },
-                'en': {
-                    search: 'Search games...',
-                    title: 'Game World',
-                    subtitle: 'Endless Fun',
-                    description: 'Discover hundreds of free games playable directly in your browser - no download required!',
-                    gameCount: 'Games',
-                    activeUsers: 'Active Users',
-                    freeGames: 'Free Games',
-                    playNow: 'Play Now',
-                    moreInfo: 'More Info',
-                    categories: 'Popular Categories',
-                    puzzleGames: 'Puzzle Games',
-                    actionGames: 'Action Games',
-                    strategyGames: 'Strategy Games',
-                    cardGames: 'Card Games'
-                },
-                'ja': {
-                    search: 'ゲームを検索...',
-                    title: 'ゲームワールド',
-                    subtitle: '無限の楽しみ',
-                    description: 'ブラウザで直接プレイできる無料ゲームを何百も発見しよう！',
-                    gameCount: 'ゲーム数',
-                    activeUsers: 'アクティブユーザー',
-                    freeGames: '無料ゲーム',
-                    playNow: 'プレイする',
-                    moreInfo: '詳細情報',
-                    categories: '人気カテゴリー',
-                    puzzleGames: 'パズルゲーム',
-                    actionGames: 'アクションゲーム',
-                    strategyGames: '戦略ゲーム',
-                    cardGames: 'カードゲーム'
-                }
-                // 可以继续添加其他语言...
-            };
-
-            const texts = translations[language] || translations['en'];
-            
-            // 更新所有需要翻译的文本
-            const elements = {
-                'input[placeholder]': 'search',
-                'h1 span:first-child': 'title',
-                'h1 span:last-child': 'subtitle',
-                '.text-gray-400.text-lg': 'description',
-                'h2.text-xl': 'categories'
-            };
-
-            // 使用动画效果更新文本
-            for (let [selector, key] of Object.entries(elements)) {
-                const element = document.querySelector(selector);
-                if (element) {
-                    element.style.opacity = '0';
-                    setTimeout(() => {
-                        element.textContent = texts[key];
-                        element.style.opacity = '1';
-                    }, 200);
-                }
-            }
-
-            // 更新统计卡片
-            document.querySelectorAll('.stat-card .text-gray-400').forEach((el, index) => {
-                el.style.opacity = '0';
-                setTimeout(() => {
-                    if (index === 0) el.textContent = texts.gameCount;
-                    if (index === 1) el.textContent = texts.activeUsers;
-                    if (index === 2) el.textContent = texts.freeGames;
-                    el.style.opacity = '1';
-                }, 200);
-            });
-
-            // 更新游戏分类按钮
-            document.querySelectorAll('.category-tag').forEach((btn, index) => {
-                btn.style.opacity = '0';
-                setTimeout(() => {
-                    const categories = [texts.puzzleGames, texts.actionGames, texts.strategyGames, texts.cardGames];
-                    if (categories[index]) {
-                        btn.textContent = categories[index];
-                    }
-                    btn.style.opacity = '1';
-                }, 200);
-            });
-
-            // 更新游戏卡片按钮
-            document.querySelectorAll('.game-card button').forEach(btn => {
-                btn.style.opacity = '0';
-                setTimeout(() => {
-                    btn.textContent = texts.playNow;
-                    btn.style.opacity = '1';
-                }, 200);
-            });
-
-            document.querySelectorAll('.game-card a').forEach(link => {
-                link.style.opacity = '0';
-                setTimeout(() => {
-                    link.textContent = texts.moreInfo;
-                    link.style.opacity = '1';
-                }, 200);
-            });
-        }
-
-        // 初始化界面语言
-        updateInterfaceLanguage(savedLanguage);
-
         // 添加鼠标悬停效果
         document.querySelectorAll('.game-card').forEach(card => {
             card.addEventListener('mouseenter', () => {
@@ -852,71 +398,126 @@
             });
         });
 
-        // 添加平滑滚动效果
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const targetId = this.getAttribute('href').substring(1);
-                const target = document.getElementById(targetId);
-                
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth'
-                    });
-                    
-                    // 更新活动状态
-                    document.querySelectorAll('.nav-item').forEach(item => {
-                        item.classList.remove('active');
-                    });
-                    this.classList.add('active');
+        // 语言选择功能
+        const languageSelect = document.querySelector('select');
+        
+        // 获取保存的语言设置或使用默认值
+        const savedLanguage = localStorage.getItem('preferred-language') || 'zh-CN';
+        
+        // 设置初始语言
+        languageSelect.value = savedLanguage;
+        
+        // 监听语言选择变化
+        languageSelect.addEventListener('change', (e) => {
+            const selectedLanguage = e.target.value;
+            
+            // 保存语言选择
+            localStorage.setItem('preferred-language', selectedLanguage);
+            
+            // 可以在这里添加更新界面文本的逻辑
+            updateInterfaceLanguage(selectedLanguage);
+        });
+
+        // 更新界面语言的函数
+        function updateInterfaceLanguage(language) {
+            // 界面文本对应表
+            const translations = {
+                'zh-CN': {
+                    search: '搜索游戏...',
+                    title: '游戏世界',
+                    subtitle: '无尽娱乐',
+                    description: '发现数百款可直接在浏览器中玩的免费游戏，无需下载，无需安装 - 即刻享受乐趣！',
+                    gameCount: '游戏总数',
+                    activeUsers: '活跃用户',
+                    freeGames: '免费游戏',
+                    playNow: '立即玩',
+                    moreInfo: '更多信息',
+                    categories: '热门分类'
+                },
+                'en': {
+                    search: 'Search games...',
+                    title: 'Game World',
+                    subtitle: 'Endless Fun',
+                    description: 'Discover hundreds of free games playable directly in your browser - no download, no installation required!',
+                    gameCount: 'Games',
+                    activeUsers: 'Active Users',
+                    freeGames: 'Free Games',
+                    playNow: 'Play Now',
+                    moreInfo: 'More Info',
+                    categories: 'Popular Categories'
+                },
+                'ja': {
+                    search: 'ゲームを検索...',
+                    title: 'ゲームワールド',
+                    subtitle: '無限の楽しみ',
+                    description: 'ブラウザで直接プレイできる無料ゲームを何百も発見しよう！ダウンロードもインストールも不要です！',
+                    gameCount: 'ゲーム数',
+                    activeUsers: 'アクティブユーザー',
+                    freeGames: '無料ゲーム',
+                    playNow: 'プレイする',
+                    moreInfo: '詳細情報',
+                    categories: '人気カテゴリー'
                 }
+                // 可以继续添加其他语言...
+            };
+
+            // 获取当前语言的翻译
+            const texts = translations[language] || translations['en'];
+
+            // 更新界面文本
+            document.querySelector('input[placeholder]').placeholder = texts.search;
+            document.querySelector('h1 span:first-child').textContent = texts.title;
+            document.querySelector('h1 span:last-child').textContent = texts.subtitle;
+            document.querySelector('.text-gray-400.text-lg').textContent = texts.description;
+            
+            // 更新统计卡片文本
+            document.querySelectorAll('.stat-card .text-gray-400').forEach((el, index) => {
+                if (index === 0) el.textContent = texts.gameCount;
+                if (index === 1) el.textContent = texts.activeUsers;
+                if (index === 2) el.textContent = texts.freeGames;
             });
-        });
 
-        // 在script标签中添加
-        const cursor = document.createElement('div');
-        cursor.className = 'cursor-glow';
-        document.body.appendChild(cursor);
+            // 更新分类标题
+            document.querySelector('h2.text-xl').textContent = texts.categories;
 
-        let mouseX = 0;
-        let mouseY = 0;
-        let cursorX = 0;
-        let cursorY = 0;
+            // 更新游戏卡片按钮文本
+            document.querySelectorAll('.game-card button').forEach(btn => {
+                btn.textContent = texts.playNow;
+            });
 
-        document.addEventListener('mousemove', (e) => {
-            mouseX = e.clientX;
-            mouseY = e.clientY;
-        });
-
-        function animate() {
-            // 平滑跟随效果
-            const dx = mouseX - cursorX;
-            const dy = mouseY - cursorY;
-            
-            cursorX += dx * 0.1;
-            cursorY += dy * 0.1;
-            
-            cursor.style.left = `${cursorX}px`;
-            cursor.style.top = `${cursorY}px`;
-            
-            requestAnimationFrame(animate);
+            document.querySelectorAll('.game-card a').forEach(link => {
+                link.textContent = texts.moreInfo;
+            });
         }
 
-        animate();
+        // 初始化界面语言
+        updateInterfaceLanguage(savedLanguage);
 
-        // 添加交互效果
-        document.querySelectorAll('.game-card, .nav-item, button, a').forEach(elem => {
-            elem.addEventListener('mouseenter', () => {
-                cursor.style.transform = 'scale(1.5)';
-                cursor.style.mixBlendMode = 'difference';
-            });
-            
-            elem.addEventListener('mouseleave', () => {
-                cursor.style.transform = 'scale(1)';
-                cursor.style.mixBlendMode = 'normal';
+        // 分类导航功能
+        document.querySelectorAll('.nav-item').forEach(item => {
+            item.addEventListener('click', function(e) {
+                // 移除所有active类
+                document.querySelectorAll('.nav-item').forEach(i => {
+                    i.classList.remove('active');
+                });
+                
+                // 添加active类到当前点击项
+                this.classList.add('active');
+                
+                // 如果是分类链接，滚动到对应区域
+                const href = this.getAttribute('href');
+                if (href && href.startsWith('#')) {
+                    e.preventDefault();
+                    const target = document.querySelector(href);
+                    if (target) {
+                        target.scrollIntoView({ behavior: 'smooth' });
+                    }
+                }
             });
         });
     </script>
 </body>
 </html>
+
+
 
