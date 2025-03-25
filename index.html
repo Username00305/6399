@@ -1,502 +1,922 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Play free online games at 6399Play.com. The best source for web games!">
-    <title>6399Play - Free Online Games</title>
-    <link rel="canonical" href="https://6399play.com" />
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <link rel="stylesheet" href="styles/main.css">
+    <title>6399Play - 在线游戏世界</title>
+    <meta name="description" content="发现精彩的在线游戏世界,即刻开始您的游戏之旅">
+    <link rel="canonical" href="https://your-domain.com/game" />
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    
+    <style>
+        :root {
+            --primary: #1a56db;
+            --secondary: #7e3af2;
+            --success: #0e9f6e;
+            --background: #0f172a;
+            --surface: #1e293b;
+            --text: #f8fafc;
+        }
+
+        body {
+            background-color: var(--background);
+            color: var(--text);
+            font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+        }
+
+        .sidebar {
+            background: linear-gradient(180deg, #1e293b 0%, #0f172a 100%);
+            border-right: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .nav-item {
+            transition: all 0.3s ease;
+        }
+
+        .nav-item:hover {
+            background: rgba(255, 255, 255, 0.1);
+            transform: translateX(5px);
+        }
+
+        .nav-item.active {
+            background: rgba(26, 86, 219, 0.2);
+            border-left: 3px solid var(--primary);
+        }
+
+        .game-card {
+            background: var(--surface);
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .game-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--primary);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .stat-card {
+            background: linear-gradient(135deg, rgba(26, 86, 219, 0.1) 0%, rgba(26, 86, 219, 0.05) 100%);
+            border: 1px solid rgba(26, 86, 219, 0.2);
+        }
+
+        .category-tag {
+            transition: all 0.3s ease;
+        }
+
+        .category-tag:hover {
+            transform: scale(1.05);
+        }
+
+        .search-input {
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .search-input:focus {
+            border-color: var(--primary);
+            box-shadow: 0 0 0 2px rgba(26, 86, 219, 0.2);
+        }
+
+        .custom-select {
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%239CA3AF'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M19 9l-7 7-7-7'%3E%3C/path%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 0.5rem center;
+            background-size: 1.5em 1.5em;
+            padding-right: 2.5rem;
+        }
+
+        .custom-select optgroup {
+            background-color: #1e293b;
+            color: #e2e8f0;
+        }
+
+        .custom-select option {
+            background-color: #1e293b;
+            color: #e2e8f0;
+            padding: 0.5rem;
+        }
+
+        .custom-select option:hover {
+            background-color: #2d3748;
+        }
+
+        .fade-transition {
+            transition: opacity 0.2s ease-in-out;
+        }
+
+        .game-showcase {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .game-card {
+            aspect-ratio: 4/3;
+            position: relative;
+            overflow: hidden;
+            border-radius: 1rem;
+            background: var(--surface);
+            transition: all 0.3s ease;
+        }
+
+        .game-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .game-iframe-container {
+            position: relative;
+            width: 100%;
+            height: 65%;
+            overflow: hidden;
+        }
+
+        .game-iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+            object-fit: cover;
+        }
+
+        /* 炫酷的鼠标跟随效果 */
+        .cursor-glow {
+            width: 20px;
+            height: 20px;
+            background: rgba(59, 130, 246, 0.5);
+            border-radius: 50%;
+            position: fixed;
+            pointer-events: none;
+            z-index: 9999;
+            transition: transform 0.15s ease;
+        }
+
+        .cursor-glow::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(
+                circle,
+                rgba(59, 130, 246, 0.3) 0%,
+                rgba(59, 130, 246, 0) 70%
+            );
+            border-radius: 50%;
+            animation: pulse 2s infinite;
+        }
+
+        .cursor-glow::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 5px;
+            height: 5px;
+            background: #fff;
+            border-radius: 50%;
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
+        }
+
+        @keyframes pulse {
+            0% {
+                transform: translate(-50%, -50%) scale(1);
+                opacity: 1;
+            }
+            100% {
+                transform: translate(-50%, -50%) scale(2);
+                opacity: 0;
+            }
+        }
+
+        /* 交互状态 */
+        .game-card:hover ~ .cursor-glow {
+            transform: scale(1.5);
+            background: rgba(59, 130, 246, 0.8);
+        }
+
+        .nav-item:hover ~ .cursor-glow {
+            transform: scale(1.2);
+            background: rgba(255, 255, 255, 0.3);
+        }
+
+        /* 在原有style标签中添加 */
+        .header-fixed {
+            position: fixed;
+            top: 0;
+            right: 0;
+            left: 64px; /* 左侧导航栏宽度 */
+            background: var(--background);
+            z-index: 50;
+            padding: 1rem 2rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        /* 调整主内容区域的上边距，为固定导航留出空间 */
+        main {
+            padding-top: 80px;
+        }
+
+        /* 优化游戏卡片样式，确保游戏内容填充整个卡片 */
+        .game-card {
+            aspect-ratio: 16/9;
+            position: relative;
+            width: 100%;
+            height: 100%;
+        }
+
+        .game-iframe-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+        }
+
+        .game-iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+            object-fit: cover;
+        }
+
+        /* 调整游戏展示区域的样式 */
+        .game-section {
+            margin-bottom: 3rem;
+        }
+
+        .section-header {
+            margin-bottom: 1.5rem;
+            padding: 0 1rem;
+        }
+
+        .game-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr); /* 每行显示2个游戏 */
+            gap: 1.5rem;
+            padding: 0 1rem;
+        }
+
+        .game-card {
+            position: relative;
+            background: var(--surface);
+            border-radius: 1rem;
+            overflow: hidden;
+            transition: transform 0.2s;
+            aspect-ratio: 16/9;
+        }
+
+        .game-card:hover {
+            transform: translateY(-4px);
+        }
+
+        .game-thumbnail {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .game-info {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 1rem;
+            background: linear-gradient(to top, rgba(0,0,0,0.9), rgba(0,0,0,0));
+        }
+
+        .game-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: #fff;
+            margin-bottom: 0.5rem;
+        }
+
+        .game-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .game-rating {
+            display: flex;
+            align-items: center;
+            color: #fbbf24;
+        }
+
+        .play-count {
+            color: #9ca3af;
+            font-size: 0.875rem;
+        }
+
+        /* 底部区域样式 */
+        .footer {
+            margin-top: 4rem;
+            padding: 2rem;
+            padding: 4rem 2rem 2rem;
+            background: var(--surface);
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .footer-sections {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 3rem;
+            margin-bottom: 3rem;
+        }
+
+        .footer-section {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .footer-title {
+            color: #fff;
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+        }
+
+        .footer-text {
+            color: #9ca3af;
+            line-height: 1.6;
+        }
+
+        .footer-links {
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+        }
+
+        .footer-link {
+            color: #9ca3af;
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+
+        .footer-link:hover {
+            color: #fff;
+        }
+
+        .footer-copyright {
+            text-align: center;
+            color: #9ca3af;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+    </style>
 </head>
-<body>
-    <!-- Navigation -->
-    <nav class="fixed top-0 w-full bg-[#1d1d1f] z-50 shadow-lg">
-        <div class="container mx-auto px-4 py-3">
-            <div class="flex items-center justify-between">
-                <div class="flex items-center">
-                    <a href="/" class="text-2xl font-bold text-white">6399Play</a>
-                    <div class="hidden md:flex ml-8 space-x-4">
-                        <a href="/" class="nav-link">Home</a>
-                        <a href="#action" class="nav-link">Action</a>
-                        <a href="#shooting" class="nav-link">Shooting</a>
-                        <a href="#strategy" class="nav-link">Strategy</a>
-                        <a href="#puzzle" class="nav-link">Puzzle</a>
-                        <a href="#sports" class="nav-link">Sports</a>
-                        <a href="#casual" class="nav-link">Casual</a>
-                    </div>
+
+<body class="min-h-screen flex">
+    <!-- 将原有header部分移动到固定位置 -->
+    <header class="header-fixed">
+        <div class="flex justify-between items-center">
+            <div class="relative">
+                <input type="text" 
+                    class="search-input w-96 px-4 py-2 rounded-lg text-white placeholder-gray-400 focus:outline-none"
+                    placeholder="搜索游戏..."
+                >
+            </div>
+            
+            <div class="flex items-center space-x-4">
+                <select class="bg-[#1e293b] px-4 py-2 rounded-lg border border-gray-700 text-gray-200 hover:border-blue-500 focus:border-blue-500 focus:ring-1 focus:ring-blue-500 focus:outline-none cursor-pointer appearance-none custom-select">
+                    <!-- 东亚语言 -->
+                    <optgroup label="东亚" class="bg-[#1e293b] text-gray-200">
+                        <option value="zh-CN" class="py-2">简体中文</option>
+                        <option value="zh-TW" class="py-2">繁體中文</option>
+                        <option value="ja" class="py-2">日本語</option>
+                        <option value="ko" class="py-2">한국어</option>
+                    </optgroup>
+                    <!-- 欧洲语言 -->
+                    <optgroup label="欧洲" class="bg-[#1e293b] text-gray-200">
+                        <option value="en" class="py-2">English</option>
+                        <option value="fr" class="py-2">Français</option>
+                        <option value="de" class="py-2">Deutsch</option>
+                        <option value="es" class="py-2">Español</option>
+                        <option value="it" class="py-2">Italiano</option>
+                        <option value="pt" class="py-2">Português</option>
+                        <option value="ru" class="py-2">Русский</option>
+                    </optgroup>
+                    <!-- 其他语言 -->
+                    <optgroup label="其他" class="bg-[#1e293b] text-gray-200">
+                        <option value="ar" class="py-2">العربية</option>
+                        <option value="hi" class="py-2">हिन्दी</option>
+                        <option value="th" class="py-2">ไทย</option>
+                        <option value="vi" class="py-2">Tiếng Việt</option>
+                    </optgroup>
+                </select>
+                
+                <div class="flex items-center space-x-2 bg-surface px-4 py-2 rounded-lg">
+                    <img src="https://api.dicebear.com/6.x/avataaars/svg?seed=guest" 
+                        alt="Guest" 
+                        class="w-8 h-8 rounded-full"
+                    >
+                    <span>Guest</span>
                 </div>
-                <div class="flex items-center">
-                    <input type="search" placeholder="Search games..." class="search-box">
-                    <button class="md:hidden ml-4" onclick="toggleSidebar()">
-                        <i class="fas fa-bars text-white"></i>
-                    </button>
-                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- 左侧导航 -->
+    <nav class="sidebar fixed w-64 h-screen p-6 flex flex-col">
+        <div class="flex items-center mb-8">
+            <span class="text-2xl font-bold text-blue-500">6399Play</span>
+        </div>
+
+        <div class="flex-1 space-y-2">
+            <a href="#" class="nav-item active flex items-center px-4 py-3 rounded-lg text-white">
+                <svg class="w-5 h-5 mr-3" fill="currentColor" viewBox="0 0 20 20">
+                    <path d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z"/>
+                </svg>
+                全部游戏
+            </a>
+            
+            <a href="#action" class="nav-item flex items-center px-4 py-3 rounded-lg text-gray-400 hover:text-white">
+                <svg class="w-5 h-5 mr-3" fill="currentColor" viewBox="0 0 20 20">
+                    <path d="M13.89 3.39l2.71 2.72c.46.46.42 1.24.03 1.64l-8.01 8.02-5.56 1.16 1.16-5.58s7.6-7.63 7.99-8.03c.39-.39 1.22-.39 1.68.07zm-2.73 2.79l-5.59 5.61 1.11 1.11 5.54-5.65zm-2.97 8.23l5.58-5.6-1.07-1.08-5.59 5.6z"/>
+                </svg>
+                动作冒险
+            </a>
+            
+            <a href="#puzzle" class="nav-item flex items-center px-4 py-3 rounded-lg text-gray-400 hover:text-white">
+                <svg class="w-5 h-5 mr-3" fill="currentColor" viewBox="0 0 20 20">
+                    <path d="M10 3.5a1.5 1.5 0 013 0V4a1 1 0 001 1h3a1 1 0 011 1v3a1 1 0 01-1 1h-.5a1.5 1.5 0 000 3h.5a1 1 0 011 1v3a1 1 0 01-1 1h-3a1 1 0 01-1-1v-.5a1.5 1.5 0 00-3 0v.5a1 1 0 01-1 1H6a1 1 0 01-1-1v-3a1 1 0 00-1-1h-.5a1.5 1.5 0 010-3H4a1 1 0 001-1V6a1 1 0 011-1h3a1 1 0 001-1v-.5z"/>
+                </svg>
+                益智解谜
+            </a>
+            
+            <a href="#skill" class="nav-item flex items-center px-4 py-3 rounded-lg text-gray-400 hover:text-white">
+                <svg class="w-5 h-5 mr-3" fill="currentColor" viewBox="0 0 20 20">
+                    <path d="M13 6a3 3 0 11-6 0 3 3 0 016 0zM18 8a2 2 0 11-4 0 2 2 0 014 0zM14 15a4 4 0 00-8 0v3h8v-3zM6 8a2 2 0 11-4 0 2 2 0 014 0zM16 18v-3a5.972 5.972 0 00-.75-2.906A3.005 3.005 0 0119 15v3h-3zM4.75 12.094A5.973 5.973 0 004 15v3H1v-3a3 3 0 013.75-2.906z"/>
+                </svg>
+                技巧游戏
+            </a>
+            
+            <a href="#casual" class="nav-item flex items-center px-4 py-3 rounded-lg text-gray-400 hover:text-white">
+                <svg class="w-5 h-5 mr-3" fill="currentColor" viewBox="0 0 20 20">
+                    <path d="M10 12a2 2 0 100-4 2 2 0 000 4z"/>
+                    <path fill-rule="evenodd" d="M.458 10C1.732 5.943 5.522 3 10 3s8.268 2.943 9.542 7c-1.274 4.057-5.064 7-9.542 7S1.732 14.057.458 10zM14 10a4 4 0 11-8 0 4 4 0 018 0z" clip-rule="evenodd"/>
+                </svg>
+                休闲娱乐
+            </a>
+
+            <!-- 分割线 -->
+            <div class="border-t border-gray-700 my-4"></div>
+
+            <!-- 游戏分类标题 -->
+            <div class="text-sm text-gray-400 px-4 py-2">游戏分类</div>
+
+            <!-- 游戏分类菜单 -->
+            <div class="space-y-1 categories-menu overflow-y-auto" style="max-height: calc(100vh - 400px);">
+                <a href="#puzzle" class="nav-item flex items-center px-4 py-2 rounded-lg text-gray-400 hover:text-white">
+                    <svg class="w-5 h-5 mr-3" fill="currentColor" viewBox="0 0 20 20">
+                        <path d="M10 3.5a1.5 1.5 0 013 0V4a1 1 0 001 1h3a1 1 0 011 1v3a1 1 0 01-1 1h-.5a1.5 1.5 0 000 3h.5a1 1 0 011 1v3a1 1 0 01-1 1h-3a1 1 0 01-1-1v-.5a1.5 1.5 0 00-3 0v.5a1 1 0 01-1 1H6a1 1 0 01-1-1v-3a1 1 0 00-1-1h-.5a1.5 1.5 0 010-3H4a1 1 0 001-1V6a1 1 0 011-1h3a1 1 0 001-1v-.5z"/>
+                    </svg>
+                    益智解谜
+                </a>
+
+                <a href="#action" class="nav-item flex items-center px-4 py-2 rounded-lg text-gray-400 hover:text-white">
+                    <svg class="w-5 h-5 mr-3" fill="currentColor" viewBox="0 0 20 20">
+                        <path d="M13.89 3.39l2.71 2.72c.46.46.42 1.24.03 1.64l-8.01 8.02-5.56 1.16 1.16-5.58s7.6-7.63 7.99-8.03c.39-.39 1.22-.39 1.68.07z"/>
+                    </svg>
+                    动作冒险
+                </a>
+
+                <a href="#shooting" class="nav-item flex items-center px-4 py-2 rounded-lg text-gray-400 hover:text-white">
+                    <svg class="w-5 h-5 mr-3" fill="currentColor" viewBox="0 0 20 20">
+                        <path d="M10 12a2 2 0 100-4 2 2 0 000 4z"/>
+                    </svg>
+                    射击游戏
+                </a>
+
+                <a href="#sports" class="nav-item flex items-center px-4 py-2 rounded-lg text-gray-400 hover:text-white">
+                    <svg class="w-5 h-5 mr-3" fill="currentColor" viewBox="0 0 20 20">
+                        <path d="M10 18a8 8 0 100-16 8 8 0 000 16z"/>
+                    </svg>
+                    体育运动
+                </a>
+
+                <a href="#racing" class="nav-item flex items-center px-4 py-2 rounded-lg text-gray-400 hover:text-white">
+                    <svg class="w-5 h-5 mr-3" fill="currentColor" viewBox="0 0 20 20">
+                        <path d="M8 16.5a1.5 1.5 0 11-3 0 1.5 1.5 0 013 0zM15 16.5a1.5 1.5 0 11-3 0 1.5 1.5 0 013 0z"/>
+                    </svg>
+                    赛车竞速
+                </a>
+
+                <a href="#strategy" class="nav-item flex items-center px-4 py-2 rounded-lg text-gray-400 hover:text-white">
+                    <svg class="w-5 h-5 mr-3" fill="currentColor" viewBox="0 0 20 20">
+                        <path d="M9 6a3 3 0 11-6 0 3 3 0 016 0zM17 6a3 3 0 11-6 0 3 3 0 016 0z"/>
+                    </svg>
+                    策略塔防
+                </a>
+
+                <a href="#card" class="nav-item flex items-center px-4 py-2 rounded-lg text-gray-400 hover:text-white">
+                    <svg class="w-5 h-5 mr-3" fill="currentColor" viewBox="0 0 20 20">
+                        <path d="M4 4a2 2 0 00-2 2v8a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2H4z"/>
+                    </svg>
+                    棋牌游戏
+                </a>
+
+                <a href="#music" class="nav-item flex items-center px-4 py-2 rounded-lg text-gray-400 hover:text-white">
+                    <svg class="w-5 h-5 mr-3" fill="currentColor" viewBox="0 0 20 20">
+                        <path d="M18 3a1 1 0 00-1.196-.98l-10 2A1 1 0 006 5v9.114A4.369 4.369 0 005 14c-1.657 0-3 .895-3 2s1.343 2 3 2 3-.895 3-2V7.82l8-1.6v5.894A4.37 4.37 0 0015 12c-1.657 0-3 .895-3 2s1.343 2 3 2 3-.895 3-2V3z"/>
+                    </svg>
+                    音乐节奏
+                </a>
+
+                <a href="#horror" class="nav-item flex items-center px-4 py-2 rounded-lg text-gray-400 hover:text-white">
+                    <svg class="w-5 h-5 mr-3" fill="currentColor" viewBox="0 0 20 20">
+                        <path d="M10.394 2.08a1 1 0 00-.788 0l-7 3a1 1 0 000 1.84L5.25 8.051a.999.999 0 01.356-.257l4-1.714a1 1 0 11.788 1.838L7.667 9.088l1.94.831a1 1 0 00.787 0l7-3a1 1 0 000-1.838l-7-3zM3.31 9.397L5 10.12v4.102a8.969 8.969 0 00-1.05-.174 1 1 0 01-.89-.89 11.115 11.115 0 01.25-3.762zM9.3 16.573A9.026 9.026 0 007 14.935v-3.957l1.818.78a3 3 0 002.364 0l5.508-2.361a11.026 11.026 0 01.25 3.762 1 1 0 01-.89.89 8.968 8.968 0 00-5.35 2.524 1 1 0 01-1.4 0zM6 18a1 1 0 001-1v-2.065a8.935 8.935 0 00-2-.712V17a1 1 0 001 1z"/>
+                    </svg>
+                    恐怖惊悚
+                </a>
+
+                <a href="#fighting" class="nav-item flex items-center px-4 py-2 rounded-lg text-gray-400 hover:text-white">
+                    <svg class="w-5 h-5 mr-3" fill="currentColor" viewBox="0 0 20 20">
+                        <path d="M18 3a1 1 0 00-1.196-.98l-10 2A1 1 0 006 5v9.114A4.369 4.369 0 005 14c-1.657 0-3 .895-3 2s1.343 2 3 2 3-.895 3-2V7.82l8-1.6v5.894A4.37 4.37 0 0015 12c-1.657 0-3 .895-3 2s1.343 2 3 2 3-.895 3-2V3z"/>
+                    </svg>
+                    格斗对战
+                </a>
             </div>
         </div>
     </nav>
 
-    <!-- Mobile Sidebar -->
-    <div id="sidebar" class="sidebar -translate-x-full">
-        <div class="p-4">
-            <button onclick="toggleSidebar()" class="float-right text-white">
-                <i class="fas fa-times"></i>
-            </button>
-            <div class="mt-12 flex flex-col space-y-4">
-                <a href="/" class="nav-link">Home</a>
-                <a href="#action" class="nav-link">Action</a>
-                <a href="#shooting" class="nav-link">Shooting</a>
-                <a href="#strategy" class="nav-link">Strategy</a>
-                <a href="#puzzle" class="nav-link">Puzzle</a>
-                <a href="#sports" class="nav-link">Sports</a>
-                <a href="#casual" class="nav-link">Casual</a>
+    <!-- 主内容区域添加顶部padding -->
+    <main class="pt-20">
+        <!-- 标题区域 -->
+        <div class="mb-12">
+            <h1 class="text-5xl font-bold mb-4">
+                <span class="text-white">游戏世界</span>
+                <span class="text-blue-500">无尽娱乐</span>
+            </h1>
+            <p class="text-gray-400 text-lg">
+                发现数百款可直接在浏览器中玩的免费游戏，无需下载，无需安装 - 即刻享受乐趣！
+            </p>
+        </div>
+
+        <!-- 数据统计 -->
+        <div class="grid grid-cols-3 gap-8 mb-12">
+            <div class="stat-card rounded-xl p-6">
+                <div class="text-4xl font-bold text-blue-500 mb-2">500+</div>
+                <div class="text-gray-400">游戏总数</div>
+            </div>
+            <div class="stat-card rounded-xl p-6">
+                <div class="text-4xl font-bold text-purple-500 mb-2">10K+</div>
+                <div class="text-gray-400">活跃用户</div>
+            </div>
+            <div class="stat-card rounded-xl p-6">
+                <div class="text-4xl font-bold text-green-500 mb-2">100%</div>
+                <div class="text-gray-400">免费游戏</div>
             </div>
         </div>
-    </div>
 
-    <!-- Main Content -->
-    <main class="container mx-auto px-4 pt-24">
-        <h1 class="text-4xl font-bold mb-8 text-center">Popular Online Games</h1>
-        
-        <!-- Action Games -->
-        <section id="action" class="mb-12">
-            <h2 class="text-2xl font-bold mb-6">Action Games</h2>
-            <div class="games-list">
-                <!-- Giant Rush -->
+        <!-- 游戏分类 -->
+        <div class="mb-12">
+            <h2 class="text-xl font-semibold mb-6">热门分类</h2>
+            <div class="flex flex-wrap gap-4">
+                <button class="category-tag px-6 py-2 bg-blue-600 text-white rounded-full">
+                    ⭐ 益智游戏
+                </button>
+                <button class="category-tag px-6 py-2 bg-surface text-gray-300 rounded-full hover:bg-blue-600 hover:text-white">
+                    ⚡ 动作游戏
+                </button>
+                <button class="category-tag px-6 py-2 bg-surface text-gray-300 rounded-full hover:bg-blue-600 hover:text-white">
+                    🎮 策略游戏
+                </button>
+                <button class="category-tag px-6 py-2 bg-surface text-gray-300 rounded-full hover:bg-blue-600 hover:text-white">
+                    🃏 卡牌游戏
+                </button>
+            </div>
+        </div>
+
+        <!-- 精选游戏区域 -->
+        <section class="game-section">
+            <div class="section-header">
+                <h2 class="text-2xl font-bold text-white">精选游戏</h2>
+            </div>
+            
+            <div class="game-grid">
+                <!-- 游戏卡片1 -->
                 <div class="game-card">
-                    <div class="game-image">
-                        <iframe src="https://play.famobi.com/giant-rush" 
-                                class="game-iframe"></iframe>
-                    </div>
-                    <div class="game-content">
-                        <h3 class="text-xl font-bold mb-2">Giant Rush</h3>
-                        <p class="text-gray-400 mb-4">Run, jump and grow in this exciting endless runner</p>
-                        <div class="flex flex-wrap mb-4">
-                            <span class="category-tag">Action</span>
-                            <span class="category-tag">Runner</span>
+                    <img src="game1-thumbnail.jpg" alt="Giant Rush" class="game-thumbnail">
+                    <div class="game-info">
+                        <h3 class="game-title">Giant Rush</h3>
+                        <div class="game-meta">
+                            <div class="game-rating">
+                                <span class="mr-1">4.8</span>
+                                <span>★★★★★</span>
+                            </div>
+                            <span class="play-count">2.5k 在玩</span>
                         </div>
-                        <a href="games/giant-rush.html" class="game-button">Play Now</a>
                     </div>
                 </div>
 
-                <!-- Rise Up -->
+                <!-- 游戏卡片2 -->
                 <div class="game-card">
-                    <div class="game-image">
-                        <iframe src="https://play.famobi.com/rise-up" 
-                                class="game-iframe"></iframe>
-                    </div>
-                    <div class="game-content">
-                        <h3 class="text-xl font-bold mb-2">Rise Up</h3>
-                        <p class="text-gray-400 mb-4">Guide your balloon to the top while protecting it</p>
-                        <div class="flex flex-wrap mb-4">
-                            <span class="category-tag">Action</span>
-                            <span class="category-tag">Arcade</span>
-                        </div>
-                        <a href="games/rise-up.html" class="game-button">Play Now</a>
-                    </div>
-                </div>
-
-                <!-- Neon Rider -->
-                <div class="game-card">
-                    <div class="game-image">
-                        <iframe src="https://play.famobi.com/neon-rider" 
-                                class="game-iframe"></iframe>
-                    </div>
-                    <div class="game-content">
-                        <h3 class="text-xl font-bold mb-2">Neon Rider</h3>
-                        <p class="text-gray-400 mb-4">Race through neon-lit tracks in this fast-paced action game</p>
-                        <div class="flex flex-wrap mb-4">
-                            <span class="category-tag">Action</span>
-                            <span class="category-tag">Racing</span>
-                        </div>
-                        <a href="games/neon-rider.html" class="game-button">Play Now</a>
-                    </div>
-                </div>
-
-                <!-- Speed Master -->
-                <div class="game-card">
-                    <div class="game-image">
-                        <iframe src="https://play.famobi.com/speed-master" 
-                                class="game-iframe"></iframe>
-                    </div>
-                    <div class="game-content">
-                        <h3 class="text-xl font-bold mb-2">Speed Master</h3>
-                        <p class="text-gray-400 mb-4">Test your reflexes in this high-speed challenge</p>
-                        <div class="flex flex-wrap mb-4">
-                            <span class="category-tag">Action</span>
-                            <span class="category-tag">Racing</span>
-                        </div>
-                        <a href="games/speed-master.html" class="game-button">Play Now</a>
-                    </div>
-                </div>
-
-                <!-- Go Escape -->
-                <div class="game-card">
-                    <div class="game-image">
-                        <iframe src="https://play.famobi.com/go-escape" 
-                                class="game-iframe"></iframe>
-                    </div>
-                    <div class="game-content">
-                        <h3 class="text-xl font-bold mb-2">Go Escape</h3>
-                        <p class="text-gray-400 mb-4">Escape through challenging obstacles in this action-packed game</p>
-                        <div class="flex flex-wrap mb-4">
-                            <span class="category-tag">Action</span>
-                            <span class="category-tag">Runner</span>
-                        </div>
-                        <a href="games/go-escape.html" class="game-button">Play Now</a>
-                    </div>
-                </div>
-
-                <!-- Toilet Run -->
-                <div class="game-card">
-                    <div class="game-image">
-                        <iframe src="https://play.famobi.com/toilet-run" 
-                                class="game-iframe"></iframe>
-                    </div>
-                    <div class="game-content">
-                        <h3 class="text-xl font-bold mb-2">Toilet Run</h3>
-                        <p class="text-gray-400 mb-4">A hilarious arcade runner with unique gameplay</p>
-                        <div class="flex flex-wrap mb-4">
-                            <span class="category-tag">Action</span>
-                            <span class="category-tag">Funny</span>
-                        </div>
-                        <a href="games/toilet-run.html" class="game-button">Play Now</a>
-                    </div>
+                    <!-- 类似结构 -->
                 </div>
             </div>
         </section>
 
-        <!-- Shooting Games -->
-        <section id="shooting" class="mb-12">
-            <h2 class="text-2xl font-bold mb-6">Shooting Games</h2>
-            <div class="games-list">
-                <!-- Western Sniper -->
-                <div class="game-card">
-                    <div class="game-image">
-                        <iframe src="https://play.famobi.com/western-sniper" 
-                                class="game-iframe"></iframe>
-                    </div>
-                    <div class="game-content">
-                        <h3 class="text-xl font-bold mb-2">Western Sniper</h3>
-                        <p class="text-gray-400 mb-4">Become the best sniper in the Wild West</p>
-                        <div class="flex flex-wrap mb-4">
-                            <span class="category-tag">Shooting</span>
-                            <span class="category-tag">Action</span>
-                        </div>
-                        <a href="games/western-sniper.html" class="game-button">Play Now</a>
-                    </div>
-                </div>
-
-                <!-- Alien Attack -->
-                <div class="game-card">
-                    <div class="game-image">
-                        <iframe src="https://play.famobi.com/alien-attack" 
-                                class="game-iframe"></iframe>
-                    </div>
-                    <div class="game-content">
-                        <h3 class="text-xl font-bold mb-2">Alien Attack</h3>
-                        <p class="text-gray-400 mb-4">Defend Earth from alien invaders</p>
-                        <div class="flex flex-wrap mb-4">
-                            <span class="category-tag">Shooting</span>
-                            <span class="category-tag">Space</span>
-                        </div>
-                        <a href="games/alien-attack.html" class="game-button">Play Now</a>
-                    </div>
-                </div>
+        <!-- 热门游戏区域 -->
+        <section class="game-section">
+            <div class="section-header">
+                <h2 class="text-2xl font-bold text-white">热门游戏</h2>
+            </div>
+            
+            <div class="game-grid">
+                <!-- 两个游戏卡片 -->
             </div>
         </section>
 
-        <!-- Puzzle Games -->
-        <section id="puzzle" class="mb-12">
-            <h2 class="text-2xl font-bold mb-6">Puzzle Games</h2>
-            <div class="games-list">
-                <!-- Color Fill 3D -->
-                <div class="game-card">
-                    <div class="game-image">
-                        <iframe src="https://play.famobi.com/color-fill-3d" 
-                                class="game-iframe"></iframe>
-                    </div>
-                    <div class="game-content">
-                        <h3 class="text-xl font-bold mb-2">Color Fill 3D</h3>
-                        <p class="text-gray-400 mb-4">Fill the board with colors in this relaxing puzzle game</p>
-                        <div class="flex flex-wrap mb-4">
-                            <span class="category-tag">Puzzle</span>
-                            <span class="category-tag">3D</span>
-                        </div>
-                        <a href="games/color-fill-3d.html" class="game-button">Play Now</a>
-                    </div>
-                </div>
-
-                <!-- Color Roll 3D -->
-                <div class="game-card">
-                    <div class="game-image">
-                        <iframe src="https://play.famobi.com/color-roll-3d" 
-                                class="game-iframe"></iframe>
-                    </div>
-                    <div class="game-content">
-                        <h3 class="text-xl font-bold mb-2">Color Roll 3D</h3>
-                        <p class="text-gray-400 mb-4">Roll and match colors in this addictive 3D puzzle</p>
-                        <div class="flex flex-wrap mb-4">
-                            <span class="category-tag">Puzzle</span>
-                            <span class="category-tag">3D</span>
-                        </div>
-                        <a href="games/color-roll-3d.html" class="game-button">Play Now</a>
-                    </div>
-                </div>
-
-                <!-- Color Water Sort 3D -->
-                <div class="game-card">
-                    <div class="game-image">
-                        <iframe src="https://play.famobi.com/color-water-sort-3d" 
-                                class="game-iframe"></iframe>
-                    </div>
-                    <div class="game-content">
-                        <h3 class="text-xl font-bold mb-2">Color Water Sort 3D</h3>
-                        <p class="text-gray-400 mb-4">Sort colored water in this challenging puzzle game</p>
-                        <div class="flex flex-wrap mb-4">
-                            <span class="category-tag">Puzzle</span>
-                            <span class="category-tag">3D</span>
-                        </div>
-                        <a href="games/color-water-sort-3d.html" class="game-button">Play Now</a>
-                    </div>
-                </div>
-
-                <!-- Braindom -->
-                <div class="game-card">
-                    <div class="game-image">
-                        <iframe src="https://play.famobi.com/braindom" 
-                                class="game-iframe"></iframe>
-                    </div>
-                    <div class="game-content">
-                        <h3 class="text-xl font-bold mb-2">Braindom</h3>
-                        <p class="text-gray-400 mb-4">Test your brain with tricky puzzles and riddles</p>
-                        <div class="flex flex-wrap mb-4">
-                            <span class="category-tag">Puzzle</span>
-                            <span class="category-tag">Brain</span>
-                        </div>
-                        <a href="games/braindom.html" class="game-button">Play Now</a>
-                    </div>
-                </div>
-
-                <!-- Sort It -->
-                <div class="game-card">
-                    <div class="game-image">
-                        <iframe src="https://play.famobi.com/sort-it" 
-                                class="game-iframe"></iframe>
-                    </div>
-                    <div class="game-content">
-                        <h3 class="text-xl font-bold mb-2">Sort It</h3>
-                        <p class="text-gray-400 mb-4">Sort different objects in this satisfying puzzle game</p>
-                        <div class="flex flex-wrap mb-4">
-                            <span class="category-tag">Puzzle</span>
-                            <span class="category-tag">Sorting</span>
-                        </div>
-                        <a href="games/sort-it.html" class="game-button">Play Now</a>
-                    </div>
-                </div>
-
-                <!-- Cube Match -->
-                <div class="game-card">
-                    <div class="game-image">
-                        <iframe src="https://play.famobi.com/cube-match" 
-                                class="game-iframe"></iframe>
-                    </div>
-                    <div class="game-content">
-                        <h3 class="text-xl font-bold mb-2">Cube Match</h3>
-                        <p class="text-gray-400 mb-4">Match cubes to solve puzzles and clear levels</p>
-                        <div class="flex flex-wrap mb-4">
-                            <span class="category-tag">Puzzle</span>
-                            <span class="category-tag">Match</span>
-                        </div>
-                        <a href="games/cube-match.html" class="game-button">Play Now</a>
-                    </div>
-                </div>
+        <!-- 朋友在玩区域 -->
+        <section class="game-section">
+            <div class="section-header">
+                <h2 class="text-2xl font-bold text-white">朋友在玩</h2>
             </div>
-        </section>
-
-        <!-- Strategy Games -->
-        <section id="strategy" class="mb-12">
-            <h2 class="text-2xl font-bold mb-6">Strategy Games</h2>
-            <div class="games-list">
-                <!-- Train Miner -->
-                <div class="game-card">
-                    <div class="game-image">
-                        <iframe src="https://play.famobi.com/train-miner" 
-                                class="game-iframe"></iframe>
-                    </div>
-                    <div class="game-content">
-                        <h3 class="text-xl font-bold mb-2">Train Miner</h3>
-                        <p class="text-gray-400 mb-4">Build your mining empire in this strategic simulation</p>
-                        <div class="flex flex-wrap mb-4">
-                            <span class="category-tag">Strategy</span>
-                            <span class="category-tag">Simulation</span>
-                        </div>
-                        <a href="games/train-miner.html" class="game-button">Play Now</a>
-                    </div>
-                </div>
-
-                <!-- Parking Jam -->
-                <div class="game-card">
-                    <div class="game-image">
-                        <iframe src="https://play.famobi.com/parking-jam" 
-                                class="game-iframe"></iframe>
-                    </div>
-                    <div class="game-content">
-                        <h3 class="text-xl font-bold mb-2">Parking Jam</h3>
-                        <p class="text-gray-400 mb-4">Solve parking puzzles in this strategic challenge</p>
-                        <div class="flex flex-wrap mb-4">
-                            <span class="category-tag">Strategy</span>
-                            <span class="category-tag">Puzzle</span>
-                        </div>
-                        <a href="games/parking-jam.html" class="game-button">Play Now</a>
-                    </div>
-                </div>
-
-                <!-- Thief Puzzle -->
-                <div class="game-card">
-                    <div class="game-image">
-                        <iframe src="https://play.famobi.com/thief-puzzle" 
-                                class="game-iframe"></iframe>
-                    </div>
-                    <div class="game-content">
-                        <h3 class="text-xl font-bold mb-2">Thief Puzzle</h3>
-                        <p class="text-gray-400 mb-4">Plan your moves carefully in this strategic puzzle game</p>
-                        <div class="flex flex-wrap mb-4">
-                            <span class="category-tag">Strategy</span>
-                            <span class="category-tag">Puzzle</span>
-                        </div>
-                        <a href="games/thief-puzzle.html" class="game-button">Play Now</a>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Sports Games -->
-        <section id="sports" class="mb-12">
-            <h2 class="text-2xl font-bold mb-6">Sports Games</h2>
-            <div class="games-list">
-                <!-- Fashion Battle -->
-                <div class="game-card">
-                    <div class="game-image">
-                        <iframe src="https://play.famobi.com/fashion-battle" 
-                                class="game-iframe"></iframe>
-                    </div>
-                    <div class="game-content">
-                        <h3 class="text-xl font-bold mb-2">Fashion Battle</h3>
-                        <p class="text-gray-400 mb-4">Compete in exciting fashion challenges</p>
-                        <div class="flex flex-wrap mb-4">
-                            <span class="category-tag">Sports</span>
-                            <span class="category-tag">Fashion</span>
-                        </div>
-                        <a href="games/fashion-battle.html" class="game-button">Play Now</a>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Casual Games -->
-        <section id="casual" class="mb-12">
-            <h2 class="text-2xl font-bold mb-6">Casual Games</h2>
-            <div class="games-list">
-                <!-- Spot the Cat -->
-                <div class="game-card">
-                    <div class="game-image">
-                        <iframe src="https://play.famobi.com/spot-the-cat" 
-                                class="game-iframe"></iframe>
-                    </div>
-                    <div class="game-content">
-                        <h3 class="text-xl font-bold mb-2">Spot the Cat</h3>
-                        <p class="text-gray-400 mb-4">Find the hidden cats in this casual observation game</p>
-                        <div class="flex flex-wrap mb-4">
-                            <span class="category-tag">Casual</span>
-                            <span class="category-tag">Hidden Object</span>
-                        </div>
-                        <a href="games/spot-the-cat.html" class="game-button">Play Now</a>
-                    </div>
-                </div>
-
-                <!-- Cut The Rope -->
-                <div class="game-card">
-                    <div class="game-image">
-                        <iframe src="https://play.famobi.com/cut-the-rope" 
-                                class="game-iframe"></iframe>
-                    </div>
-                    <div class="game-content">
-                        <h3 class="text-xl font-bold mb-2">Cut The Rope</h3>
-                        <p class="text-gray-400 mb-4">Feed the cute monster in this physics-based puzzle game</p>
-                        <div class="flex flex-wrap mb-4">
-                            <span class="category-tag">Casual</span>
-                            <span class="category-tag">Physics</span>
-                        </div>
-                        <a href="games/cut-the-rope.html" class="game-button">Play Now</a>
-                    </div>
-                </div>
-
-                <!-- Block Painter -->
-                <div class="game-card">
-                    <div class="game-image">
-                        <iframe src="https://play.famobi.com/block-painter" 
-                                class="game-iframe"></iframe>
-                    </div>
-                    <div class="game-content">
-                        <h3 class="text-xl font-bold mb-2">Block Painter</h3>
-                        <p class="text-gray-400 mb-4">Paint blocks to create beautiful patterns</p>
-                        <div class="flex flex-wrap mb-4">
-                            <span class="category-tag">Casual</span>
-                            <span class="category-tag">Art</span>
-                        </div>
-                        <a href="games/block-painter.html" class="game-button">Play Now</a>
-                    </div>
-                </div>
-
-                <!-- Green Ball -->
-                <div class="game-card">
-                    <div class="game-image">
-                        <iframe src="https://play.famobi.com/green-ball" 
-                                class="game-iframe"></iframe>
-                    </div>
-                    <div class="game-content">
-                        <h3 class="text-xl font-bold mb-2">Green Ball</h3>
-                        <p class="text-gray-400 mb-4">Guide the green ball through challenging levels</p>
-                        <div class="flex flex-wrap mb-4">
-                            <span class="category-tag">Casual</span>
-                            <span class="category-tag">Physics</span>
-                        </div>
-                        <a href="games/green-ball.html" class="game-button">Play Now</a>
-                    </div>
-                </div>
-
-                <!-- Twisty Lines -->
-                <div class="game-card">
-                    <div class="game-image">
-                        <iframe src="https://play.famobi.com/twisty-lines" 
-                                class="game-iframe"></iframe>
-                    </div>
-                    <div class="game-content">
-                        <h3 class="text-xl font-bold mb-2">Twisty Lines</h3>
-                        <p class="text-gray-400 mb-4">Connect the dots in this relaxing puzzle game</p>
-                        <div class="flex flex-wrap mb-4">
-                            <span class="category-tag">Casual</span>
-                            <span class="category-tag">Puzzle</span>
-                        </div>
-                        <a href="games/twisty-lines.html" class="game-button">Play Now</a>
-                    </div>
-                </div>
+            
+            <div class="game-grid">
+                <!-- 两个游戏卡片 -->
             </div>
         </section>
     </main>
 
-    <!-- Footer -->
-    <footer class="bg-[#1d1d1f] mt-16 py-8">
-        <div class="container mx-auto px-4">
-            <div class="text-center text-gray-400">
-                <p>&copy; 2024 6399Play.com - All rights reserved</p>
-                <p class="mt-2">The best free online gaming experience</p>
+    <!-- 底部区域 -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-sections">
+                <div class="footer-section">
+                    <h3 class="footer-title">关于我们</h3>
+                    <p class="footer-text">
+                        提供最好玩的在线游戏体验，无需下载，
+                        即刻开始您的游戏之旅。
+                    </p>
+                </div>
+
+                <div class="footer-section">
+                    <h3 class="footer-title">游戏分类</h3>
+                    <div class="footer-links">
+                        <a href="#" class="footer-link">动作游戏</a>
+                        <a href="#" class="footer-link">益智游戏</a>
+                        <a href="#" class="footer-link">策略游戏</a>
+                        <a href="#" class="footer-link">休闲游戏</a>
+                    </div>
+                </div>
+
+                <div class="footer-section">
+                    <h3 class="footer-title">快速链接</h3>
+                    <div class="footer-links">
+                        <a href="#" class="footer-link">首页</a>
+                        <a href="#" class="footer-link">新游戏</a>
+                        <a href="#" class="footer-link">排行榜</a>
+                        <a href="#" class="footer-link">联系我们</a>
+                    </div>
+                </div>
+
+                <div class="footer-section">
+                    <h3 class="footer-title">关注我们</h3>
+                    <div class="footer-links">
+                        <a href="#" class="footer-link">Twitter</a>
+                        <a href="#" class="footer-link">Facebook</a>
+                        <a href="#" class="footer-link">Instagram</a>
+                        <a href="#" class="footer-link">Discord</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer-copyright">
+                © 2024 World Games. All rights reserved.
             </div>
         </div>
     </footer>
 
-    <script src="js/main.js"></script>
+    <script>
+        // 语言切换功能
+        const languageSelect = document.querySelector('select');
+        
+        // 获取保存的语言设置或使用默认值
+        const savedLanguage = localStorage.getItem('preferred-language') || 'zh-CN';
+        
+        // 设置初始语言
+        languageSelect.value = savedLanguage;
+        
+        // 监听语言选择变化
+        languageSelect.addEventListener('change', (e) => {
+            const selectedLanguage = e.target.value;
+            localStorage.setItem('preferred-language', selectedLanguage);
+            updateInterfaceLanguage(selectedLanguage);
+        });
+
+        // 更新界面语言的函数
+        function updateInterfaceLanguage(language) {
+            const translations = {
+                'zh-CN': {
+                    search: '搜索游戏...',
+                    title: '游戏世界',
+                    subtitle: '无尽娱乐',
+                    description: '发现数百款可直接在浏览器中玩的免费游戏，无需下载，无需安装 - 即刻享受乐趣！',
+                    gameCount: '游戏总数',
+                    activeUsers: '活跃用户',
+                    freeGames: '免费游戏',
+                    playNow: '立即玩',
+                    moreInfo: '更多信息',
+                    categories: '热门分类',
+                    puzzleGames: '益智游戏',
+                    actionGames: '动作游戏',
+                    strategyGames: '策略游戏',
+                    cardGames: '卡牌游戏'
+                },
+                'en': {
+                    search: 'Search games...',
+                    title: 'Game World',
+                    subtitle: 'Endless Fun',
+                    description: 'Discover hundreds of free games playable directly in your browser - no download required!',
+                    gameCount: 'Games',
+                    activeUsers: 'Active Users',
+                    freeGames: 'Free Games',
+                    playNow: 'Play Now',
+                    moreInfo: 'More Info',
+                    categories: 'Popular Categories',
+                    puzzleGames: 'Puzzle Games',
+                    actionGames: 'Action Games',
+                    strategyGames: 'Strategy Games',
+                    cardGames: 'Card Games'
+                },
+                'ja': {
+                    search: 'ゲームを検索...',
+                    title: 'ゲームワールド',
+                    subtitle: '無限の楽しみ',
+                    description: 'ブラウザで直接プレイできる無料ゲームを何百も発見しよう！',
+                    gameCount: 'ゲーム数',
+                    activeUsers: 'アクティブユーザー',
+                    freeGames: '無料ゲーム',
+                    playNow: 'プレイする',
+                    moreInfo: '詳細情報',
+                    categories: '人気カテゴリー',
+                    puzzleGames: 'パズルゲーム',
+                    actionGames: 'アクションゲーム',
+                    strategyGames: '戦略ゲーム',
+                    cardGames: 'カードゲーム'
+                }
+                // 可以继续添加其他语言...
+            };
+
+            const texts = translations[language] || translations['en'];
+            
+            // 更新所有需要翻译的文本
+            const elements = {
+                'input[placeholder]': 'search',
+                'h1 span:first-child': 'title',
+                'h1 span:last-child': 'subtitle',
+                '.text-gray-400.text-lg': 'description',
+                'h2.text-xl': 'categories'
+            };
+
+            // 使用动画效果更新文本
+            for (let [selector, key] of Object.entries(elements)) {
+                const element = document.querySelector(selector);
+                if (element) {
+                    element.style.opacity = '0';
+                    setTimeout(() => {
+                        element.textContent = texts[key];
+                        element.style.opacity = '1';
+                    }, 200);
+                }
+            }
+
+            // 更新统计卡片
+            document.querySelectorAll('.stat-card .text-gray-400').forEach((el, index) => {
+                el.style.opacity = '0';
+                setTimeout(() => {
+                    if (index === 0) el.textContent = texts.gameCount;
+                    if (index === 1) el.textContent = texts.activeUsers;
+                    if (index === 2) el.textContent = texts.freeGames;
+                    el.style.opacity = '1';
+                }, 200);
+            });
+
+            // 更新游戏分类按钮
+            document.querySelectorAll('.category-tag').forEach((btn, index) => {
+                btn.style.opacity = '0';
+                setTimeout(() => {
+                    const categories = [texts.puzzleGames, texts.actionGames, texts.strategyGames, texts.cardGames];
+                    if (categories[index]) {
+                        btn.textContent = categories[index];
+                    }
+                    btn.style.opacity = '1';
+                }, 200);
+            });
+
+            // 更新游戏卡片按钮
+            document.querySelectorAll('.game-card button').forEach(btn => {
+                btn.style.opacity = '0';
+                setTimeout(() => {
+                    btn.textContent = texts.playNow;
+                    btn.style.opacity = '1';
+                }, 200);
+            });
+
+            document.querySelectorAll('.game-card a').forEach(link => {
+                link.style.opacity = '0';
+                setTimeout(() => {
+                    link.textContent = texts.moreInfo;
+                    link.style.opacity = '1';
+                }, 200);
+            });
+        }
+
+        // 初始化界面语言
+        updateInterfaceLanguage(savedLanguage);
+
+        // 添加鼠标悬停效果
+        document.querySelectorAll('.game-card').forEach(card => {
+            card.addEventListener('mouseenter', () => {
+                card.style.transform = 'translateY(-10px)';
+            });
+            
+            card.addEventListener('mouseleave', () => {
+                card.style.transform = 'translateY(0)';
+            });
+        });
+
+        // 添加平滑滚动效果
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href').substring(1);
+                const target = document.getElementById(targetId);
+                
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                    
+                    // 更新活动状态
+                    document.querySelectorAll('.nav-item').forEach(item => {
+                        item.classList.remove('active');
+                    });
+                    this.classList.add('active');
+                }
+            });
+        });
+
+        // 在script标签中添加
+        const cursor = document.createElement('div');
+        cursor.className = 'cursor-glow';
+        document.body.appendChild(cursor);
+
+        let mouseX = 0;
+        let mouseY = 0;
+        let cursorX = 0;
+        let cursorY = 0;
+
+        document.addEventListener('mousemove', (e) => {
+            mouseX = e.clientX;
+            mouseY = e.clientY;
+        });
+
+        function animate() {
+            // 平滑跟随效果
+            const dx = mouseX - cursorX;
+            const dy = mouseY - cursorY;
+            
+            cursorX += dx * 0.1;
+            cursorY += dy * 0.1;
+            
+            cursor.style.left = `${cursorX}px`;
+            cursor.style.top = `${cursorY}px`;
+            
+            requestAnimationFrame(animate);
+        }
+
+        animate();
+
+        // 添加交互效果
+        document.querySelectorAll('.game-card, .nav-item, button, a').forEach(elem => {
+            elem.addEventListener('mouseenter', () => {
+                cursor.style.transform = 'scale(1.5)';
+                cursor.style.mixBlendMode = 'difference';
+            });
+            
+            elem.addEventListener('mouseleave', () => {
+                cursor.style.transform = 'scale(1)';
+                cursor.style.mixBlendMode = 'normal';
+            });
+        });
+    </script>
 </body>
 </html>
+
