@@ -1,3 +1,4 @@
+/* 在style标签中添加 */
 .game-showcase {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
@@ -6,10 +7,12 @@
 }
 
 .game-card {
-    aspect-ratio: 16/9;
+    aspect-ratio: 4/3;
     position: relative;
-    width: 100%;
-    height: 100%;
+    overflow: hidden;
+    border-radius: 1rem;
+    background: var(--surface);
+    transition: all 0.3s ease;
 }
 
 .game-card:hover {
@@ -18,15 +21,16 @@
 }
 
 .game-iframe-container {
-    position: absolute;
-    top: 0;
-    left: 0;
+    position: relative;
     width: 100%;
-    height: 100%;
+    height: 65%;
     overflow: hidden;
 }
 
 .game-iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
     width: 100%;
     height: 100%;
     border: none;
@@ -95,104 +99,4 @@
 .nav-item:hover ~ .cursor-glow {
     transform: scale(1.2);
     background: rgba(255, 255, 255, 0.3);
-}
-
-/* 在原有style标签中添加 */
-.header-fixed {
-    position: fixed;
-    top: 0;
-    right: 0;
-    left: 64px; /* 左侧导航栏宽度 */
-    background: var(--background);
-    z-index: 50;
-    padding: 1rem 2rem;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-}
-
-/* 调整主内容区域的上边距，为固定导航留出空间 */
-main {
-    padding-top: 80px;
-}
-
-/* 调整游戏展示区域的样式 */
-.game-section {
-    margin-bottom: 3rem;
-}
-
-.section-header {
-    margin-bottom: 1.5rem;
-    padding: 0 1rem;
-}
-
-.game-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr); /* 每行显示2个游戏 */
-    gap: 1.5rem;
-    padding: 0 1rem;
-}
-
-.game-card {
-    position: relative;
-    background: var(--surface);
-    border-radius: 1rem;
-    overflow: hidden;
-    transition: transform 0.2s;
-    aspect-ratio: 16/9;
-}
-
-.game-card:hover {
-    transform: translateY(-4px);
-}
-
-.game-thumbnail {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-}
-
-.game-info {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    padding: 1rem;
-    background: linear-gradient(to top, rgba(0,0,0,0.9), rgba(0,0,0,0));
-}
-
-.game-title {
-    font-size: 1.25rem;
-    font-weight: 600;
-    color: #fff;
-    margin-bottom: 0.5rem;
-}
-
-.game-meta {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.game-rating {
-    display: flex;
-    align-items: center;
-    color: #fbbf24;
-}
-
-.play-count {
-    color: #9ca3af;
-    font-size: 0.875rem;
-}
-
-/* 更新底部样式 */
-.footer {
-    margin-top: 4rem;
-    padding: 2rem;
-    background: var(--surface);
-    border-top: 1px solid rgba(255, 255, 255, 0.1);
-    text-align: center;
-}
-
-.footer-copyright {
-    color: #9ca3af;
-    font-size: 0.875rem;
 }
