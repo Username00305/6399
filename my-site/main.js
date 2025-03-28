@@ -255,3 +255,55 @@ document.querySelectorAll('.game-card, .nav-item, button, a').forEach(elem => {
         cursor.style.mixBlendMode = 'normal';
     });
 });
+
+// 移动端菜单切换
+document.addEventListener('DOMContentLoaded', () => {
+    const menuToggle = document.querySelector('.menu-toggle');
+    const sidebar = document.querySelector('.sidebar');
+    const mainContent = document.querySelector('.main-content');
+
+    // 菜单切换
+    menuToggle.addEventListener('click', () => {
+        sidebar.classList.toggle('active');
+    });
+
+    // 点击主内容区域关闭菜单
+    mainContent.addEventListener('click', () => {
+        if (window.innerWidth <= 768) {
+            sidebar.classList.remove('active');
+        }
+    });
+
+    // 监听窗口大小变化
+    window.addEventListener('resize', () => {
+        if (window.innerWidth > 768) {
+            sidebar.classList.remove('active');
+        }
+    });
+});
+
+// 添加触摸滑动支持
+let touchStartX = 0;
+let touchEndX = 0;
+
+document.addEventListener('touchstart', e => {
+    touchStartX = e.changedTouches[0].screenX;
+});
+
+document.addEventListener('touchend', e => {
+    touchEndX = e.changedTouches[0].screenX;
+    handleSwipe();
+});
+
+function handleSwipe() {
+    const sidebar = document.querySelector('.sidebar');
+    const swipeDistance = touchEndX - touchStartX;
+    
+    if (Math.abs(swipeDistance) > 50) { // 最小滑动距离
+        if (swipeDistance > 0) { // 向右滑动
+            sidebar.classList.add('active');
+        } else { // 向左滑动
+            sidebar.classList.remove('active');
+        }
+    }
+}
