@@ -1,62 +1,134 @@
 function updateInterfaceLanguage(language) {
     const translations = {
         'zh-CN': {
-            search: '搜索游戏...',
-            title: '游戏世界',
-            subtitle: '无尽娱乐',
-            description: '发现数百款可直接在浏览器中玩的免费游戏，无需下载，无需安装 - 即刻享受乐趣！',
-            gameCount: '游戏总数',
-            activeUsers: '活跃用户',
-            freeGames: '免费游戏',
-            playNow: '立即玩',
-            moreInfo: '更多信息',
-            categories: '热门分类',
-            puzzleGames: '益智游戏',
-            actionGames: '动作游戏',
-            strategyGames: '策略游戏',
-            cardGames: '卡牌游戏',
-            home: '首页',
-            recent: '最近玩过',
-            new: '新游戏',
-            hot: '热门',
-            update: '更新',
-            arcade: '街机游戏',
-            puzzle: '益智游戏',
-            action: '动作游戏',
-            quickLinks: '快速链接',
-            information: '信息',
-            about: '关于我们',
-            privacy: '隐私政策'
+            // 左侧菜单
+            menu: {
+                home: '首页',
+                recentlyPlayed: '最近玩过',
+                newGames: '新游戏',
+                popularGames: '热门游戏',
+                // 游戏分类
+                categories: '游戏分类',
+                puzzleGames: '益智解谜',
+                actionGames: '动作冒险',
+                strategyGames: '策略游戏',
+                arcadeGames: '街机游戏',
+                sportsGames: '体育竞技',
+                racingGames: '赛车竞速',
+                shootingGames: '射击游戏',
+                cardGames: '卡牌游戏',
+                boardGames: '棋盘游戏',
+                wordGames: '文字游戏'
+            },
+            // 顶部区域
+            header: {
+                search: '搜索游戏...',
+                guest: '访客'
+            },
+            // 主标题区域
+            hero: {
+                title: '游戏世界',
+                subtitle: '无尽娱乐',
+                description: '发现数百款可直接在浏览器中玩的免费游戏，无需下载，无需安装 - 即刻享受乐趣！'
+            },
+            // 统计数据
+            stats: {
+                gameCount: '游戏总数',
+                activeUsers: '活跃用户',
+                freeGames: '免费游戏'
+            },
+            // 分类标题
+            categories: {
+                title: '热门分类',
+                puzzle: '益智游戏',
+                action: '动作游戏',
+                strategy: '策略游戏',
+                card: '卡牌游戏'
+            },
+            // 游戏卡片
+            gameCard: {
+                playNow: '立即玩',
+                moreInfo: '更多信息'
+            },
+            sections: {
+                popularGames: '热门分类',
+                featuredGames: '精选游戏',
+                friendsPlaying: '朋友在玩',
+                playNow: '立即玩',
+                moreInfo: '更多信息'
+            }
         },
         'en': {
-            search: 'Search games...',
-            title: 'Game World',
-            subtitle: 'Endless Fun',
-            description: 'Discover hundreds of free games playable directly in your browser - no download required!',
-            gameCount: 'Games',
-            activeUsers: 'Active Users',
-            freeGames: 'Free Games',
-            playNow: 'Play Now',
-            moreInfo: 'More Info',
-            categories: 'Popular Categories',
-            puzzleGames: 'Puzzle Games',
-            actionGames: 'Action Games',
-            strategyGames: 'Strategy Games',
-            cardGames: 'Card Games',
-            home: 'Home',
-            recent: 'Recently Played',
-            new: 'New Games',
-            hot: 'Hot',
-            update: 'Update',
-            arcade: 'Arcade Games',
-            puzzle: 'Puzzle Games',
-            action: 'Action Games',
-            quickLinks: 'Quick Links',
-            information: 'Information',
-            about: 'About Us',
-            privacy: 'Privacy Policy'
+            menu: {
+                home: 'Home',
+                recentlyPlayed: 'Recently Played',
+                newGames: 'New Games',
+                popularGames: 'Popular Games',
+                // 游戏分类
+                categories: 'Categories',
+                puzzleGames: 'Puzzle Games',
+                actionGames: 'Action & Adventure',
+                strategyGames: 'Strategy Games',
+                arcadeGames: 'Arcade Games',
+                sportsGames: 'Sports Games',
+                racingGames: 'Racing Games',
+                shootingGames: 'Shooting Games',
+                cardGames: 'Card Games',
+                boardGames: 'Board Games',
+                wordGames: 'Word Games'
+            },
+            header: {
+                search: 'Search games...',
+                guest: 'Guest'
+            },
+            hero: {
+                title: 'Game World',
+                subtitle: 'Endless Fun',
+                description: 'Discover hundreds of free games playable directly in your browser - no download required!'
+            },
+            stats: {
+                gameCount: 'Games',
+                activeUsers: 'Active Users',
+                freeGames: 'Free Games'
+            },
+            categories: {
+                title: 'Popular Categories',
+                puzzle: 'Puzzle Games',
+                action: 'Action Games',
+                strategy: 'Strategy Games',
+                card: 'Card Games'
+            },
+            gameCard: {
+                playNow: 'Play Now',
+                moreInfo: 'More Info'
+            },
+            sections: {
+                popularGames: 'Popular Categories',
+                featuredGames: 'Featured Games',
+                friendsPlaying: 'Friends Playing',
+                playNow: 'Play Now',
+                moreInfo: 'More Info'
+            }
         },
         'ja': {
+            menu: {
+                home: 'ホーム',
+                recentlyPlayed: '最近プレイしたゲーム',
+                newGames: '新着ゲーム',
+                popularGames: '人気ゲーム',
+                // 游戏分类
+                categories: 'カテゴリー',
+                puzzleGames: 'パズルゲーム',
+                actionGames: 'アクション＆アドベンチャー',
+                strategyGames: '戦略ゲーム',
+                arcadeGames: 'アーケードゲーム',
+                sportsGames: 'スポーツゲーム',
+                racingGames: 'レースゲーム',
+                shootingGames: 'シューティングゲーム',
+                cardGames: 'カードゲーム',
+                boardGames: 'ボードゲーム',
+                wordGames: 'ワードゲーム'
+            },
             search: 'ゲームを検索...',
             title: 'ゲームワールド',
             subtitle: '無限の楽しみ',
@@ -66,12 +138,6 @@ function updateInterfaceLanguage(language) {
             freeGames: '無料ゲーム',
             playNow: 'プレイする',
             moreInfo: '詳細情報',
-            categories: '人気カテゴリー',
-            puzzleGames: 'パズルゲーム',
-            actionGames: 'アクションゲーム',
-            strategyGames: '戦略ゲーム',
-            cardGames: 'カードゲーム',
-            home: 'ホーム',
             recent: '最近プレイした',
             new: '新しいゲーム',
             hot: '人気',
@@ -82,80 +148,109 @@ function updateInterfaceLanguage(language) {
             quickLinks: 'クイックリンク',
             information: '情報',
             about: '私たちについて',
-            privacy: 'プライバシーポリシー'
+            privacy: 'プライバシーポリシー',
+            sections: {
+                featuredGames: 'おすすめゲーム',
+                friendsPlaying: '友達がプレイ中',
+                playNow: 'プレイする',
+                moreInfo: '詳細情報'
+            }
         }
         // 可以继续添加其他语言...
     };
 
     const texts = translations[language] || translations['en'];
     
-    // 更新所有可翻译元素
-    document.querySelectorAll('[data-translate]').forEach(element => {
-        const key = element.getAttribute('data-translate');
-        if (texts[key]) {
-            element.textContent = texts[key];
-        }
-    });
-
-    // 更新所有需要翻译的文本
-    const elements = {
-        'input[placeholder]': 'search',
-        'h1 span:first-child': 'title',
-        'h1 span:last-child': 'subtitle',
-        '.text-gray-400.text-lg': 'description',
-        'h2.text-xl': 'categories'
-    };
-
-    // 使用动画效果更新文本
-    for (let [selector, key] of Object.entries(elements)) {
-        const element = document.querySelector(selector);
-        if (element) {
-            element.style.opacity = '0';
-            setTimeout(() => {
-                element.textContent = texts[key];
-                element.style.opacity = '1';
-            }, 200);
-        }
+    // 使用fade效果更新文本
+    function updateTextWithFade(element, newText) {
+        if (!element) return;
+        element.style.opacity = '0';
+        setTimeout(() => {
+            element.textContent = newText;
+            element.style.opacity = '1';
+        }, 200);
     }
 
-    // 更新统计卡片
+    // 更新左侧菜单栏
+    const menuSelectors = {
+        // 主导航
+        '.nav-home span': texts.menu.home,
+        '.nav-recent span': texts.menu.recentlyPlayed,
+        '.nav-new span': texts.menu.newGames,
+        '.nav-popular span': texts.menu.popularGames,
+        // 分类标题
+        '.categories-title': texts.menu.categories,
+        // 游戏分类
+        '.nav-puzzle span': texts.menu.puzzleGames,
+        '.nav-action span': texts.menu.actionGames,
+        '.nav-strategy span': texts.menu.strategyGames,
+        '.nav-arcade span': texts.menu.arcadeGames,
+        '.nav-sports span': texts.menu.sportsGames,
+        '.nav-racing span': texts.menu.racingGames,
+        '.nav-shooting span': texts.menu.shootingGames,
+        '.nav-card span': texts.menu.cardGames,
+        '.nav-board span': texts.menu.boardGames,
+        '.nav-word span': texts.menu.wordGames
+    };
+
+    // 更新所有菜单文本
+    for (let [selector, text] of Object.entries(menuSelectors)) {
+        const element = document.querySelector(selector);
+        updateTextWithFade(element, text);
+    }
+
+    // 更新搜索框占位符
+    document.querySelector('input[type="text"]').placeholder = texts.header.search;
+
+    // 更新访客文本
+    document.querySelector('.flex.items-center.space-x-2 span').textContent = texts.header.guest;
+
+    // 更新主标题区域
+    updateTextWithFade(document.querySelector('h1 span:first-child'), texts.hero.title);
+    updateTextWithFade(document.querySelector('h1 span:last-child'), texts.hero.subtitle);
+    updateTextWithFade(document.querySelector('.text-gray-400.text-lg'), texts.hero.description);
+
+    // 更新统计数据
     document.querySelectorAll('.stat-card .text-gray-400').forEach((el, index) => {
-        el.style.opacity = '0';
-        setTimeout(() => {
-            if (index === 0) el.textContent = texts.gameCount;
-            if (index === 1) el.textContent = texts.activeUsers;
-            if (index === 2) el.textContent = texts.freeGames;
-            el.style.opacity = '1';
-        }, 200);
+        if (index === 0) updateTextWithFade(el, texts.stats.gameCount);
+        if (index === 1) updateTextWithFade(el, texts.stats.activeUsers);
+        if (index === 2) updateTextWithFade(el, texts.stats.freeGames);
     });
 
-    // 更新游戏分类按钮
+    // 更新分类标题和标签
+    updateTextWithFade(document.querySelector('h2.text-xl'), texts.categories.title);
     document.querySelectorAll('.category-tag').forEach((btn, index) => {
-        btn.style.opacity = '0';
-        setTimeout(() => {
-            const categories = [texts.puzzleGames, texts.actionGames, texts.strategyGames, texts.cardGames];
-            if (categories[index]) {
-                btn.textContent = categories[index];
-            }
-            btn.style.opacity = '1';
-        }, 200);
+        const categories = [
+            texts.categories.puzzle,
+            texts.categories.action,
+            texts.categories.strategy,
+            texts.categories.card
+        ];
+        if (categories[index]) {
+            updateTextWithFade(btn, categories[index]);
+        }
     });
 
     // 更新游戏卡片按钮
     document.querySelectorAll('.game-card button').forEach(btn => {
-        btn.style.opacity = '0';
-        setTimeout(() => {
-            btn.textContent = texts.playNow;
-            btn.style.opacity = '1';
-        }, 200);
+        updateTextWithFade(btn, texts.gameCard.playNow);
     });
 
     document.querySelectorAll('.game-card a').forEach(link => {
-        link.style.opacity = '0';
-        setTimeout(() => {
-            link.textContent = texts.moreInfo;
-            link.style.opacity = '1';
-        }, 200);
+        updateTextWithFade(link, texts.gameCard.moreInfo);
+    });
+
+    // 更新新增区域的标题
+    updateTextWithFade(document.querySelector('.featured-games-title'), texts.sections.featuredGames);
+    updateTextWithFade(document.querySelector('.friends-playing-title'), texts.sections.friendsPlaying);
+
+    // 更新新增区域的按钮文本
+    document.querySelectorAll('.game-card button').forEach(btn => {
+        updateTextWithFade(btn, texts.sections.playNow);
+    });
+
+    document.querySelectorAll('.game-card a').forEach(link => {
+        updateTextWithFade(link, texts.sections.moreInfo);
     });
 
     // 添加过渡效果的样式
@@ -256,54 +351,95 @@ document.querySelectorAll('.game-card, .nav-item, button, a').forEach(elem => {
     });
 });
 
-// 移动端菜单切换
-document.addEventListener('DOMContentLoaded', () => {
-    const menuToggle = document.querySelector('.menu-toggle');
+// 移动端菜单控制
+document.addEventListener('DOMContentLoaded', function() {
+    const mobileMenuButton = document.getElementById('mobile-menu-button');
     const sidebar = document.querySelector('.sidebar');
     const mainContent = document.querySelector('.main-content');
+    const overlay = document.createElement('div');
+    overlay.className = 'sidebar-overlay';
+    document.body.appendChild(overlay);
 
-    // 菜单切换
-    menuToggle.addEventListener('click', () => {
-        sidebar.classList.toggle('active');
-    });
+    // 点击菜单按钮
+    mobileMenuButton.addEventListener('click', toggleSidebar);
 
-    // 点击主内容区域关闭菜单
-    mainContent.addEventListener('click', () => {
-        if (window.innerWidth <= 768) {
-            sidebar.classList.remove('active');
+    // 点击遮罩层关闭菜单
+    overlay.addEventListener('click', closeSidebar);
+
+    // 滑动手势支持
+    let touchStartX = 0;
+    let touchEndX = 0;
+
+    document.addEventListener('touchstart', e => {
+        touchStartX = e.changedTouches[0].screenX;
+    }, false);
+
+    document.addEventListener('touchend', e => {
+        touchEndX = e.changedTouches[0].screenX;
+        handleSwipe();
+    }, false);
+
+    function handleSwipe() {
+        const swipeDistance = touchEndX - touchStartX;
+        const threshold = 50; // 最小滑动距离
+
+        if (swipeDistance > threshold) {
+            // 向右滑动，打开菜单
+            openSidebar();
+        } else if (swipeDistance < -threshold) {
+            // 向左滑动，关闭菜单
+            closeSidebar();
         }
-    });
+    }
+
+    function toggleSidebar() {
+        sidebar.classList.toggle('active');
+        overlay.classList.toggle('active');
+        document.body.style.overflow = sidebar.classList.contains('active') ? 'hidden' : '';
+    }
+
+    function openSidebar() {
+        sidebar.classList.add('active');
+        overlay.classList.add('active');
+        document.body.style.overflow = 'hidden';
+    }
+
+    function closeSidebar() {
+        sidebar.classList.remove('active');
+        overlay.classList.remove('active');
+        document.body.style.overflow = '';
+    }
 
     // 监听窗口大小变化
     window.addEventListener('resize', () => {
-        if (window.innerWidth > 768) {
-            sidebar.classList.remove('active');
+        if (window.innerWidth > 1024) {
+            closeSidebar();
         }
     });
 });
 
-// 添加触摸滑动支持
-let touchStartX = 0;
-let touchEndX = 0;
-
-document.addEventListener('touchstart', e => {
-    touchStartX = e.changedTouches[0].screenX;
-});
-
-document.addEventListener('touchend', e => {
-    touchEndX = e.changedTouches[0].screenX;
-    handleSwipe();
-});
-
-function handleSwipe() {
-    const sidebar = document.querySelector('.sidebar');
-    const swipeDistance = touchEndX - touchStartX;
-    
-    if (Math.abs(swipeDistance) > 50) { // 最小滑动距离
-        if (swipeDistance > 0) { // 向右滑动
-            sidebar.classList.add('active');
-        } else { // 向左滑动
-            sidebar.classList.remove('active');
-        }
+// 优化移动端滚动性能
+let ticking = false;
+window.addEventListener('scroll', () => {
+    if (!ticking) {
+        window.requestAnimationFrame(() => {
+            // 执行滚动相关的操作
+            ticking = false;
+        });
+        ticking = true;
     }
-}
+});
+
+// 监听语言选择变化
+document.querySelector('.language-select').addEventListener('change', (e) => {
+    const selectedLanguage = e.target.value;
+    localStorage.setItem('preferred-language', selectedLanguage);
+    updateInterfaceLanguage(selectedLanguage);
+});
+
+// 页面加载时初始化语言
+document.addEventListener('DOMContentLoaded', () => {
+    const savedLanguage = localStorage.getItem('preferred-language') || 'zh-CN';
+    document.querySelector('.language-select').value = savedLanguage;
+    updateInterfaceLanguage(savedLanguage);
+});
