@@ -351,95 +351,34 @@ document.querySelectorAll('.game-card, .nav-item, button, a').forEach(elem => {
     });
 });
 
-// 移动端菜单控制
+// 移除之前的移动端相关代码，只保留核心功能
 document.addEventListener('DOMContentLoaded', function() {
-    const mobileMenuButton = document.getElementById('mobile-menu-button');
-    const sidebar = document.querySelector('.sidebar');
-    const mainContent = document.querySelector('.main-content');
-    const overlay = document.createElement('div');
-    overlay.className = 'sidebar-overlay';
-    document.body.appendChild(overlay);
-
-    // 点击菜单按钮
-    mobileMenuButton.addEventListener('click', toggleSidebar);
-
-    // 点击遮罩层关闭菜单
-    overlay.addEventListener('click', closeSidebar);
-
-    // 滑动手势支持
-    let touchStartX = 0;
-    let touchEndX = 0;
-
-    document.addEventListener('touchstart', e => {
-        touchStartX = e.changedTouches[0].screenX;
-    }, false);
-
-    document.addEventListener('touchend', e => {
-        touchEndX = e.changedTouches[0].screenX;
-        handleSwipe();
-    }, false);
-
-    function handleSwipe() {
-        const swipeDistance = touchEndX - touchStartX;
-        const threshold = 50; // 最小滑动距离
-
-        if (swipeDistance > threshold) {
-            // 向右滑动，打开菜单
-            openSidebar();
-        } else if (swipeDistance < -threshold) {
-            // 向左滑动，关闭菜单
-            closeSidebar();
-        }
+    // 语言切换功能
+    const languageSelect = document.querySelector('.language-select');
+    if (languageSelect) {
+        languageSelect.addEventListener('change', (e) => {
+            const selectedLanguage = e.target.value;
+            localStorage.setItem('preferred-language', selectedLanguage);
+            updateInterfaceLanguage(selectedLanguage);
+        });
     }
 
-    function toggleSidebar() {
-        sidebar.classList.toggle('active');
-        overlay.classList.toggle('active');
-        document.body.style.overflow = sidebar.classList.contains('active') ? 'hidden' : '';
+    // 初始化语言设置
+    const savedLanguage = localStorage.getItem('preferred-language') || 'zh-CN';
+    if (languageSelect) {
+        languageSelect.value = savedLanguage;
+        updateInterfaceLanguage(savedLanguage);
     }
 
-    function openSidebar() {
-        sidebar.classList.add('active');
-        overlay.classList.add('active');
-        document.body.style.overflow = 'hidden';
-    }
-
-    function closeSidebar() {
-        sidebar.classList.remove('active');
-        overlay.classList.remove('active');
-        document.body.style.overflow = '';
-    }
-
-    // 监听窗口大小变化
-    window.addEventListener('resize', () => {
-        if (window.innerWidth > 1024) {
-            closeSidebar();
+    // 优化滚动性能
+    let ticking = false;
+    window.addEventListener('scroll', () => {
+        if (!ticking) {
+            window.requestAnimationFrame(() => {
+                // 执行滚动相关的操作
+                ticking = false;
+            });
+            ticking = true;
         }
     });
-});
-
-// 优化移动端滚动性能
-let ticking = false;
-window.addEventListener('scroll', () => {
-    if (!ticking) {
-        window.requestAnimationFrame(() => {
-            // 执行滚动相关的操作
-            ticking = false;
-        });
-        ticking = true;
-    }
-});
-
-// 监听语言选择变化
-document.querySelector('.language-select').addEventListener('change', (e) => {
-    const selectedLanguage = e.target.value;
-    localStorage.setItem('preferred-language', selectedLanguage);
-    updateInterfaceLanguage(selectedLanguage);
-});
-
-// 页面加载时初始化语言
-document.addEventListener('DOMContentLoaded', () => {
-    const savedLanguage = localStorage.getItem('preferred-language') || 'zh-CN';
-    document.querySelector('.language-select').value = savedLanguage;
-    updateInterfaceLanguage(savedLanguage);
 });
