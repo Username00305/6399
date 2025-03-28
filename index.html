@@ -79,26 +79,139 @@
         }
 
         .custom-select {
-            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%239CA3AF'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M19 9l-7 7-7-7'%3E%3C/path%3E%3C/svg%3E");
+            background-color: var(--surface);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: #e2e8f0;
+            padding: 0.5rem 2.5rem 0.5rem 1rem;
+            border-radius: 0.5rem;
+            appearance: none;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%236B7280'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M19 9l-7 7-7-7'%3E%3C/path%3E%3C/svg%3E");
             background-repeat: no-repeat;
             background-position: right 0.5rem center;
             background-size: 1.5em 1.5em;
-            padding-right: 2.5rem;
+            transition: all 0.2s ease;
+        }
+
+        .custom-select:hover {
+            border-color: rgba(59, 130, 246, 0.5);
+            background-color: rgba(30, 41, 59, 0.8);
+        }
+
+        .custom-select:focus {
+            border-color: #3b82f6;
+            box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.2);
+            outline: none;
         }
 
         .custom-select optgroup {
-            background-color: #1e293b;
+            background-color: var(--surface);
             color: #e2e8f0;
+            padding: 0.5rem 0;
         }
 
         .custom-select option {
-            background-color: #1e293b;
+            background-color: var(--surface);
             color: #e2e8f0;
             padding: 0.5rem;
         }
 
         .custom-select option:hover {
-            background-color: #2d3748;
+            background-color: rgba(59, 130, 246, 0.2);
+        }
+
+        .fade-transition {
+            transition: opacity 0.2s ease-in-out;
+        }
+
+        .menu-toggle {
+            display: none;
+            position: fixed;
+            top: 1rem;
+            left: 1rem;
+            z-index: 1000;
+            background: var(--surface);
+            padding: 0.5rem;
+            border-radius: 0.5rem;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            cursor: pointer;
+        }
+
+        @media (max-width: 768px) {
+            /* 侧边栏响应式 */
+            .sidebar {
+                position: fixed;
+                left: -240px;
+                top: 0;
+                bottom: 0;
+                width: 240px;
+                z-index: 100;
+                transition: left 0.3s ease;
+            }
+
+            .sidebar.active {
+                left: 0;
+            }
+
+            .menu-toggle {
+                display: block;
+            }
+
+            /* 主内容区域响应式 */
+            .main-content {
+                margin-left: 0 !important;
+                padding: 1rem;
+                padding-top: 4rem;
+            }
+
+            /* 顶部栏响应式 */
+            header {
+                flex-direction: column;
+                gap: 1rem;
+                margin-bottom: 2rem !important;
+            }
+
+            header .relative {
+                width: 100%;
+            }
+
+            .search-input {
+                width: 100% !important;
+            }
+
+            header .flex.items-center.space-x-4 {
+                width: 100%;
+                justify-content: space-between;
+            }
+
+            /* 统计卡片响应式 */
+            .grid.grid-cols-3 {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+
+            /* 游戏卡片网格响应式 */
+            .grid.grid-cols-4 {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+
+            /* 标题区域响应式 */
+            h1.text-5xl {
+                font-size: 2rem;
+            }
+
+            /* 游戏分类标签响应式 */
+            .category-tag {
+                font-size: 0.875rem;
+                padding: 0.5rem 1rem;
+            }
+        }
+
+        /* 平板设备响应式 */
+        @media (min-width: 769px) and (max-width: 1024px) {
+            .grid.grid-cols-4 {
+                grid-template-columns: repeat(2, 1fr);
+            }
         }
     </style>
 </head>
@@ -111,6 +224,7 @@
         </div>
 
         <div class="flex-1 space-y-2">
+            <!-- 主要导航项 -->
             <a href="#" class="nav-item active flex items-center px-4 py-3 rounded-lg text-white">
                 <svg class="w-5 h-5 mr-3" fill="currentColor" viewBox="0 0 20 20">
                     <path d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z"/>
@@ -139,93 +253,80 @@
                 热门推荐
             </a>
 
-            <a href="#" class="nav-item flex items-center px-4 py-3 rounded-lg text-gray-400 hover:text-white">
-                <svg class="w-5 h-5 mr-3" fill="currentColor" viewBox="0 0 20 20">
-                    <path d="M4 2a1 1 0 011 1v2.101a7.002 7.002 0 0111.601 2.566 1 1 0 11-1.885.666A5.002 5.002 0 005.999 7H9a1 1 0 010 2H4a1 1 0 01-1-1V3a1 1 0 011-1z"/>
-                </svg>
-                更新
-            </a>
-
-            <!-- 分割线 -->
+            <!-- 分隔线 -->
             <div class="border-t border-gray-700 my-4"></div>
 
-            <!-- 游戏分类标题 -->
-            <div class="text-sm text-gray-400 px-4 py-2">游戏分类</div>
+            <!-- 游戏分类 -->
+            <a href="#" class="nav-item flex items-center px-4 py-3 rounded-lg text-gray-400 hover:text-white">
+                <svg class="w-5 h-5 mr-3" fill="currentColor" viewBox="0 0 20 20">
+                    <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
+                </svg>
+                益智解谜
+            </a>
 
-            <!-- 游戏分类菜单 -->
-            <div class="space-y-1 categories-menu overflow-y-auto" style="max-height: calc(100vh - 400px);">
-                <a href="#puzzle" class="nav-item flex items-center px-4 py-2 rounded-lg text-gray-400 hover:text-white">
-                    <svg class="w-5 h-5 mr-3" fill="currentColor" viewBox="0 0 20 20">
-                        <path d="M10 3.5a1.5 1.5 0 013 0V4a1 1 0 001 1h3a1 1 0 011 1v3a1 1 0 01-1 1h-.5a1.5 1.5 0 000 3h.5a1 1 0 011 1v3a1 1 0 01-1 1h-3a1 1 0 01-1-1v-.5a1.5 1.5 0 00-3 0v.5a1 1 0 01-1 1H6a1 1 0 01-1-1v-3a1 1 0 00-1-1h-.5a1.5 1.5 0 010-3H4a1 1 0 001-1V6a1 1 0 011-1h3a1 1 0 001-1v-.5z"/>
-                    </svg>
-                    益智解谜
-                </a>
+            <a href="#" class="nav-item flex items-center px-4 py-3 rounded-lg text-gray-400 hover:text-white">
+                <svg class="w-5 h-5 mr-3" fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd" d="M11.3 1.046A1 1 0 0112 2v5h4a1 1 0 01.82 1.573l-7 10A1 1 0 018 18v-5H4a1 1 0 01-.82-1.573l7-10a1 1 0 011.12-.38z" clip-rule="evenodd"/>
+                </svg>
+                动作冒险
+            </a>
 
-                <a href="#action" class="nav-item flex items-center px-4 py-2 rounded-lg text-gray-400 hover:text-white">
-                    <svg class="w-5 h-5 mr-3" fill="currentColor" viewBox="0 0 20 20">
-                        <path d="M13.89 3.39l2.71 2.72c.46.46.42 1.24.03 1.64l-8.01 8.02-5.56 1.16 1.16-5.58s7.6-7.63 7.99-8.03c.39-.39 1.22-.39 1.68.07z"/>
-                    </svg>
-                    动作冒险
-                </a>
+            <a href="#" class="nav-item flex items-center px-4 py-3 rounded-lg text-gray-400 hover:text-white">
+                <svg class="w-5 h-5 mr-3" fill="currentColor" viewBox="0 0 20 20">
+                    <path d="M10 3.5a1.5 1.5 0 013 0V4a1 1 0 001 1h3a1 1 0 011 1v3a1 1 0 01-1 1h-.5a1.5 1.5 0 000 3h.5a1 1 0 011 1v3a1 1 0 01-1 1h-3a1 1 0 01-1-1v-.5a1.5 1.5 0 00-3 0v.5a1 1 0 01-1 1H6a1 1 0 01-1-1v-3a1 1 0 00-1-1h-.5a1.5 1.5 0 010-3H4a1 1 0 001-1V6a1 1 0 011-1h3a1 1 0 001-1v-.5z"/>
+                </svg>
+                策略游戏
+            </a>
 
-                <a href="#shooting" class="nav-item flex items-center px-4 py-2 rounded-lg text-gray-400 hover:text-white">
-                    <svg class="w-5 h-5 mr-3" fill="currentColor" viewBox="0 0 20 20">
-                        <path d="M10 12a2 2 0 100-4 2 2 0 000 4z"/>
-                    </svg>
-                    射击游戏
-                </a>
+            <a href="#" class="nav-item flex items-center px-4 py-3 rounded-lg text-gray-400 hover:text-white">
+                <svg class="w-5 h-5 mr-3" fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z" clip-rule="evenodd"/>
+                </svg>
+                街机游戏
+            </a>
 
-                <a href="#sports" class="nav-item flex items-center px-4 py-2 rounded-lg text-gray-400 hover:text-white">
-                    <svg class="w-5 h-5 mr-3" fill="currentColor" viewBox="0 0 20 20">
-                        <path d="M10 18a8 8 0 100-16 8 8 0 000 16z"/>
-                    </svg>
-                    体育运动
-                </a>
+            <a href="#" class="nav-item flex items-center px-4 py-3 rounded-lg text-gray-400 hover:text-white">
+                <svg class="w-5 h-5 mr-3" fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z" clip-rule="evenodd"/>
+                </svg>
+                体育竞技
+            </a>
 
-                <a href="#racing" class="nav-item flex items-center px-4 py-2 rounded-lg text-gray-400 hover:text-white">
-                    <svg class="w-5 h-5 mr-3" fill="currentColor" viewBox="0 0 20 20">
-                        <path d="M8 16.5a1.5 1.5 0 11-3 0 1.5 1.5 0 013 0zM15 16.5a1.5 1.5 0 11-3 0 1.5 1.5 0 013 0z"/>
-                    </svg>
-                    赛车竞速
-                </a>
+            <a href="#" class="nav-item flex items-center px-4 py-3 rounded-lg text-gray-400 hover:text-white">
+                <svg class="w-5 h-5 mr-3" fill="currentColor" viewBox="0 0 20 20">
+                    <path d="M8 16.5a1.5 1.5 0 11-3 0 1.5 1.5 0 013 0zM15 16.5a1.5 1.5 0 11-3 0 1.5 1.5 0 013 0z"/>
+                    <path d="M3 4a1 1 0 00-1 1v10a1 1 0 001 1h1.05a2.5 2.5 0 014.9 0H10a1 1 0 001-1V5a1 1 0 00-1-1H3zM14 7a1 1 0 00-1 1v6.05A2.5 2.5 0 0115.95 16H17a1 1 0 001-1v-5a1 1 0 00-.293-.707l-2-2A1 1 0 0015 7h-1z"/>
+                </svg>
+                赛车竞速
+            </a>
 
-                <a href="#strategy" class="nav-item flex items-center px-4 py-2 rounded-lg text-gray-400 hover:text-white">
-                    <svg class="w-5 h-5 mr-3" fill="currentColor" viewBox="0 0 20 20">
-                        <path d="M9 6a3 3 0 11-6 0 3 3 0 016 0zM17 6a3 3 0 11-6 0 3 3 0 016 0z"/>
-                    </svg>
-                    策略塔防
-                </a>
+            <a href="#" class="nav-item flex items-center px-4 py-3 rounded-lg text-gray-400 hover:text-white">
+                <svg class="w-5 h-5 mr-3" fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd" d="M3 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm0 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm0 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm0 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z" clip-rule="evenodd"/>
+                </svg>
+                射击游戏
+            </a>
 
-                <a href="#card" class="nav-item flex items-center px-4 py-2 rounded-lg text-gray-400 hover:text-white">
-                    <svg class="w-5 h-5 mr-3" fill="currentColor" viewBox="0 0 20 20">
-                        <path d="M4 4a2 2 0 00-2 2v8a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2H4z"/>
-                    </svg>
-                    棋牌游戏
-                </a>
+            <a href="#" class="nav-item flex items-center px-4 py-3 rounded-lg text-gray-400 hover:text-white">
+                <svg class="w-5 h-5 mr-3" fill="currentColor" viewBox="0 0 20 20">
+                    <path d="M7 3a1 1 0 000 2h6a1 1 0 100-2H7zM4 7a1 1 0 011-1h10a1 1 0 110 2H5a1 1 0 01-1-1zM2 11a2 2 0 012-2h12a2 2 0 012 2v4a2 2 0 01-2 2H4a2 2 0 01-2-2v-4z"/>
+                </svg>
+                卡牌游戏
+            </a>
 
-                <a href="#music" class="nav-item flex items-center px-4 py-2 rounded-lg text-gray-400 hover:text-white">
-                    <svg class="w-5 h-5 mr-3" fill="currentColor" viewBox="0 0 20 20">
-                        <path d="M18 3a1 1 0 00-1.196-.98l-10 2A1 1 0 006 5v9.114A4.369 4.369 0 005 14c-1.657 0-3 .895-3 2s1.343 2 3 2 3-.895 3-2V7.82l8-1.6v5.894A4.37 4.37 0 0015 12c-1.657 0-3 .895-3 2s1.343 2 3 2 3-.895 3-2V3z"/>
-                    </svg>
-                    音乐节奏
-                </a>
+            <a href="#" class="nav-item flex items-center px-4 py-3 rounded-lg text-gray-400 hover:text-white">
+                <svg class="w-5 h-5 mr-3" fill="currentColor" viewBox="0 0 20 20">
+                    <path d="M10 3.5a1.5 1.5 0 013 0V4a1 1 0 001 1h3a1 1 0 011 1v3a1 1 0 01-1 1h-.5a1.5 1.5 0 000 3h.5a1 1 0 011 1v3a1 1 0 01-1 1h-3a1 1 0 01-1-1v-.5a1.5 1.5 0 00-3 0v.5a1 1 0 01-1 1H6a1 1 0 01-1-1v-3a1 1 0 00-1-1h-.5a1.5 1.5 0 010-3H4a1 1 0 001-1V6a1 1 0 011-1h3a1 1 0 001-1v-.5z"/>
+                </svg>
+                棋盘游戏
+            </a>
 
-                <a href="#horror" class="nav-item flex items-center px-4 py-2 rounded-lg text-gray-400 hover:text-white">
-                    <svg class="w-5 h-5 mr-3" fill="currentColor" viewBox="0 0 20 20">
-                        <path d="M10.394 2.08a1 1 0 00-.788 0l-7 3a1 1 0 000 1.84L5.25 8.051a.999.999 0 01.356-.257l4-1.714a1 1 0 11.788 1.838L7.667 9.088l1.94.831a1 1 0 00.787 0l7-3a1 1 0 000-1.838l-7-3zM3.31 9.397L5 10.12v4.102a8.969 8.969 0 00-1.05-.174 1 1 0 01-.89-.89 11.115 11.115 0 01.25-3.762zM9.3 16.573A9.026 9.026 0 007 14.935v-3.957l1.818.78a3 3 0 002.364 0l5.508-2.361a11.026 11.026 0 01.25 3.762 1 1 0 01-.89.89 8.968 8.968 0 00-5.35 2.524 1 1 0 01-1.4 0zM6 18a1 1 0 001-1v-2.065a8.935 8.935 0 00-2-.712V17a1 1 0 001 1z"/>
-                    </svg>
-                    恐怖惊悚
-                </a>
-
-                <a href="#fighting" class="nav-item flex items-center px-4 py-2 rounded-lg text-gray-400 hover:text-white">
-                    <svg class="w-5 h-5 mr-3" fill="currentColor" viewBox="0 0 20 20">
-                        <path d="M18 3a1 1 0 00-1.196-.98l-10 2A1 1 0 006 5v9.114A4.369 4.369 0 005 14c-1.657 0-3 .895-3 2s1.343 2 3 2 3-.895 3-2V7.82l8-1.6v5.894A4.37 4.37 0 0015 12c-1.657 0-3 .895-3 2s1.343 2 3 2 3-.895 3-2V3z"/>
-                    </svg>
-                    格斗对战
-                </a>
-
-                <!-- 更多分类... -->
-            </div>
+            <a href="#" class="nav-item flex items-center px-4 py-3 rounded-lg text-gray-400 hover:text-white">
+                <svg class="w-5 h-5 mr-3" fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd" d="M4 4a2 2 0 012-2h4.586A2 2 0 0112 2.586L15.414 6A2 2 0 0116 7.414V16a2 2 0 01-2 2H6a2 2 0 01-2-2V4z" clip-rule="evenodd"/>
+                </svg>
+                文字游戏
+            </a>
         </div>
     </nav>
 
@@ -241,30 +342,30 @@
             </div>
             
             <div class="flex items-center space-x-4">
-                <select class="bg-surface px-4 py-2 rounded-lg border border-gray-700 text-white">
+                <select class="custom-select">
                     <!-- 东亚语言 -->
-                    <optgroup label="东亚">
-                        <option value="zh-CN">简体中文</option>
-                        <option value="zh-TW">繁體中文</option>
-                        <option value="ja">日本語</option>
-                        <option value="ko">한국어</option>
+                    <optgroup label="东亚" class="bg-[#1e293b] text-gray-200">
+                        <option value="zh-CN" class="py-2">简体中文</option>
+                        <option value="zh-TW" class="py-2">繁體中文</option>
+                        <option value="ja" class="py-2">日本語</option>
+                        <option value="ko" class="py-2">한국어</option>
                     </optgroup>
                     <!-- 欧洲语言 -->
-                    <optgroup label="欧洲">
-                        <option value="en">English</option>
-                        <option value="fr">Français</option>
-                        <option value="de">Deutsch</option>
-                        <option value="es">Español</option>
-                        <option value="it">Italiano</option>
-                        <option value="pt">Português</option>
-                        <option value="ru">Русский</option>
+                    <optgroup label="欧洲" class="bg-[#1e293b] text-gray-200">
+                        <option value="en" class="py-2">English</option>
+                        <option value="fr" class="py-2">Français</option>
+                        <option value="de" class="py-2">Deutsch</option>
+                        <option value="es" class="py-2">Español</option>
+                        <option value="it" class="py-2">Italiano</option>
+                        <option value="pt" class="py-2">Português</option>
+                        <option value="ru" class="py-2">Русский</option>
                     </optgroup>
                     <!-- 其他语言 -->
-                    <optgroup label="其他">
-                        <option value="ar">العربية</option>
-                        <option value="hi">हिन्दी</option>
-                        <option value="th">ไทย</option>
-                        <option value="vi">Tiếng Việt</option>
+                    <optgroup label="其他" class="bg-[#1e293b] text-gray-200">
+                        <option value="ar" class="py-2">العربية</option>
+                        <option value="hi" class="py-2">हिन्दी</option>
+                        <option value="th" class="py-2">ไทย</option>
+                        <option value="vi" class="py-2">Tiếng Việt</option>
                     </optgroup>
                 </select>
                 
@@ -324,81 +425,114 @@
             </div>
         </div>
 
-        <!-- 精选游戏区域 -->
-        <div class="mb-12">
-            <div class="flex justify-between items-center mb-6">
-                <h2 class="text-2xl font-bold text-white">精选游戏</h2>
-                <a href="#" class="text-blue-500 hover:text-blue-400">查看全部 ></a>
-            </div>
-            
-            <div class="grid grid-cols-4 gap-6">
-                <!-- Giant Rush -->
-                <div class="game-card rounded-xl overflow-hidden">
-                    <div class="relative">
-                        <iframe src="https://play.famobi.com/giant-rush" 
-                            class="w-full h-48 object-cover pointer-events-none">
-                        </iframe>
-                        <span class="absolute top-2 right-2 px-2 py-1 bg-blue-600/80 text-xs text-white rounded">动作</span>
-                    </div>
-                    <div class="p-4">
-                        <div class="flex justify-between items-center mb-2">
-                            <h3 class="text-lg font-semibold">Giant Rush</h3>
-                            <div class="flex items-center">
-                                <span class="text-yellow-400 mr-1">4.8</span>
-                                <div class="text-yellow-400">★★★★★</div>
-                            </div>
-                        </div>
-                        <p class="text-gray-400 text-sm mb-3">刺激的跑酷冒险游戏</p>
-                        <div class="flex justify-between items-center">
-                            <button onclick="window.open('https://play.famobi.com/giant-rush', '_blank')" 
-                                class="bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 transition">
-                                立即玩
-                            </button>
-                            <a href="#" class="text-gray-400 hover:text-white text-sm">更多信息</a>
+        <!-- 游戏展示区 -->
+        <div class="grid grid-cols-4 gap-6">
+            <!-- Number Guessing -->
+            <div class="game-card rounded-xl overflow-hidden">
+                <div class="relative">
+                    <img src="https://placehold.co/400x300/2563eb/FFFFFF/png?text=123" alt="Number Guessing" class="w-full h-48 object-cover">
+                    <span class="absolute top-2 right-2 px-2 py-1 bg-blue-600/80 text-xs text-white rounded">Puzzle</span>
+                </div>
+                <div class="p-4">
+                    <div class="flex justify-between items-center mb-2">
+                        <h3 class="text-lg font-semibold">Number Guessing</h3>
+                        <div class="flex items-center">
+                            <span class="text-yellow-400 mr-1">4.7</span>
+                            <div class="text-yellow-400">★★★★★</div>
                         </div>
                     </div>
+                    <p class="text-gray-400 text-sm mb-3">Test your intuition by guessing a number between 1 and 100.</p>
+                    <div class="flex justify-between items-center">
+                        <button class="bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 transition">
+                            立即玩
+                        </button>
+                        <a href="#" class="text-gray-400 hover:text-white text-sm">更多信息</a>
+                    </div>
                 </div>
-
-                <!-- Color Fill 3D -->
-                <div class="game-card rounded-xl overflow-hidden">
-                    <!-- 类似的游戏卡片结构 -->
-                </div>
-
-                <!-- 其他精选游戏... -->
             </div>
-        </div>
 
-        <!-- 热门游戏区域 -->
-        <div class="mb-12">
-            <div class="flex justify-between items-center mb-6">
-                <h2 class="text-2xl font-bold text-white">热门游戏</h2>
-                <a href="#" class="text-blue-500 hover:text-blue-400">查看全部 ></a>
-            </div>
-            
-            <div class="grid grid-cols-4 gap-6">
-                <!-- Train Miner -->
-                <div class="game-card rounded-xl overflow-hidden">
-                    <!-- 游戏卡片内容 -->
+            <!-- Card Match Game -->
+            <div class="game-card rounded-xl overflow-hidden">
+                <div class="relative">
+                    <img src="https://placehold.co/400x300/7c3aed/FFFFFF/png?text=Cards" alt="Card Match" class="w-full h-48 object-cover">
+                    <span class="absolute top-2 right-2 px-2 py-1 bg-purple-600/80 text-xs text-white rounded">Memory</span>
                 </div>
+                <div class="p-4">
+                    <div class="flex justify-between items-center mb-2">
+                        <h3 class="text-lg font-semibold">Card Match</h3>
+                        <div class="flex items-center">
+                            <span class="text-yellow-400 mr-1">4.5</span>
+                            <div class="text-yellow-400">★★★★★</div>
+                        </div>
+                    </div>
+                    <p class="text-gray-400 text-sm mb-3">Find matching pairs of cards in this classic memory game.</p>
+                    <div class="flex justify-between items-center">
+                        <button class="bg-purple-600 text-white px-6 py-2 rounded-lg hover:bg-purple-700 transition">
+                            立即玩
+                        </button>
+                        <a href="#" class="text-gray-400 hover:text-white text-sm">更多信息</a>
+                    </div>
+                </div>
+            </div>
 
-                <!-- 其他热门游戏... -->
+            <!-- Word Scramble -->
+            <div class="game-card rounded-xl overflow-hidden">
+                <div class="relative">
+                    <img src="https://placehold.co/400x300/0ea5e9/FFFFFF/png?text=SCRM" alt="Word Scramble" class="w-full h-48 object-cover">
+                    <span class="absolute top-2 right-2 px-2 py-1 bg-sky-600/80 text-xs text-white rounded">Word</span>
+                </div>
+                <div class="p-4">
+                    <div class="flex justify-between items-center mb-2">
+                        <h3 class="text-lg font-semibold">Word Scramble</h3>
+                        <div class="flex items-center">
+                            <span class="text-yellow-400 mr-1">4.3</span>
+                            <div class="text-yellow-400">★★★★☆</div>
+                        </div>
+                    </div>
+                    <p class="text-gray-400 text-sm mb-3">Unscramble words against the clock in this challenging word game.</p>
+                    <div class="flex justify-between items-center">
+                        <button class="bg-sky-600 text-white px-6 py-2 rounded-lg hover:bg-sky-700 transition">
+                            立即玩
+                        </button>
+                        <a href="#" class="text-gray-400 hover:text-white text-sm">更多信息</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tetris -->
+            <div class="game-card rounded-xl overflow-hidden">
+                <div class="relative">
+                    <img src="https://placehold.co/400x300/10b981/FFFFFF/png?text=Tetris" alt="Tetris" class="w-full h-48 object-cover">
+                    <span class="absolute top-2 right-2 px-2 py-1 bg-emerald-600/80 text-xs text-white rounded">Arcade</span>
+                </div>
+                <div class="p-4">
+                    <div class="flex justify-between items-center mb-2">
+                        <h3 class="text-lg font-semibold">Tetris</h3>
+                        <div class="flex items-center">
+                            <span class="text-yellow-400 mr-1">4.9</span>
+                            <div class="text-yellow-400">★★★★★</div>
+                        </div>
+                    </div>
+                    <p class="text-gray-400 text-sm mb-3">The classic block-stacking game of strategy and quick thinking.</p>
+                    <div class="flex justify-between items-center">
+                        <button class="bg-emerald-600 text-white px-6 py-2 rounded-lg hover:bg-emerald-700 transition">
+                            立即玩
+                        </button>
+                        <a href="#" class="text-gray-400 hover:text-white text-sm">更多信息</a>
+                    </div>
+                </div>
             </div>
         </div>
     </main>
 
-    <script>
-        // 添加鼠标悬停效果
-        document.querySelectorAll('.game-card').forEach(card => {
-            card.addEventListener('mouseenter', () => {
-                card.style.transform = 'translateY(-10px)';
-            });
-            
-            card.addEventListener('mouseleave', () => {
-                card.style.transform = 'translateY(0)';
-            });
-        });
+    <button class="menu-toggle">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+        </svg>
+    </button>
 
-        // 语言选择功能
+    <script>
+        // 语言切换功能
         const languageSelect = document.querySelector('select');
         
         // 获取保存的语言设置或使用默认值
@@ -410,17 +544,12 @@
         // 监听语言选择变化
         languageSelect.addEventListener('change', (e) => {
             const selectedLanguage = e.target.value;
-            
-            // 保存语言选择
             localStorage.setItem('preferred-language', selectedLanguage);
-            
-            // 可以在这里添加更新界面文本的逻辑
             updateInterfaceLanguage(selectedLanguage);
         });
 
         // 更新界面语言的函数
         function updateInterfaceLanguage(language) {
-            // 界面文本对应表
             const translations = {
                 'zh-CN': {
                     search: '搜索游戏...',
@@ -432,92 +561,124 @@
                     freeGames: '免费游戏',
                     playNow: '立即玩',
                     moreInfo: '更多信息',
-                    categories: '热门分类'
+                    categories: '热门分类',
+                    puzzleGames: '益智游戏',
+                    actionGames: '动作游戏',
+                    strategyGames: '策略游戏',
+                    cardGames: '卡牌游戏'
                 },
                 'en': {
                     search: 'Search games...',
                     title: 'Game World',
                     subtitle: 'Endless Fun',
-                    description: 'Discover hundreds of free games playable directly in your browser - no download, no installation required!',
+                    description: 'Discover hundreds of free games playable directly in your browser - no download required!',
                     gameCount: 'Games',
                     activeUsers: 'Active Users',
                     freeGames: 'Free Games',
                     playNow: 'Play Now',
                     moreInfo: 'More Info',
-                    categories: 'Popular Categories'
+                    categories: 'Popular Categories',
+                    puzzleGames: 'Puzzle Games',
+                    actionGames: 'Action Games',
+                    strategyGames: 'Strategy Games',
+                    cardGames: 'Card Games'
                 },
                 'ja': {
                     search: 'ゲームを検索...',
                     title: 'ゲームワールド',
                     subtitle: '無限の楽しみ',
-                    description: 'ブラウザで直接プレイできる無料ゲームを何百も発見しよう！ダウンロードもインストールも不要です！',
+                    description: 'ブラウザで直接プレイできる無料ゲームを何百も発見しよう！',
                     gameCount: 'ゲーム数',
                     activeUsers: 'アクティブユーザー',
                     freeGames: '無料ゲーム',
                     playNow: 'プレイする',
                     moreInfo: '詳細情報',
-                    categories: '人気カテゴリー'
+                    categories: '人気カテゴリー',
+                    puzzleGames: 'パズルゲーム',
+                    actionGames: 'アクションゲーム',
+                    strategyGames: '戦略ゲーム',
+                    cardGames: 'カードゲーム'
                 }
                 // 可以继续添加其他语言...
             };
 
-            // 获取当前语言的翻译
             const texts = translations[language] || translations['en'];
-
-            // 更新界面文本
-            document.querySelector('input[placeholder]').placeholder = texts.search;
-            document.querySelector('h1 span:first-child').textContent = texts.title;
-            document.querySelector('h1 span:last-child').textContent = texts.subtitle;
-            document.querySelector('.text-gray-400.text-lg').textContent = texts.description;
             
-            // 更新统计卡片文本
+            // 更新所有需要翻译的文本
+            const elements = {
+                'input[placeholder]': 'search',
+                'h1 span:first-child': 'title',
+                'h1 span:last-child': 'subtitle',
+                '.text-gray-400.text-lg': 'description',
+                'h2.text-xl': 'categories'
+            };
+
+            // 使用动画效果更新文本
+            for (let [selector, key] of Object.entries(elements)) {
+                const element = document.querySelector(selector);
+                if (element) {
+                    element.style.opacity = '0';
+                    setTimeout(() => {
+                        element.textContent = texts[key];
+                        element.style.opacity = '1';
+                    }, 200);
+                }
+            }
+
+            // 更新统计卡片
             document.querySelectorAll('.stat-card .text-gray-400').forEach((el, index) => {
-                if (index === 0) el.textContent = texts.gameCount;
-                if (index === 1) el.textContent = texts.activeUsers;
-                if (index === 2) el.textContent = texts.freeGames;
+                el.style.opacity = '0';
+                setTimeout(() => {
+                    if (index === 0) el.textContent = texts.gameCount;
+                    if (index === 1) el.textContent = texts.activeUsers;
+                    if (index === 2) el.textContent = texts.freeGames;
+                    el.style.opacity = '1';
+                }, 200);
             });
 
-            // 更新分类标题
-            document.querySelector('h2.text-xl').textContent = texts.categories;
+            // 更新游戏分类按钮
+            document.querySelectorAll('.category-tag').forEach((btn, index) => {
+                btn.style.opacity = '0';
+                setTimeout(() => {
+                    const categories = [texts.puzzleGames, texts.actionGames, texts.strategyGames, texts.cardGames];
+                    if (categories[index]) {
+                        btn.textContent = categories[index];
+                    }
+                    btn.style.opacity = '1';
+                }, 200);
+            });
 
-            // 更新游戏卡片按钮文本
+            // 更新游戏卡片按钮
             document.querySelectorAll('.game-card button').forEach(btn => {
-                btn.textContent = texts.playNow;
+                btn.style.opacity = '0';
+                setTimeout(() => {
+                    btn.textContent = texts.playNow;
+                    btn.style.opacity = '1';
+                }, 200);
             });
 
             document.querySelectorAll('.game-card a').forEach(link => {
-                link.textContent = texts.moreInfo;
+                link.style.opacity = '0';
+                setTimeout(() => {
+                    link.textContent = texts.moreInfo;
+                    link.style.opacity = '1';
+                }, 200);
             });
         }
 
         // 初始化界面语言
         updateInterfaceLanguage(savedLanguage);
 
-        // 分类导航功能
-        document.querySelectorAll('.nav-item').forEach(item => {
-            item.addEventListener('click', function(e) {
-                // 移除所有active类
-                document.querySelectorAll('.nav-item').forEach(i => {
-                    i.classList.remove('active');
-                });
-                
-                // 添加active类到当前点击项
-                this.classList.add('active');
-                
-                // 如果是分类链接，滚动到对应区域
-                const href = this.getAttribute('href');
-                if (href && href.startsWith('#')) {
-                    e.preventDefault();
-                    const target = document.querySelector(href);
-                    if (target) {
-                        target.scrollIntoView({ behavior: 'smooth' });
-                    }
-                }
+        // 添加鼠标悬停效果
+        document.querySelectorAll('.game-card').forEach(card => {
+            card.addEventListener('mouseenter', () => {
+                card.style.transform = 'translateY(-10px)';
+            });
+            
+            card.addEventListener('mouseleave', () => {
+                card.style.transform = 'translateY(0)';
             });
         });
     </script>
 </body>
 </html>
-
-
-
