@@ -11,7 +11,7 @@
     overflow: hidden;
     position: relative;
     background: var(--surface);
-    transition: transform 0.2s;
+    transition: transform 0.2s ease-in-out;
 }
 
 .game-card:hover {
@@ -361,4 +361,166 @@
     border-radius: 0.5rem;
     border: 1px solid rgba(255, 255, 255, 0.1);
     cursor: pointer;
+}
+
+/* 朋友头像样式 */
+.game-card .friend-avatar {
+    border: 2px solid white;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+/* 评分标签样式 */
+.game-card .rating {
+    background: linear-gradient(to right, #f59e0b, #fbbf24);
+    font-weight: 600;
+}
+
+/* 区域标题样式 */
+.game-section h2 {
+    position: relative;
+    padding-left: 1rem;
+}
+
+.game-section h2::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 4px;
+    height: 1.2em;
+    background: #3b82f6;
+    border-radius: 2px;
+}
+
+/* 基础响应式设置 */
+@media (max-width: 1024px) {
+    /* 侧边栏在移动端的样式 */
+    .sidebar {
+        position: fixed;
+        left: -280px;
+        top: 0;
+        bottom: 0;
+        width: 280px;
+        transition: left 0.3s ease;
+        z-index: 40;
+        background-color: #1f2937;
+    }
+
+    .sidebar.active {
+        left: 0;
+    }
+
+    /* 主内容区域适配 */
+    .main-content {
+        margin-left: 0;
+        padding: 1rem;
+    }
+
+    /* 顶部导航栏适配 */
+    .top-nav {
+        padding: 0.5rem 1rem;
+        margin-left: 3rem;
+    }
+
+    /* 搜索框适配 */
+    .search-box {
+        max-width: 200px;
+    }
+}
+
+/* 平板端适配 */
+@media (max-width: 768px) {
+    /* 游戏卡片网格调整 */
+    .grid-cols-4 {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    /* 统计数据卡片调整 */
+    .stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1rem;
+    }
+
+    /* 搜索框进一步缩小 */
+    .search-box {
+        max-width: 150px;
+    }
+}
+
+/* 手机端适配 */
+@media (max-width: 640px) {
+    /* 游戏卡片变为单列 */
+    .grid-cols-4 {
+        grid-template-columns: 1fr;
+    }
+
+    /* 统计数据卡片变为单列 */
+    .stats-grid {
+        grid-template-columns: 1fr;
+    }
+
+    /* 顶部导航栏调整 */
+    .top-nav {
+        flex-direction: column;
+        align-items: stretch;
+        padding: 0.5rem;
+        margin-left: 2.5rem;
+    }
+
+    /* 搜索框占满宽度 */
+    .search-box {
+        max-width: 100%;
+        margin: 0.5rem 0;
+    }
+
+    /* 语言选择下拉框调整 */
+    .language-select {
+        width: 100%;
+        margin: 0.5rem 0;
+    }
+
+    /* 调整间距和字体大小 */
+    .section-title {
+        font-size: 1.25rem;
+        margin-bottom: 1rem;
+    }
+
+    .game-card {
+        margin-bottom: 1rem;
+    }
+
+    /* 按钮和链接大小调整 */
+    .game-card button,
+    .game-card a {
+        padding: 0.5rem 1rem;
+        font-size: 0.875rem;
+    }
+}
+
+/* 遮罩层样式 */
+.sidebar-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 30;
+}
+
+.sidebar-overlay.active {
+    display: block;
+}
+
+/* 触摸滑动优化 */
+.sidebar {
+    touch-action: pan-y pinch-zoom;
+}
+
+/* 优化移动端点击区域 */
+button, a {
+    min-height: 44px;
+    min-width: 44px;
 }
