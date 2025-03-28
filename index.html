@@ -2,7 +2,7 @@
 <html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>6399Play - 在线游戏世界</title>
     <meta name="description" content="发现精彩的在线游戏世界,即刻开始您的游戏之旅">
     <link rel="canonical" href="https://your-domain.com/game" />
@@ -85,10 +85,11 @@
             padding: 0.5rem 2.5rem 0.5rem 1rem;
             border-radius: 0.5rem;
             appearance: none;
-            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%236B7280'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M19 9l-7 7-7-7'%3E%3C/path%3E%3C/svg%3E");
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%239CA3AF'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M19 9l-7 7-7-7'%3E%3C/path%3E%3C/svg%3E");
             background-repeat: no-repeat;
             background-position: right 0.5rem center;
             background-size: 1.5em 1.5em;
+            padding-right: 2.5rem;
             transition: all 0.2s ease;
         }
 
@@ -104,19 +105,18 @@
         }
 
         .custom-select optgroup {
-            background-color: var(--surface);
+            background-color: #1e293b;
             color: #e2e8f0;
-            padding: 0.5rem 0;
         }
 
         .custom-select option {
-            background-color: var(--surface);
+            background-color: #1e293b;
             color: #e2e8f0;
             padding: 0.5rem;
         }
 
         .custom-select option:hover {
-            background-color: rgba(59, 130, 246, 0.2);
+            background-color: #2d3748;
         }
 
         .fade-transition {
@@ -342,7 +342,7 @@
             </div>
             
             <div class="flex items-center space-x-4">
-                <select class="custom-select">
+                <select class="bg-[#1e293b] px-4 py-2 rounded-lg border border-gray-700 text-gray-200 hover:border-blue-500 focus:border-blue-500 focus:ring-1 focus:ring-blue-500 focus:outline-none cursor-pointer appearance-none custom-select">
                     <!-- 东亚语言 -->
                     <optgroup label="东亚" class="bg-[#1e293b] text-gray-200">
                         <option value="zh-CN" class="py-2">简体中文</option>
@@ -424,6 +424,210 @@
                 </button>
             </div>
         </div>
+
+        <!-- 在热门分类之后添加精选游戏区域 -->
+        <section class="game-section mb-8">
+            <h2 class="text-xl font-semibold mb-4 text-white featured-games-title">精选游戏</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+                <!-- 精选游戏卡片 1 -->
+                <div class="game-card bg-gray-800 rounded-lg overflow-hidden">
+                    <div class="relative">
+                        <img src="path/to/featured1.jpg" alt="Featured Game 1" class="w-full h-48 object-cover">
+                        <div class="absolute top-2 right-2 bg-yellow-500 text-black px-2 py-1 rounded text-sm">
+                            4.8 ★
+                        </div>
+                    </div>
+                    <div class="p-4">
+                        <h3 class="text-white font-medium mb-2">精选游戏 1</h3>
+                        <div class="flex justify-between items-center">
+                            <button class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded transition">
+                                立即玩
+                            </button>
+                            <a href="#" class="text-gray-400 hover:text-white transition">
+                                更多信息
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 精选游戏卡片 2 -->
+                <div class="game-card bg-gray-800 rounded-lg overflow-hidden">
+                    <div class="relative">
+                        <img src="path/to/featured2.jpg" alt="Featured Game 2" class="w-full h-48 object-cover">
+                        <div class="absolute top-2 right-2 bg-yellow-500 text-black px-2 py-1 rounded text-sm">
+                            4.9 ★
+                        </div>
+                    </div>
+                    <div class="p-4">
+                        <h3 class="text-white font-medium mb-2">精选游戏 2</h3>
+                        <div class="flex justify-between items-center">
+                            <button class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded transition">
+                                立即玩
+                            </button>
+                            <a href="#" class="text-gray-400 hover:text-white transition">
+                                更多信息
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 精选游戏卡片 3 -->
+                <div class="game-card bg-gray-800 rounded-lg overflow-hidden">
+                    <div class="relative">
+                        <img src="path/to/featured3.jpg" alt="Featured Game 3" class="w-full h-48 object-cover">
+                        <div class="absolute top-2 right-2 bg-yellow-500 text-black px-2 py-1 rounded text-sm">
+                            4.7 ★
+                        </div>
+                    </div>
+                    <div class="p-4">
+                        <h3 class="text-white font-medium mb-2">精选游戏 3</h3>
+                        <div class="flex justify-between items-center">
+                            <button class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded transition">
+                                立即玩
+                            </button>
+                            <a href="#" class="text-gray-400 hover:text-white transition">
+                                更多信息
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 精选游戏卡片 4 -->
+                <div class="game-card bg-gray-800 rounded-lg overflow-hidden">
+                    <div class="relative">
+                        <img src="path/to/featured4.jpg" alt="Featured Game 4" class="w-full h-48 object-cover">
+                        <div class="absolute top-2 right-2 bg-yellow-500 text-black px-2 py-1 rounded text-sm">
+                            4.6 ★
+                        </div>
+                    </div>
+                    <div class="p-4">
+                        <h3 class="text-white font-medium mb-2">精选游戏 4</h3>
+                        <div class="flex justify-between items-center">
+                            <button class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded transition">
+                                立即玩
+                            </button>
+                            <a href="#" class="text-gray-400 hover:text-white transition">
+                                更多信息
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 添加朋友在玩区域 -->
+        <section class="game-section mb-8">
+            <h2 class="text-xl font-semibold mb-4 text-white friends-playing-title">朋友在玩</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+                <!-- 朋友游戏卡片 1 -->
+                <div class="game-card bg-gray-800 rounded-lg overflow-hidden">
+                    <div class="relative">
+                        <img src="path/to/friend-game1.jpg" alt="Friend Game 1" class="w-full h-48 object-cover">
+                        <div class="absolute top-2 right-2 bg-yellow-500 text-black px-2 py-1 rounded text-sm">
+                            4.5 ★
+                        </div>
+                        <div class="absolute bottom-2 left-2 flex items-center space-x-1">
+                            <img src="path/to/friend1-avatar.jpg" alt="Friend 1" class="w-6 h-6 rounded-full border-2 border-white">
+                            <span class="text-white text-sm bg-black bg-opacity-50 px-2 py-1 rounded">
+                                张三
+                            </span>
+                        </div>
+                    </div>
+                    <div class="p-4">
+                        <h3 class="text-white font-medium mb-2">朋友游戏 1</h3>
+                        <div class="flex justify-between items-center">
+                            <button class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded transition">
+                                立即玩
+                            </button>
+                            <a href="#" class="text-gray-400 hover:text-white transition">
+                                更多信息
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 朋友游戏卡片 2 -->
+                <div class="game-card bg-gray-800 rounded-lg overflow-hidden">
+                    <div class="relative">
+                        <img src="path/to/friend-game2.jpg" alt="Friend Game 2" class="w-full h-48 object-cover">
+                        <div class="absolute top-2 right-2 bg-yellow-500 text-black px-2 py-1 rounded text-sm">
+                            4.7 ★
+                        </div>
+                        <div class="absolute bottom-2 left-2 flex items-center space-x-1">
+                            <img src="path/to/friend2-avatar.jpg" alt="Friend 2" class="w-6 h-6 rounded-full border-2 border-white">
+                            <span class="text-white text-sm bg-black bg-opacity-50 px-2 py-1 rounded">
+                                李四
+                            </span>
+                        </div>
+                    </div>
+                    <div class="p-4">
+                        <h3 class="text-white font-medium mb-2">朋友游戏 2</h3>
+                        <div class="flex justify-between items-center">
+                            <button class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded transition">
+                                立即玩
+                            </button>
+                            <a href="#" class="text-gray-400 hover:text-white transition">
+                                更多信息
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 朋友游戏卡片 3 -->
+                <div class="game-card bg-gray-800 rounded-lg overflow-hidden">
+                    <div class="relative">
+                        <img src="path/to/friend-game3.jpg" alt="Friend Game 3" class="w-full h-48 object-cover">
+                        <div class="absolute top-2 right-2 bg-yellow-500 text-black px-2 py-1 rounded text-sm">
+                            4.6 ★
+                        </div>
+                        <div class="absolute bottom-2 left-2 flex items-center space-x-1">
+                            <img src="path/to/friend3-avatar.jpg" alt="Friend 3" class="w-6 h-6 rounded-full border-2 border-white">
+                            <span class="text-white text-sm bg-black bg-opacity-50 px-2 py-1 rounded">
+                                王五
+                            </span>
+                        </div>
+                    </div>
+                    <div class="p-4">
+                        <h3 class="text-white font-medium mb-2">朋友游戏 3</h3>
+                        <div class="flex justify-between items-center">
+                            <button class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded transition">
+                                立即玩
+                            </button>
+                            <a href="#" class="text-gray-400 hover:text-white transition">
+                                更多信息
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 朋友游戏卡片 4 -->
+                <div class="game-card bg-gray-800 rounded-lg overflow-hidden">
+                    <div class="relative">
+                        <img src="path/to/friend-game4.jpg" alt="Friend Game 4" class="w-full h-48 object-cover">
+                        <div class="absolute top-2 right-2 bg-yellow-500 text-black px-2 py-1 rounded text-sm">
+                            4.8 ★
+                        </div>
+                        <div class="absolute bottom-2 left-2 flex items-center space-x-1">
+                            <img src="path/to/friend4-avatar.jpg" alt="Friend 4" class="w-6 h-6 rounded-full border-2 border-white">
+                            <span class="text-white text-sm bg-black bg-opacity-50 px-2 py-1 rounded">
+                                赵六
+                            </span>
+                        </div>
+                    </div>
+                    <div class="p-4">
+                        <h3 class="text-white font-medium mb-2">朋友游戏 4</h3>
+                        <div class="flex justify-between items-center">
+                            <button class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded transition">
+                                立即玩
+                            </button>
+                            <a href="#" class="text-gray-400 hover:text-white transition">
+                                更多信息
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
 
         <!-- 游戏展示区 -->
         <div class="grid grid-cols-4 gap-6">
@@ -525,9 +729,9 @@
         </div>
     </main>
 
-    <button class="menu-toggle">
+    <button id="mobile-menu-button" class="lg:hidden fixed top-4 left-4 z-50 p-2 rounded-lg bg-gray-800 text-white">
         <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
         </svg>
     </button>
 
@@ -565,7 +769,11 @@
                     puzzleGames: '益智游戏',
                     actionGames: '动作游戏',
                     strategyGames: '策略游戏',
-                    cardGames: '卡牌游戏'
+                    cardGames: '卡牌游戏',
+                    sections: {
+                        featuredGames: '精选游戏',
+                        friendsPlaying: '朋友在玩'
+                    }
                 },
                 'en': {
                     search: 'Search games...',
@@ -581,7 +789,11 @@
                     puzzleGames: 'Puzzle Games',
                     actionGames: 'Action Games',
                     strategyGames: 'Strategy Games',
-                    cardGames: 'Card Games'
+                    cardGames: 'Card Games',
+                    sections: {
+                        featuredGames: 'Featured Games',
+                        friendsPlaying: 'Friends Playing'
+                    }
                 },
                 'ja': {
                     search: 'ゲームを検索...',
@@ -597,7 +809,11 @@
                     puzzleGames: 'パズルゲーム',
                     actionGames: 'アクションゲーム',
                     strategyGames: '戦略ゲーム',
-                    cardGames: 'カードゲーム'
+                    cardGames: 'カードゲーム',
+                    sections: {
+                        featuredGames: 'おすすめゲーム',
+                        friendsPlaying: '友達がプレイ中'
+                    }
                 }
                 // 可以继续添加其他语言...
             };
@@ -648,21 +864,17 @@
                 }, 200);
             });
 
-            // 更新游戏卡片按钮
+            // 更新新增区域的标题
+            updateTextWithFade(document.querySelector('.featured-games-title'), texts.sections.featuredGames);
+            updateTextWithFade(document.querySelector('.friends-playing-title'), texts.sections.friendsPlaying);
+
+            // 更新新增区域的按钮文本
             document.querySelectorAll('.game-card button').forEach(btn => {
-                btn.style.opacity = '0';
-                setTimeout(() => {
-                    btn.textContent = texts.playNow;
-                    btn.style.opacity = '1';
-                }, 200);
+                updateTextWithFade(btn, texts.sections.playNow);
             });
 
             document.querySelectorAll('.game-card a').forEach(link => {
-                link.style.opacity = '0';
-                setTimeout(() => {
-                    link.textContent = texts.moreInfo;
-                    link.style.opacity = '1';
-                }, 200);
+                updateTextWithFade(link, texts.sections.moreInfo);
             });
         }
 
