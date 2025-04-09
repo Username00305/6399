@@ -2,7 +2,7 @@
 <html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=1280, initial-scale=0.1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>6399Play - 在线游戏世界</title>
     <meta name="description" content="发现精彩的在线游戏世界,即刻开始您的游戏之旅">
     <link rel="canonical" href="https://your-domain.com/game" />
@@ -85,11 +85,10 @@
             padding: 0.5rem 2.5rem 0.5rem 1rem;
             border-radius: 0.5rem;
             appearance: none;
-            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%239CA3AF'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M19 9l-7 7-7-7'%3E%3C/path%3E%3C/svg%3E");
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%236B7280'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M19 9l-7 7-7-7'%3E%3C/path%3E%3C/svg%3E");
             background-repeat: no-repeat;
             background-position: right 0.5rem center;
             background-size: 1.5em 1.5em;
-            padding-right: 2.5rem;
             transition: all 0.2s ease;
         }
 
@@ -105,18 +104,19 @@
         }
 
         .custom-select optgroup {
-            background-color: #1e293b;
+            background-color: var(--surface);
             color: #e2e8f0;
+            padding: 0.5rem 0;
         }
 
         .custom-select option {
-            background-color: #1e293b;
+            background-color: var(--surface);
             color: #e2e8f0;
             padding: 0.5rem;
         }
 
         .custom-select option:hover {
-            background-color: #2d3748;
+            background-color: rgba(59, 130, 246, 0.2);
         }
 
         .fade-transition {
@@ -287,13 +287,6 @@
 
             <a href="#" class="nav-item flex items-center px-4 py-3 rounded-lg text-gray-400 hover:text-white">
                 <svg class="w-5 h-5 mr-3" fill="currentColor" viewBox="0 0 20 20">
-                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z" clip-rule="evenodd"/>
-                </svg>
-                体育竞技
-            </a>
-
-            <a href="#" class="nav-item flex items-center px-4 py-3 rounded-lg text-gray-400 hover:text-white">
-                <svg class="w-5 h-5 mr-3" fill="currentColor" viewBox="0 0 20 20">
                     <path d="M8 16.5a1.5 1.5 0 11-3 0 1.5 1.5 0 013 0zM15 16.5a1.5 1.5 0 11-3 0 1.5 1.5 0 013 0z"/>
                     <path d="M3 4a1 1 0 00-1 1v10a1 1 0 001 1h1.05a2.5 2.5 0 014.9 0H10a1 1 0 001-1V5a1 1 0 00-1-1H3zM14 7a1 1 0 00-1 1v6.05A2.5 2.5 0 0115.95 16H17a1 1 0 001-1v-5a1 1 0 00-.293-.707l-2-2A1 1 0 0015 7h-1z"/>
                 </svg>
@@ -342,7 +335,7 @@
             </div>
             
             <div class="flex items-center space-x-4">
-                <select class="bg-[#1e293b] px-4 py-2 rounded-lg border border-gray-700 text-gray-200 hover:border-blue-500 focus:border-blue-500 focus:ring-1 focus:ring-blue-500 focus:outline-none cursor-pointer appearance-none custom-select">
+                <select class="custom-select">
                     <!-- 东亚语言 -->
                     <optgroup label="东亚" class="bg-[#1e293b] text-gray-200">
                         <option value="zh-CN" class="py-2">简体中文</option>
@@ -407,331 +400,308 @@
         </div>
 
         <!-- 游戏分类 -->
-        <div class="mb-12">
-            <h2 class="text-xl font-semibold mb-6">热门分类</h2>
+        <div class="mb-8">
+            <h2 class="text-2xl font-bold mb-4">游戏分类</h2>
             <div class="flex flex-wrap gap-4">
-                <button class="category-tag px-6 py-2 bg-blue-600 text-white rounded-full">
-                    ⭐ 益智游戏
-                </button>
-                <button class="category-tag px-6 py-2 bg-surface text-gray-300 rounded-full hover:bg-blue-600 hover:text-white">
-                    ⚡ 动作游戏
-                </button>
-                <button class="category-tag px-6 py-2 bg-surface text-gray-300 rounded-full hover:bg-blue-600 hover:text-white">
-                    🎮 策略游戏
-                </button>
-                <button class="category-tag px-6 py-2 bg-surface text-gray-300 rounded-full hover:bg-blue-600 hover:text-white">
-                    🃏 卡牌游戏
-                </button>
+                <a href="#action" class="category-tag px-4 py-2 rounded-full bg-blue-500 text-white">动作游戏</a>
+                <a href="#puzzle" class="category-tag px-4 py-2 rounded-full bg-purple-500 text-white">益智游戏</a>
+                <a href="#racing" class="category-tag px-4 py-2 rounded-full bg-green-500 text-white">竞速游戏</a>
+                <a href="#arcade" class="category-tag px-4 py-2 rounded-full bg-yellow-500 text-white">街机游戏</a>
             </div>
         </div>
 
-        <!-- 在热门分类之后添加精选游戏区域 -->
-        <section class="game-section mb-8">
-            <h2 class="text-xl font-semibold mb-4 text-white featured-games-title">精选游戏</h2>
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-                <!-- 精选游戏卡片 1 -->
-                <div class="game-card bg-gray-800 rounded-lg overflow-hidden">
-                    <div class="relative">
-                        <img src="path/to/featured1.jpg" alt="Featured Game 1" class="w-full h-48 object-cover">
-                        <div class="absolute top-2 right-2 bg-yellow-500 text-black px-2 py-1 rounded text-sm">
-                            4.8 ★
-                        </div>
+        <!-- 动作游戏 -->
+        <div id="action" class="mb-12">
+            <h3 class="text-xl font-bold mb-6">动作游戏</h3>
+            <div class="game-showcase grid grid-cols-4 gap-6">
+                <div class="game-card">
+                    <div class="game-iframe-container">
+                        <iframe class="game-iframe" src="https://play.famobi.com/giant-rush" allowfullscreen></iframe>
                     </div>
                     <div class="p-4">
-                        <h3 class="text-white font-medium mb-2">精选游戏 1</h3>
-                        <div class="flex justify-between items-center">
-                            <button class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded transition">
-                                立即玩
-                            </button>
-                            <a href="#" class="text-gray-400 hover:text-white transition">
-                                更多信息
-                            </a>
-                        </div>
+                        <h4 class="text-lg font-semibold mb-2">Giant Rush</h4>
+                        <p class="text-gray-400 text-sm mb-4">控制巨人奔跑并收集金币</p>
+                        <button class="w-full bg-blue-500 text-white py-2 rounded-lg hover:bg-blue-600">立即玩</button>
                     </div>
                 </div>
-
-                <!-- 精选游戏卡片 2 -->
-                <div class="game-card bg-gray-800 rounded-lg overflow-hidden">
-                    <div class="relative">
-                        <img src="path/to/featured2.jpg" alt="Featured Game 2" class="w-full h-48 object-cover">
-                        <div class="absolute top-2 right-2 bg-yellow-500 text-black px-2 py-1 rounded text-sm">
-                            4.9 ★
-                        </div>
+                <div class="game-card">
+                    <div class="game-iframe-container">
+                        <iframe class="game-iframe" src="https://play.famobi.com/train-miner" allowfullscreen></iframe>
                     </div>
                     <div class="p-4">
-                        <h3 class="text-white font-medium mb-2">精选游戏 2</h3>
-                        <div class="flex justify-between items-center">
-                            <button class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded transition">
-                                立即玩
-                            </button>
-                            <a href="#" class="text-gray-400 hover:text-white transition">
-                                更多信息
-                            </a>
-                        </div>
+                        <h4 class="text-lg font-semibold mb-2">Train Miner</h4>
+                        <p class="text-gray-400 text-sm mb-4">驾驶矿车收集资源</p>
+                        <button class="w-full bg-blue-500 text-white py-2 rounded-lg hover:bg-blue-600">立即玩</button>
                     </div>
                 </div>
-
-                <!-- 精选游戏卡片 3 -->
-                <div class="game-card bg-gray-800 rounded-lg overflow-hidden">
-                    <div class="relative">
-                        <img src="path/to/featured3.jpg" alt="Featured Game 3" class="w-full h-48 object-cover">
-                        <div class="absolute top-2 right-2 bg-yellow-500 text-black px-2 py-1 rounded text-sm">
-                            4.7 ★
-                        </div>
+                <div class="game-card">
+                    <div class="game-iframe-container">
+                        <iframe class="game-iframe" src="https://play.famobi.com/rise-up" allowfullscreen></iframe>
                     </div>
                     <div class="p-4">
-                        <h3 class="text-white font-medium mb-2">精选游戏 3</h3>
-                        <div class="flex justify-between items-center">
-                            <button class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded transition">
-                                立即玩
-                            </button>
-                            <a href="#" class="text-gray-400 hover:text-white transition">
-                                更多信息
-                            </a>
-                        </div>
+                        <h4 class="text-lg font-semibold mb-2">Rise Up</h4>
+                        <p class="text-gray-400 text-sm mb-4">控制气球上升避开障碍</p>
+                        <button class="w-full bg-blue-500 text-white py-2 rounded-lg hover:bg-blue-600">立即玩</button>
                     </div>
                 </div>
-
-                <!-- 精选游戏卡片 4 -->
-                <div class="game-card bg-gray-800 rounded-lg overflow-hidden">
-                    <div class="relative">
-                        <img src="path/to/featured4.jpg" alt="Featured Game 4" class="w-full h-48 object-cover">
-                        <div class="absolute top-2 right-2 bg-yellow-500 text-black px-2 py-1 rounded text-sm">
-                            4.6 ★
-                        </div>
+                <div class="game-card">
+                    <div class="game-iframe-container">
+                        <iframe class="game-iframe" src="https://play.famobi.com/western-sniper" allowfullscreen></iframe>
                     </div>
                     <div class="p-4">
-                        <h3 class="text-white font-medium mb-2">精选游戏 4</h3>
-                        <div class="flex justify-between items-center">
-                            <button class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded transition">
-                                立即玩
-                            </button>
-                            <a href="#" class="text-gray-400 hover:text-white transition">
-                                更多信息
-                            </a>
-                        </div>
+                        <h4 class="text-lg font-semibold mb-2">Western Sniper</h4>
+                        <p class="text-gray-400 text-sm mb-4">西部狙击手射击游戏</p>
+                        <button class="w-full bg-blue-500 text-white py-2 rounded-lg hover:bg-blue-600">立即玩</button>
                     </div>
                 </div>
             </div>
-        </section>
+        </div>
 
-        <!-- 添加朋友在玩区域 -->
-        <section class="game-section mb-8">
-            <h2 class="text-xl font-semibold mb-4 text-white friends-playing-title">朋友在玩</h2>
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-                <!-- 朋友游戏卡片 1 -->
-                <div class="game-card bg-gray-800 rounded-lg overflow-hidden">
-                    <div class="relative">
-                        <img src="path/to/friend-game1.jpg" alt="Friend Game 1" class="w-full h-48 object-cover">
-                        <div class="absolute top-2 right-2 bg-yellow-500 text-black px-2 py-1 rounded text-sm">
-                            4.5 ★
-                        </div>
-                        <div class="absolute bottom-2 left-2 flex items-center space-x-1">
-                            <img src="path/to/friend1-avatar.jpg" alt="Friend 1" class="w-6 h-6 rounded-full border-2 border-white">
-                            <span class="text-white text-sm bg-black bg-opacity-50 px-2 py-1 rounded">
-                                张三
-                            </span>
-                        </div>
+        <!-- 益智游戏 -->
+        <div id="puzzle" class="mb-12">
+            <h3 class="text-xl font-bold mb-6">益智游戏</h3>
+            <div class="game-showcase grid grid-cols-4 gap-6">
+                <div class="game-card">
+                    <div class="game-iframe-container">
+                        <iframe class="game-iframe" src="https://play.famobi.com/color-fill-3d" allowfullscreen></iframe>
                     </div>
                     <div class="p-4">
-                        <h3 class="text-white font-medium mb-2">朋友游戏 1</h3>
-                        <div class="flex justify-between items-center">
-                            <button class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded transition">
-                                立即玩
-                            </button>
-                            <a href="#" class="text-gray-400 hover:text-white transition">
-                                更多信息
-                            </a>
-                        </div>
+                        <h4 class="text-lg font-semibold mb-2">Color Fill 3D</h4>
+                        <p class="text-gray-400 text-sm mb-4">3D填色益智游戏</p>
+                        <button class="w-full bg-blue-500 text-white py-2 rounded-lg hover:bg-blue-600">立即玩</button>
                     </div>
                 </div>
-
-                <!-- 朋友游戏卡片 2 -->
-                <div class="game-card bg-gray-800 rounded-lg overflow-hidden">
-                    <div class="relative">
-                        <img src="path/to/friend-game2.jpg" alt="Friend Game 2" class="w-full h-48 object-cover">
-                        <div class="absolute top-2 right-2 bg-yellow-500 text-black px-2 py-1 rounded text-sm">
-                            4.7 ★
-                        </div>
-                        <div class="absolute bottom-2 left-2 flex items-center space-x-1">
-                            <img src="path/to/friend2-avatar.jpg" alt="Friend 2" class="w-6 h-6 rounded-full border-2 border-white">
-                            <span class="text-white text-sm bg-black bg-opacity-50 px-2 py-1 rounded">
-                                李四
-                            </span>
-                        </div>
+                <div class="game-card">
+                    <div class="game-iframe-container">
+                        <iframe class="game-iframe" src="https://play.famobi.com/spot-the-cat" allowfullscreen></iframe>
                     </div>
                     <div class="p-4">
-                        <h3 class="text-white font-medium mb-2">朋友游戏 2</h3>
-                        <div class="flex justify-between items-center">
-                            <button class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded transition">
-                                立即玩
-                            </button>
-                            <a href="#" class="text-gray-400 hover:text-white transition">
-                                更多信息
-                            </a>
-                        </div>
+                        <h4 class="text-lg font-semibold mb-2">Spot the Cat</h4>
+                        <p class="text-gray-400 text-sm mb-4">找出隐藏的猫咪</p>
+                        <button class="w-full bg-blue-500 text-white py-2 rounded-lg hover:bg-blue-600">立即玩</button>
                     </div>
                 </div>
-
-                <!-- 朋友游戏卡片 3 -->
-                <div class="game-card bg-gray-800 rounded-lg overflow-hidden">
-                    <div class="relative">
-                        <img src="path/to/friend-game3.jpg" alt="Friend Game 3" class="w-full h-48 object-cover">
-                        <div class="absolute top-2 right-2 bg-yellow-500 text-black px-2 py-1 rounded text-sm">
-                            4.6 ★
-                        </div>
-                        <div class="absolute bottom-2 left-2 flex items-center space-x-1">
-                            <img src="path/to/friend3-avatar.jpg" alt="Friend 3" class="w-6 h-6 rounded-full border-2 border-white">
-                            <span class="text-white text-sm bg-black bg-opacity-50 px-2 py-1 rounded">
-                                王五
-                            </span>
-                        </div>
+                <div class="game-card">
+                    <div class="game-iframe-container">
+                        <iframe class="game-iframe" src="https://play.famobi.com/color-roll-3d" allowfullscreen></iframe>
                     </div>
                     <div class="p-4">
-                        <h3 class="text-white font-medium mb-2">朋友游戏 3</h3>
-                        <div class="flex justify-between items-center">
-                            <button class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded transition">
-                                立即玩
-                            </button>
-                            <a href="#" class="text-gray-400 hover:text-white transition">
-                                更多信息
-                            </a>
-                        </div>
+                        <h4 class="text-lg font-semibold mb-2">Color Roll 3D</h4>
+                        <p class="text-gray-400 text-sm mb-4">3D滚球填色游戏</p>
+                        <button class="w-full bg-blue-500 text-white py-2 rounded-lg hover:bg-blue-600">立即玩</button>
                     </div>
                 </div>
-
-                <!-- 朋友游戏卡片 4 -->
-                <div class="game-card bg-gray-800 rounded-lg overflow-hidden">
-                    <div class="relative">
-                        <img src="path/to/friend-game4.jpg" alt="Friend Game 4" class="w-full h-48 object-cover">
-                        <div class="absolute top-2 right-2 bg-yellow-500 text-black px-2 py-1 rounded text-sm">
-                            4.8 ★
-                        </div>
-                        <div class="absolute bottom-2 left-2 flex items-center space-x-1">
-                            <img src="path/to/friend4-avatar.jpg" alt="Friend 4" class="w-6 h-6 rounded-full border-2 border-white">
-                            <span class="text-white text-sm bg-black bg-opacity-50 px-2 py-1 rounded">
-                                赵六
-                            </span>
-                        </div>
+                <div class="game-card">
+                    <div class="game-iframe-container">
+                        <iframe class="game-iframe" src="https://play.famobi.com/color-water-sort-3d" allowfullscreen></iframe>
                     </div>
                     <div class="p-4">
-                        <h3 class="text-white font-medium mb-2">朋友游戏 4</h3>
-                        <div class="flex justify-between items-center">
-                            <button class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded transition">
-                                立即玩
-                            </button>
-                            <a href="#" class="text-gray-400 hover:text-white transition">
-                                更多信息
-                            </a>
-                        </div>
+                        <h4 class="text-lg font-semibold mb-2">Color Water Sort 3D</h4>
+                        <p class="text-gray-400 text-sm mb-4">3D水排序益智游戏</p>
+                        <button class="w-full bg-blue-500 text-white py-2 rounded-lg hover:bg-blue-600">立即玩</button>
+                    </div>
+                </div>
+                <div class="game-card">
+                    <div class="game-iframe-container">
+                        <iframe class="game-iframe" src="https://play.famobi.com/braindom" allowfullscreen></iframe>
+                    </div>
+                    <div class="p-4">
+                        <h4 class="text-lg font-semibold mb-2">Braindom</h4>
+                        <p class="text-gray-400 text-sm mb-4">脑力挑战益智游戏</p>
+                        <button class="w-full bg-blue-500 text-white py-2 rounded-lg hover:bg-blue-600">立即玩</button>
+                    </div>
+                </div>
+                <div class="game-card">
+                    <div class="game-iframe-container">
+                        <iframe class="game-iframe" src="https://play.famobi.com/sort-it" allowfullscreen></iframe>
+                    </div>
+                    <div class="p-4">
+                        <h4 class="text-lg font-semibold mb-2">Sort It</h4>
+                        <p class="text-gray-400 text-sm mb-4">排序益智游戏</p>
+                        <button class="w-full bg-blue-500 text-white py-2 rounded-lg hover:bg-blue-600">立即玩</button>
+                    </div>
+                </div>
+                <div class="game-card">
+                    <div class="game-iframe-container">
+                        <iframe class="game-iframe" src="https://play.famobi.com/cube-match" allowfullscreen></iframe>
+                    </div>
+                    <div class="p-4">
+                        <h4 class="text-lg font-semibold mb-2">Cube Match</h4>
+                        <p class="text-gray-400 text-sm mb-4">方块匹配益智游戏</p>
+                        <button class="w-full bg-blue-500 text-white py-2 rounded-lg hover:bg-blue-600">立即玩</button>
+                    </div>
+                </div>
+                <div class="game-card">
+                    <div class="game-iframe-container">
+                        <iframe class="game-iframe" src="https://play.famobi.com/parking-jam" allowfullscreen></iframe>
+                    </div>
+                    <div class="p-4">
+                        <h4 class="text-lg font-semibold mb-2">Parking Jam</h4>
+                        <p class="text-gray-400 text-sm mb-4">停车场解谜游戏</p>
+                        <button class="w-full bg-blue-500 text-white py-2 rounded-lg hover:bg-blue-600">立即玩</button>
+                    </div>
+                </div>
+                <div class="game-card">
+                    <div class="game-iframe-container">
+                        <iframe class="game-iframe" src="https://play.famobi.com/fashion-battle" allowfullscreen></iframe>
+                    </div>
+                    <div class="p-4">
+                        <h4 class="text-lg font-semibold mb-2">Fashion Battle</h4>
+                        <p class="text-gray-400 text-sm mb-4">时尚搭配益智游戏</p>
+                        <button class="w-full bg-blue-500 text-white py-2 rounded-lg hover:bg-blue-600">立即玩</button>
+                    </div>
+                </div>
+                <div class="game-card">
+                    <div class="game-iframe-container">
+                        <iframe class="game-iframe" src="https://play.famobi.com/guess-their-answer" allowfullscreen></iframe>
+                    </div>
+                    <div class="p-4">
+                        <h4 class="text-lg font-semibold mb-2">Guess Their Answer</h4>
+                        <p class="text-gray-400 text-sm mb-4">猜答案益智游戏</p>
+                        <button class="w-full bg-blue-500 text-white py-2 rounded-lg hover:bg-blue-600">立即玩</button>
+                    </div>
+                </div>
+                <div class="game-card">
+                    <div class="game-iframe-container">
+                        <iframe class="game-iframe" src="https://play.famobi.com/thief-puzzle" allowfullscreen></iframe>
+                    </div>
+                    <div class="p-4">
+                        <h4 class="text-lg font-semibold mb-2">Thief Puzzle</h4>
+                        <p class="text-gray-400 text-sm mb-4">小偷解谜游戏</p>
+                        <button class="w-full bg-blue-500 text-white py-2 rounded-lg hover:bg-blue-600">立即玩</button>
                     </div>
                 </div>
             </div>
-        </section>
+        </div>
 
-        <!-- 游戏展示区 -->
-        <div class="grid grid-cols-4 gap-6">
-            <!-- Number Guessing -->
-            <div class="game-card rounded-xl overflow-hidden">
-                <div class="relative">
-                    <img src="https://placehold.co/400x300/2563eb/FFFFFF/png?text=123" alt="Number Guessing" class="w-full h-48 object-cover">
-                    <span class="absolute top-2 right-2 px-2 py-1 bg-blue-600/80 text-xs text-white rounded">Puzzle</span>
-                </div>
-                <div class="p-4">
-                    <div class="flex justify-between items-center mb-2">
-                        <h3 class="text-lg font-semibold">Number Guessing</h3>
-                        <div class="flex items-center">
-                            <span class="text-yellow-400 mr-1">4.7</span>
-                            <div class="text-yellow-400">★★★★★</div>
-                        </div>
+        <!-- 竞速游戏 -->
+        <div id="racing" class="mb-12">
+            <h3 class="text-xl font-bold mb-6">竞速游戏</h3>
+            <div class="game-showcase grid grid-cols-4 gap-6">
+                <div class="game-card">
+                    <div class="game-iframe-container">
+                        <iframe class="game-iframe" src="https://play.famobi.com/neon-rider" allowfullscreen></iframe>
                     </div>
-                    <p class="text-gray-400 text-sm mb-3">Test your intuition by guessing a number between 1 and 100.</p>
-                    <div class="flex justify-between items-center">
-                        <button class="bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 transition">
-                            立即玩
-                        </button>
-                        <a href="#" class="text-gray-400 hover:text-white text-sm">更多信息</a>
+                    <div class="p-4">
+                        <h4 class="text-lg font-semibold mb-2">Neon Rider</h4>
+                        <p class="text-gray-400 text-sm mb-4">霓虹摩托竞速</p>
+                        <button class="w-full bg-blue-500 text-white py-2 rounded-lg hover:bg-blue-600">立即玩</button>
+                    </div>
+                </div>
+                <div class="game-card">
+                    <div class="game-iframe-container">
+                        <iframe class="game-iframe" src="https://play.famobi.com/speed-master" allowfullscreen></iframe>
+                    </div>
+                    <div class="p-4">
+                        <h4 class="text-lg font-semibold mb-2">Speed Master</h4>
+                        <p class="text-gray-400 text-sm mb-4">速度大师竞速</p>
+                        <button class="w-full bg-blue-500 text-white py-2 rounded-lg hover:bg-blue-600">立即玩</button>
                     </div>
                 </div>
             </div>
+        </div>
 
-            <!-- Card Match Game -->
-            <div class="game-card rounded-xl overflow-hidden">
-                <div class="relative">
-                    <img src="https://placehold.co/400x300/7c3aed/FFFFFF/png?text=Cards" alt="Card Match" class="w-full h-48 object-cover">
-                    <span class="absolute top-2 right-2 px-2 py-1 bg-purple-600/80 text-xs text-white rounded">Memory</span>
-                </div>
-                <div class="p-4">
-                    <div class="flex justify-between items-center mb-2">
-                        <h3 class="text-lg font-semibold">Card Match</h3>
-                        <div class="flex items-center">
-                            <span class="text-yellow-400 mr-1">4.5</span>
-                            <div class="text-yellow-400">★★★★★</div>
-                        </div>
+        <!-- 街机游戏 -->
+        <div id="arcade" class="mb-12">
+            <h3 class="text-xl font-bold mb-6">街机游戏</h3>
+            <div class="game-showcase grid grid-cols-4 gap-6">
+                <div class="game-card">
+                    <div class="game-iframe-container">
+                        <iframe class="game-iframe" src="https://play.famobi.com/alien-attack" allowfullscreen></iframe>
                     </div>
-                    <p class="text-gray-400 text-sm mb-3">Find matching pairs of cards in this classic memory game.</p>
-                    <div class="flex justify-between items-center">
-                        <button class="bg-purple-600 text-white px-6 py-2 rounded-lg hover:bg-purple-700 transition">
-                            立即玩
-                        </button>
-                        <a href="#" class="text-gray-400 hover:text-white text-sm">更多信息</a>
+                    <div class="p-4">
+                        <h4 class="text-lg font-semibold mb-2">Alien Attack</h4>
+                        <p class="text-gray-400 text-sm mb-4">外星人入侵射击</p>
+                        <button class="w-full bg-blue-500 text-white py-2 rounded-lg hover:bg-blue-600">立即玩</button>
                     </div>
                 </div>
-            </div>
-
-            <!-- Word Scramble -->
-            <div class="game-card rounded-xl overflow-hidden">
-                <div class="relative">
-                    <img src="https://placehold.co/400x300/0ea5e9/FFFFFF/png?text=SCRM" alt="Word Scramble" class="w-full h-48 object-cover">
-                    <span class="absolute top-2 right-2 px-2 py-1 bg-sky-600/80 text-xs text-white rounded">Word</span>
-                </div>
-                <div class="p-4">
-                    <div class="flex justify-between items-center mb-2">
-                        <h3 class="text-lg font-semibold">Word Scramble</h3>
-                        <div class="flex items-center">
-                            <span class="text-yellow-400 mr-1">4.3</span>
-                            <div class="text-yellow-400">★★★★☆</div>
-                        </div>
+                <div class="game-card">
+                    <div class="game-iframe-container">
+                        <iframe class="game-iframe" src="https://play.famobi.com/peet-sneak" allowfullscreen></iframe>
                     </div>
-                    <p class="text-gray-400 text-sm mb-3">Unscramble words against the clock in this challenging word game.</p>
-                    <div class="flex justify-between items-center">
-                        <button class="bg-sky-600 text-white px-6 py-2 rounded-lg hover:bg-sky-700 transition">
-                            立即玩
-                        </button>
-                        <a href="#" class="text-gray-400 hover:text-white text-sm">更多信息</a>
+                    <div class="p-4">
+                        <h4 class="text-lg font-semibold mb-2">Peet Sneak</h4>
+                        <p class="text-gray-400 text-sm mb-4">潜行冒险游戏</p>
+                        <button class="w-full bg-blue-500 text-white py-2 rounded-lg hover:bg-blue-600">立即玩</button>
                     </div>
                 </div>
-            </div>
-
-            <!-- Tetris -->
-            <div class="game-card rounded-xl overflow-hidden">
-                <div class="relative">
-                    <img src="https://placehold.co/400x300/10b981/FFFFFF/png?text=Tetris" alt="Tetris" class="w-full h-48 object-cover">
-                    <span class="absolute top-2 right-2 px-2 py-1 bg-emerald-600/80 text-xs text-white rounded">Arcade</span>
-                </div>
-                <div class="p-4">
-                    <div class="flex justify-between items-center mb-2">
-                        <h3 class="text-lg font-semibold">Tetris</h3>
-                        <div class="flex items-center">
-                            <span class="text-yellow-400 mr-1">4.9</span>
-                            <div class="text-yellow-400">★★★★★</div>
-                        </div>
+                <div class="game-card">
+                    <div class="game-iframe-container">
+                        <iframe class="game-iframe" src="https://play.famobi.com/cut-the-rope" allowfullscreen></iframe>
                     </div>
-                    <p class="text-gray-400 text-sm mb-3">The classic block-stacking game of strategy and quick thinking.</p>
-                    <div class="flex justify-between items-center">
-                        <button class="bg-emerald-600 text-white px-6 py-2 rounded-lg hover:bg-emerald-700 transition">
-                            立即玩
-                        </button>
-                        <a href="#" class="text-gray-400 hover:text-white text-sm">更多信息</a>
+                    <div class="p-4">
+                        <h4 class="text-lg font-semibold mb-2">Cut the Rope</h4>
+                        <p class="text-gray-400 text-sm mb-4">割绳子益智游戏</p>
+                        <button class="w-full bg-blue-500 text-white py-2 rounded-lg hover:bg-blue-600">立即玩</button>
+                    </div>
+                </div>
+                <div class="game-card">
+                    <div class="game-iframe-container">
+                        <iframe class="game-iframe" src="https://play.famobi.com/toilet-run" allowfullscreen></iframe>
+                    </div>
+                    <div class="p-4">
+                        <h4 class="text-lg font-semibold mb-2">Toilet Run</h4>
+                        <p class="text-gray-400 text-sm mb-4">厕所奔跑冒险</p>
+                        <button class="w-full bg-blue-500 text-white py-2 rounded-lg hover:bg-blue-600">立即玩</button>
+                    </div>
+                </div>
+                <div class="game-card">
+                    <div class="game-iframe-container">
+                        <iframe class="game-iframe" src="https://play.famobi.com/block-painter" allowfullscreen></iframe>
+                    </div>
+                    <div class="p-4">
+                        <h4 class="text-lg font-semibold mb-2">Block Painter</h4>
+                        <p class="text-gray-400 text-sm mb-4">方块绘画街机游戏</p>
+                        <button class="w-full bg-blue-500 text-white py-2 rounded-lg hover:bg-blue-600">立即玩</button>
+                    </div>
+                </div>
+                <div class="game-card">
+                    <div class="game-iframe-container">
+                        <iframe class="game-iframe" src="https://play.famobi.com/cowboy-swing" allowfullscreen></iframe>
+                    </div>
+                    <div class="p-4">
+                        <h4 class="text-lg font-semibold mb-2">Cowboy Swing</h4>
+                        <p class="text-gray-400 text-sm mb-4">牛仔摇摆街机游戏</p>
+                        <button class="w-full bg-blue-500 text-white py-2 rounded-lg hover:bg-blue-600">立即玩</button>
+                    </div>
+                </div>
+                <div class="game-card">
+                    <div class="game-iframe-container">
+                        <iframe class="game-iframe" src="https://play.famobi.com/pair-up-3d" allowfullscreen></iframe>
+                    </div>
+                    <div class="p-4">
+                        <h4 class="text-lg font-semibold mb-2">Pair Up 3D</h4>
+                        <p class="text-gray-400 text-sm mb-4">3D配对街机游戏</p>
+                        <button class="w-full bg-blue-500 text-white py-2 rounded-lg hover:bg-blue-600">立即玩</button>
+                    </div>
+                </div>
+                <div class="game-card">
+                    <div class="game-iframe-container">
+                        <iframe class="game-iframe" src="https://play.famobi.com/green-ball" allowfullscreen></iframe>
+                    </div>
+                    <div class="p-4">
+                        <h4 class="text-lg font-semibold mb-2">Green Ball</h4>
+                        <p class="text-gray-400 text-sm mb-4">绿色小球街机游戏</p>
+                        <button class="w-full bg-blue-500 text-white py-2 rounded-lg hover:bg-blue-600">立即玩</button>
+                    </div>
+                </div>
+                <div class="game-card">
+                    <div class="game-iframe-container">
+                        <iframe class="game-iframe" src="https://play.famobi.com/twisty-lines" allowfullscreen></iframe>
+                    </div>
+                    <div class="p-4">
+                        <h4 class="text-lg font-semibold mb-2">Twisty Lines</h4>
+                        <p class="text-gray-400 text-sm mb-4">扭曲线条街机游戏</p>
+                        <button class="w-full bg-blue-500 text-white py-2 rounded-lg hover:bg-blue-600">立即玩</button>
                     </div>
                 </div>
             </div>
         </div>
     </main>
 
-    <button id="mobile-menu-button" class="lg:hidden fixed top-4 left-4 z-50 p-2 rounded-lg bg-gray-800 text-white">
+    <button class="menu-toggle">
         <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
         </svg>
     </button>
 
@@ -769,11 +739,7 @@
                     puzzleGames: '益智游戏',
                     actionGames: '动作游戏',
                     strategyGames: '策略游戏',
-                    cardGames: '卡牌游戏',
-                    sections: {
-                        featuredGames: '精选游戏',
-                        friendsPlaying: '朋友在玩'
-                    }
+                    cardGames: '卡牌游戏'
                 },
                 'en': {
                     search: 'Search games...',
@@ -789,11 +755,7 @@
                     puzzleGames: 'Puzzle Games',
                     actionGames: 'Action Games',
                     strategyGames: 'Strategy Games',
-                    cardGames: 'Card Games',
-                    sections: {
-                        featuredGames: 'Featured Games',
-                        friendsPlaying: 'Friends Playing'
-                    }
+                    cardGames: 'Card Games'
                 },
                 'ja': {
                     search: 'ゲームを検索...',
@@ -809,11 +771,7 @@
                     puzzleGames: 'パズルゲーム',
                     actionGames: 'アクションゲーム',
                     strategyGames: '戦略ゲーム',
-                    cardGames: 'カードゲーム',
-                    sections: {
-                        featuredGames: 'おすすめゲーム',
-                        friendsPlaying: '友達がプレイ中'
-                    }
+                    cardGames: 'カードゲーム'
                 }
                 // 可以继续添加其他语言...
             };
@@ -864,17 +822,21 @@
                 }, 200);
             });
 
-            // 更新新增区域的标题
-            updateTextWithFade(document.querySelector('.featured-games-title'), texts.sections.featuredGames);
-            updateTextWithFade(document.querySelector('.friends-playing-title'), texts.sections.friendsPlaying);
-
-            // 更新新增区域的按钮文本
+            // 更新游戏卡片按钮
             document.querySelectorAll('.game-card button').forEach(btn => {
-                updateTextWithFade(btn, texts.sections.playNow);
+                btn.style.opacity = '0';
+                setTimeout(() => {
+                    btn.textContent = texts.playNow;
+                    btn.style.opacity = '1';
+                }, 200);
             });
 
             document.querySelectorAll('.game-card a').forEach(link => {
-                updateTextWithFade(link, texts.sections.moreInfo);
+                link.style.opacity = '0';
+                setTimeout(() => {
+                    link.textContent = texts.moreInfo;
+                    link.style.opacity = '1';
+                }, 200);
             });
         }
 
