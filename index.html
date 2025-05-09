@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>6399play - 6399双人对战益智小游戏，在线免费玩</title>
+    <meta name="description" content="6399play是6399旗下专为双人设计的在线益智小游戏，支持WASD和方向键对战，支持中英文切换，免费畅玩，无广告，体验6399经典益智游戏。">
+    <meta name="keywords" content="6399, 6399play, 双人小游戏, 在线小游戏, 免费益智游戏, 对战, 益智对战, 朋友对战, 6399小游戏">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1 id="game-title">6399play双人益智小游戏</h1>
+            <div class="controls">
+                <select id="language-select">
+                    <option value="en">English</option>
+                    <option value="zh">中文</option>
+                </select>
+                <select id="timer-select">
+                    <option value="180">3 minutes</option>
+                    <option value="300">5 minutes</option>
+                    <option value="600">10 minutes</option>
+                    <option value="custom">Custom</option>
+                </select>
+                <input type="number" id="custom-time" min="1" max="60" placeholder="Minutes" style="display: none;">
+                <button id="start-game">Start Game</button>
+            </div>
+        </header>
+
+        <main>
+            <div class="game-container">
+                <div class="player-section">
+                    <h2 id="player1-title">Player 1 (WASD)</h2>
+                    <div class="score" id="player1-score">Score: 0</div>
+                    <div class="game-board" id="player1-board"></div>
+                </div>
+
+                <div class="timer-section">
+                    <div id="timer">3:00</div>
+                </div>
+
+                <div class="player-section">
+                    <h2 id="player2-title">Player 2 (Arrow Keys)</h2>
+                    <div class="score" id="player2-score">Score: 0</div>
+                    <div class="game-board" id="player2-board"></div>
+                </div>
+            </div>
+        </main>
+
+        <div class="instructions">
+            <h3 id="instructions-title">How to Play</h3>
+            <div class="instructions-content"></div>
+        </div>
+    </div>
+
+    <div id="fireworks" style="display:none;position:fixed;top:0;left:0;width:100vw;height:100vh;z-index:9999;justify-content:center;align-items:center;background:rgba(0,0,0,0.5);flex-direction:column;"></div>
+
+    <script src="js/i18n.js"></script>
+    <script src="js/board.js"></script>
+    <script src="js/timer.js"></script>
+    <script src="js/input.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html> 
